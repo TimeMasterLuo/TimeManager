@@ -28,5 +28,12 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    /** Called when the user taps the Send button */
+    fun toHome(view: View) {
+        val intent = Intent(this, Home::class.java).apply {
+        }
+        startActivity(intent)
+    }
 }
 
