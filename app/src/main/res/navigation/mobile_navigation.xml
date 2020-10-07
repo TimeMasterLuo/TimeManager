@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_setAlarm"
             app:destination="@id/setAlarm" />
+        <action
+            android:id="@+id/action_navigation_home_to_away_phone"
+            app:destination="@id/away_phone" />
     </fragment>
 
     <fragment
@@ -37,4 +40,9 @@
         android:name="com.example.timemanager.SetAlarm"
         android:label="activity_set_alarm"
         tools:layout="@layout/activity_set_alarm" />
+    <activity
+        android:id="@+id/away_phone"
+        android:name="com.example.timemanager.Away_phone"
+        android:label="activity_away_phone"
+        tools:layout="@layout/activity_away_phone" />
 </navigation>
