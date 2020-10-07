@@ -21,4 +21,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_settings">setting</string>
+    <string name="alarm">设定闹钟</string>
+    <string name="away_phone">远离手机</string>
 </resources>
