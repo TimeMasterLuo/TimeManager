@@ -10,9 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.R
 
+
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+
+    private val data = listOf("apple", "banana", "ori", "sdwqd")
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.settings.AuthorizedFragment">
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="125dp"
+        android:layout_height="28dp"
+        android:text="dark mode"
+        app:layout_constraintBottom_toBottomOf="@+id/text_home"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
@@ -33,12 +43,31 @@
         tools:src="@drawable/avatar2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/login_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:background="#3F51B5"
+        android:text="@string/Login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="136dp"
+        android:background="#E13225"
         android:text="@string/logout"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

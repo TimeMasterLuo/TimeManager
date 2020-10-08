@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         btn1.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 textView.text = "Clicked button1"
-                val intent = Intent(getActivity(), SetAlarm::class.java).apply {
+                val intent = Intent(activity, SetAlarm::class.java).apply {
                 }
                 startActivity(intent)
             }
