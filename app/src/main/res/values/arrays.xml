@@ -9,4 +9,12 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="languages">
+        <item>小游戏</item>
+        <item>听歌曲 </item>
+        <item>摇一摇</item>
+        <item>算术题</item>
+        <item>随机任务</item>
+    </string-array>
 </resources>

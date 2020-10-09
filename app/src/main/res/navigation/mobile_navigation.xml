@@ -22,7 +22,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.timemanager.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_analyze"
+            app:destination="@id/analyze" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -45,4 +49,9 @@
         android:name="com.example.timemanager.Away_phone"
         android:label="activity_away_phone"
         tools:layout="@layout/activity_away_phone" />
+    <activity
+        android:id="@+id/analyze"
+        android:name="com.example.timemanager.analyze"
+        android:label="activity_analyze"
+        tools:layout="@layout/activity_analyze" />
 </navigation>

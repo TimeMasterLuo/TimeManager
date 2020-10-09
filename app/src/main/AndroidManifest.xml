@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".analyze"
+            android:parentActivityName=".Home" />
         <activity
             android:name=".ui.login.Login"
             android:label="@string/title_activity_login"
