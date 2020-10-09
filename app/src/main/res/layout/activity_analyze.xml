@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".analyze">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="312dp"
+        android:layout_height="563dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/timeanalyze" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

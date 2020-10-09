@@ -52,10 +52,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/friend_button"
         android:layout_width="379dp"
         android:layout_height="55dp"
-        android:text="settings1"
+        android:text="好友列表"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -67,6 +67,6 @@
         android:text="settings2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/friend_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

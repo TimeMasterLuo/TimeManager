@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.example.timemanager.FriendList
 import com.example.timemanager.R
 import com.example.timemanager.ui.login.Login
 
@@ -24,6 +25,14 @@ class AuthorizedFragment : Fragment() {
         btn1.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(getActivity(), Login::class.java).apply {
+                }
+                startActivity(intent)
+            }
+        })
+        val btn2 : Button = root.findViewById(R.id.friend_button)
+        btn2.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(getActivity(), FriendList::class.java).apply {
                 }
                 startActivity(intent)
             }
