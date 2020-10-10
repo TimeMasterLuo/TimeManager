@@ -32,6 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="409dp"
@@ -45,61 +46,228 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/imageButton3"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1">
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:rowCount="3">
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/alarm" />
 
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
 
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="时间：10月10日9：30 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-            <ImageButton
-                android:id="@+id/imageButton10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="待完成"
+                            android:textColor="#6293F4" />
 
-            <ImageButton
-                android:id="@+id/imageButton11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                    </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton12"
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_weight="1"
+                        android:text="查看详情"
+                        app:layout_rowWeight="4" />
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar_1"
-                tools:src="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:rowCount="3">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/alarm" />
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="时间：10月10日9：30 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="已完成"
+                            android:textColor="#5EE4BA"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="查看详情"
+                        app:layout_rowWeight="4" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:rowCount="3">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/alarm" />
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="时间：10月10日9：30 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="未完成"
+                            android:textColor="#F4627D"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_weight="1"
+                        android:text="查看详情"
+                        app:layout_rowWeight="4" />
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:rowCount="3">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/alarm"
+                        app:srcCompat="@drawable/awayphone" />
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="开始时间：10月10日9：30 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="结束时间：10月10日9：30 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="深度模式"
+                            android:textColor="#F4627D" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_weight="1"
+                        android:text="查看详情"
+                        app:layout_rowWeight="4" />
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
