@@ -17,4 +17,12 @@
         <item>算术题</item>
         <item>随机任务</item>
     </string-array>
+
+    <string-array name="my_friends">
+        <item>小花</item>
+        <item>小红 </item>
+        <item>翠花</item>
+        <item>二妞</item>
+        <item>贝贝</item>
+    </string-array>
 </resources>
