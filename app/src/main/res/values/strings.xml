@@ -34,9 +34,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="Login">LOGIN</string>
-    <string name="logout">LOGOUT</string>
-    <string name="submit">SUBMIT</string>
+    <string name="Login">登入</string>
+    <string name="logout">登出</string>
+    <string name="submit">提交</string>
     <string name="dashboard_all">全部</string>
     <string name="dashboard_alarm">任务闹钟</string>
     <string name="dashboard_awayphone">远离手机</string>

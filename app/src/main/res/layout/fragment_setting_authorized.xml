@@ -78,7 +78,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_weight="1">
 
                 <androidx.gridlayout.widget.GridLayout
@@ -101,7 +101,7 @@
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="SWITCH ACCOUNT"
+                        android:text="切换账户"
                         android:textColor="#FFFFFF"
                         app:layout_column="0"
                         app:layout_row="2" />
@@ -115,6 +115,16 @@
                         android:textColor="#FFFFFF"
                         app:layout_column="0"
                         app:layout_row="1" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="设置主题"
+                        app:layout_column="0"
+                        app:layout_row="3" />
+
                 </androidx.gridlayout.widget.GridLayout>
 
             </androidx.cardview.widget.CardView>
