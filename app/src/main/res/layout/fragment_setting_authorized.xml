@@ -107,7 +107,7 @@
                         app:layout_row="2" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/history_entry"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"

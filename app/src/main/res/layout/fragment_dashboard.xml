@@ -91,7 +91,8 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/history_entry"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
@@ -145,6 +146,7 @@
 
                     <Button
                         android:id="@+id/profile_entry"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="查看详情"
@@ -199,7 +201,8 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/history_entry"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
@@ -261,7 +264,8 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/history_entry"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
