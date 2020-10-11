@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import kotlinx.android.synthetic.main.activity_set_alarm.*
 
 class SetAlarm : AppCompatActivity() {
     var friend_name = ""
@@ -17,6 +18,7 @@ class SetAlarm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_alarm)
+        dateTimePicker.setOnDateTimeChangedListener { millisecond ->  }
     }
     fun onCheckboxClicked(view: View) {
         if (view is CheckBox) {
@@ -57,8 +59,10 @@ class SetAlarm : AppCompatActivity() {
                         friendName.setText("小花")
                         val setPraise : TextView = findViewById(R.id.set_praise)
                         setPraise.setVisibility(View.VISIBLE);
+                        set_praise2.setVisibility(View.VISIBLE);
                         val price : EditText = findViewById(R.id.price)
                         price.setVisibility(View.VISIBLE);
+                        coins.setVisibility(View.VISIBLE);
                     }
                     else
                     {
@@ -69,6 +73,8 @@ class SetAlarm : AppCompatActivity() {
                         setPraise.setVisibility(View.GONE);
                         val price : EditText = findViewById(R.id.price)
                         price.setVisibility(View.GONE);
+                        set_praise2.setVisibility(View.GONE);
+                        coins.setVisibility(View.GONE);
                     }
                 }
             }
