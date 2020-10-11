@@ -83,46 +83,53 @@
 
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
 
                     <Button
                         android:id="@+id/friend_button"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:text="好友列表"
+                        app:layout_column="0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_gravity="center"
+                        app:layout_row="0" />
 
                     <Button
                         android:id="@+id/login_button"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:text="切换账户"
                         android:textColor="#FFFFFF"
                         app:layout_column="0"
+                        app:layout_gravity="center"
                         app:layout_row="2" />
 
                     <Button
                         android:id="@+id/history_entry"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:text="@string/logout"
                         android:textColor="#FFFFFF"
                         app:layout_column="0"
+                        app:layout_gravity="center"
                         app:layout_row="1" />
 
                     <Button
                         android:id="@+id/set_theme_btn"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:text="主题商店"
                         app:layout_column="0"
+                        app:layout_gravity="center"
                         app:layout_row="3" />
 
                 </androidx.gridlayout.widget.GridLayout>

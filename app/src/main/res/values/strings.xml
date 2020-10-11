@@ -47,4 +47,6 @@
     <string name="未完成">未完成</string>
     <string name="查看详情">查看详情</string>
     <string name="深度模式">深度模式</string>
+    <string name="pause_timer">Pause Timer</string>
+    <string name="resume_timer">Resume Timer</string>
 </resources>
