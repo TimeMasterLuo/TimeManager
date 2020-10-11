@@ -117,11 +117,11 @@
                         app:layout_row="1" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/set_theme_btn"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="设置主题"
+                        android:text="主题商店"
                         app:layout_column="0"
                         app:layout_row="3" />
 
