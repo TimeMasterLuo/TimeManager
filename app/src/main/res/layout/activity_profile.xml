@@ -32,6 +32,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/background1"
                 tools:srcCompat="@drawable/background1" />
 
