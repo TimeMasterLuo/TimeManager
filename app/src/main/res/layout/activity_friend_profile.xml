@@ -167,21 +167,22 @@
 
         <Button
             android:id="@+id/button9"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#C4F36A6A"
+            android:background="@drawable/button_circle_shape"
             android:text="删除好友" />
 
         <Button
             android:id="@+id/button8"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="#96EDCF"
+            android:background="@drawable/button_circle_shape_agree"
             android:text="为好友设定闹钟" />
 
     </LinearLayout>
