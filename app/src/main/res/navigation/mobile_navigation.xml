@@ -51,7 +51,7 @@
         tools:layout="@layout/activity_away_phone" />
     <activity
         android:id="@+id/analyze"
-        android:name="com.example.timemanager.analyze"
+        android:name="com.example.timemanager.Analyze"
         android:label="activity_analyze"
         tools:layout="@layout/activity_analyze" />
 </navigation>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AlarmFromFriend">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_gravity="center_vertical|end">
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="65dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#FF5722"
+            android:src="@drawable/ic_baseline_close_24"
+            android:tint="#FFFFFF"
+            app:layout_gravity="center_vertical" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="65dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#4CAF50"
+            android:src="@drawable/ic_baseline_done_24"
+            app:layout_gravity="center_vertical|end" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--                <DatePicker-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:calendarViewShown="false"-->
+                <!--                    android:datePickerMode="spinner" />-->
+
+                <!--                <TimePicker-->
+                <!--                    android:id="@+id/timepicker"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="#ffffff"-->
+                <!--                    android:timePickerMode="spinner" />-->
+                <com.loper7.date_time_picker.DateTimePicker
+                    android:id="@+id/dateTimePicker2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:showLabel="true"
+                    app:textSize="16sp"
+                    app:themeColor="#FF8080" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="140dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="任务:" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="睡午觉" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.example.timemanager.compoents.CircleImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:scaleType="centerInside"
+                        app:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/delisha" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="”来和德莉莎一起睡午觉吧“"
+                        android:textSize="18sp"
+                        app:layout_column="1"
+                        app:layout_gravity="center|left"
+                        app:layout_row="0" />
+                </androidx.gridlayout.widget.GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="他/她给出的报酬" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.example.timemanager.compoents.CircleImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:scaleType="centerInside"
+                        app:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/delisha" />
+
+                    <TextView
+                        android:id="@+id/textView43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="与德莉莎睡午觉的机会"
+                        app:layout_column="1"
+                        app:layout_gravity="center"
+                        app:layout_row="0" />
+                </androidx.gridlayout.widget.GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp" >
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.example.timemanager.compoents.CircleImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:scaleType="centerInside"
+                        app:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/coin" />
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        app:layout_column="1"
+                        app:layout_gravity="center"
+                        app:layout_row="0" />
+                </androidx.gridlayout.widget.GridLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
