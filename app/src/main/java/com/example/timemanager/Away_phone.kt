@@ -1,5 +1,6 @@
 package com.example.timemanager
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,5 +17,10 @@ class Away_phone : AppCompatActivity() {
             setPositiveButton("OK"){dialog, which ->  }
             show()
         }
+    }
+    fun startTimer(view: View){
+        val intent = Intent(this, AwayPhoneTimer::class.java).apply {
+        }
+        startActivity(intent)
     }
 }

@@ -17,93 +17,132 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TimePicker
-        android:id="@+id/timepicker"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="149dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="24dp"
-        android:entries="@array/languages"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="66dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="96dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="任务"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner2"
-        app:layout_constraintVertical_bias="1.0" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-        android:layout_width="114dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="onCheckboxClicked"
-        android:text="为好友设置"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timepicker"
-        app:layout_constraintVertical_bias="0.547" />
+                <!--                <DatePicker-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:calendarViewShown="false"-->
+                <!--                    android:datePickerMode="spinner" />-->
 
-    <TextView
-        android:id="@+id/set_praise"
-        android:layout_width="76dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="72dp"
-        android:text="设置奖励:"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
-        tools:visibility="visible" />
+                <!--                <TimePicker-->
+                <!--                    android:id="@+id/timepicker"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="#ffffff"-->
+                <!--                    android:timePickerMode="spinner" />-->
+                <com.loper7.date_time_picker.DateTimePicker
+                    android:id="@+id/dateTimePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:showLabel="true"
+                    app:textSize="16sp"
+                    app:themeColor="#FF8080" />
+            </LinearLayout>
 
-    <EditText
-        android:id="@+id/price"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="101dp"
-        android:layout_height="47dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="100"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/set_praise"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/set_praise"
-        tools:visibility="visible" />
+            <CheckBox
+                android:id="@+id/checkBox2"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="280dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:onClick="onCheckboxClicked"
+                android:text="为好友设置" />
 
-    <TextView
-        android:id="@+id/friend_name"
-        android:layout_width="91dp"
-        android:layout_height="28dp"
-        android:text="name"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/price"
-        app:layout_constraintStart_toStartOf="@+id/set_praise"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
-        tools:visibility="visible" />
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/set_praise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:text="为"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/friend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/set_praise2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置奖励:"
+                    android:visibility="gone" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/price"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="5"
+                    android:hint="奖励"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/coins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="金币"
+                    android:visibility="gone" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="140dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="任务:" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:entries="@array/languages"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

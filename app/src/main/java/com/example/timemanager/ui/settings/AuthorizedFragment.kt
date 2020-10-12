@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.timemanager.FriendList
+import com.example.timemanager.Profile
 import com.example.timemanager.R
+import com.example.timemanager.ThemeStore
 import com.example.timemanager.ui.login.Login
 
 class AuthorizedFragment : Fragment() {
@@ -33,6 +35,22 @@ class AuthorizedFragment : Fragment() {
         btn2.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(getActivity(), FriendList::class.java).apply {
+                }
+                startActivity(intent)
+            }
+        })
+        val btn3 : Button = root.findViewById(R.id.profile_entry)
+        btn3.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(getActivity(), Profile::class.java).apply {
+                }
+                startActivity(intent)
+            }
+        })
+        val btn4 : Button = root.findViewById(R.id.set_theme_btn)
+        btn4.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(getActivity(), ThemeStore::class.java).apply {
                 }
                 startActivity(intent)
             }

@@ -34,7 +34,19 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="Login">LOGIN</string>
-    <string name="logout">LOGOUT</string>
-    <string name="submit">SUBMIT</string>
+    <string name="Login">登入</string>
+    <string name="logout">登出</string>
+    <string name="submit">提交</string>
+    <string name="dashboard_all">全部</string>
+    <string name="dashboard_alarm">任务闹钟</string>
+    <string name="dashboard_awayphone">远离手机</string>
+    <string name="dashboard_friendalarm">好友闹钟</string>
+    <string name="todo">TODO</string>
+    <string name="待完成">待完成</string>
+    <string name="已完成">已完成</string>
+    <string name="未完成">未完成</string>
+    <string name="查看详情">查看详情</string>
+    <string name="深度模式">深度模式</string>
+    <string name="pause_timer">Pause Timer</string>
+    <string name="resume_timer">Resume Timer</string>
 </resources>
