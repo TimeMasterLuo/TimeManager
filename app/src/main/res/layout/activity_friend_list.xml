@@ -122,7 +122,7 @@
                 </LinearLayout>
 
                     <Button
-                        android:id="@+id/history_entry"
+                        android:id="@+id/config_button"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
                         android:onClick="onClick"

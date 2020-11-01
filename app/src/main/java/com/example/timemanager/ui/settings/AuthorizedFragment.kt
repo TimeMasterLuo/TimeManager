@@ -23,14 +23,7 @@ class AuthorizedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_setting_authorized, container, false)
-        val btn1 : Button = root.findViewById(R.id.login_button)
-        btn1.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(getActivity(), Login::class.java).apply {
-                }
-                startActivity(intent)
-            }
-        })
+
         val btn2 : Button = root.findViewById(R.id.friend_button)
         btn2.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
@@ -47,7 +40,7 @@ class AuthorizedFragment : Fragment() {
                 startActivity(intent)
             }
         })
-        val btn4 : Button = root.findViewById(R.id.set_theme_btn)
+        val btn4 : Button = root.findViewById(R.id.themeStore_button)
         btn4.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(getActivity(), ThemeStore::class.java).apply {

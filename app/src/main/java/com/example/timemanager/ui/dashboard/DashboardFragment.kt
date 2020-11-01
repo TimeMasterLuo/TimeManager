@@ -37,7 +37,7 @@ class DashboardFragment : Fragment() {
                 startActivity(intent)
             }
         })
-        val btn2 : Button = root.findViewById(R.id.history_entry)
+        val btn2 : Button = root.findViewById(R.id.config_button)
         btn2.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(getActivity(), HistoryDetail::class.java).apply {
