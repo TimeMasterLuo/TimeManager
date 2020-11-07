@@ -46,7 +46,7 @@
         tools:layout="@layout/activity_set_alarm" />
     <activity
         android:id="@+id/away_phone"
-        android:name="com.example.timemanager.Away_phone"
+        android:name="com.example.timemanager.AwayPhone"
         android:label="activity_away_phone"
         tools:layout="@layout/activity_away_phone" />
     <activity

@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorDanger">#C4F36A6A</color>
     <color name="pink">#F16D7A</color>
+    <color name="RGB_EFEFF4">#EFEFF4</color>
+    <color name="RGB_FFFFFF">#FFFFFF</color>
+    <color name="RGB_000000">#000000</color>
+
 </resources>
