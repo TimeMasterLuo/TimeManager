@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Away_phone">
+    tools:context=".AwayPhone">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:contentDescription="@string/focus_normal"
-        android:onClick="startTimer"
         android:src="@drawable/avatar_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -21,18 +20,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/focus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:contentDescription="@string/focus_strict"
-        android:onClick="startTimer"
         android:src="@drawable/avatar_10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="@+id/normal"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/normal"
+        app:layout_constraintTop_toBottomOf="@+id/normal"
         app:layout_constraintVertical_bias="0.124"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -42,9 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/focus_strict"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintEnd_toEndOf="@+id/focus"
+        app:layout_constraintStart_toStartOf="@+id/focus"
+        app:layout_constraintTop_toBottomOf="@+id/focus" />
 
     <TextView
         android:id="@+id/textView2"
@@ -52,7 +50,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/focus_normal"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintEnd_toEndOf="@+id/normal"
+        app:layout_constraintStart_toStartOf="@+id/normal"
+        app:layout_constraintTop_toBottomOf="@+id/normal" />
+
+    <Button
+        android:id="@+id/backtohome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="72dp"
+        android:text="BackToHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/focus" />
+
+    <Button
+        android:id="@+id/permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="48dp"
+        android:onClick="openPermission"
+        android:text="打开权限"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/focus" />
 </androidx.constraintlayout.widget.ConstraintLayout>

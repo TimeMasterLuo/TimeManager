@@ -49,4 +49,7 @@
     <string name="深度模式">深度模式</string>
     <string name="pause_timer">Pause Timer</string>
     <string name="resume_timer">Resume Timer</string>
+    <string name="text_back">返回</string>
+    <string name="text_forward">提交</string>
+    <string name="App_title">TimeManager</string>
 </resources>
