@@ -25,6 +25,8 @@
     <string name="away_phone">远离手机</string>
     <string name="focus_strict">FOCUS</string>
     <string name="focus_normal">NORMAL</string>
+    <string name="strict_description">不允许使用任何APP</string>
+    <string name="normal_description">允许使用白名单中的APP</string>
     <string name="title_activity_login">Login</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -52,4 +54,7 @@
     <string name="text_back">返回</string>
     <string name="text_forward">提交</string>
     <string name="App_title">TimeManager</string>
+    
+    <string name="proverb1">时间和潮流永远不待人。——司各特</string>
+    
 </resources>

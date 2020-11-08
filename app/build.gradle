@@ -75,4 +75,15 @@ dependencies {
     //time-datapicker
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.loperSeven:DateTimePicker:0.2.0'
+
+    //AndroidUtilCode
+    implementation 'com.blankj:utilcode:1.30.4'
+
+    //folding-cell-android
+    implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
+
+    //Fancybuttons
+    implementation 'com.github.medyo:fancybuttons:1.9.1'
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:1.9.1"
 }

@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.util.dialog.ShowDialog
 import kotlinx.android.synthetic.main.activity_away_phone.*
 import kotlinx.android.synthetic.main.layout_title.*
@@ -24,11 +25,9 @@ class AwayPhone : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_away_phone)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
-
-        button_backward.visibility = View.VISIBLE
-        button_backward.setOnClickListener {
-            finish()
-        }
+        //button_backward是回退键
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "远离手机"
 
         this.supportActionBar?.hide()
 //        AlertDialog.Builder(this).apply {
@@ -50,15 +49,6 @@ class AwayPhone : AppCompatActivity() {
                     finish()
                 }
             })
-        }
-
-
-        backtohome.setOnClickListener {
-            val intent1 = Intent(Intent.ACTION_MAIN)
-
-            intent1.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent1.addCategory(Intent.CATEGORY_HOME)
-            startActivity(intent1)
         }
 
         normal.setOnClickListener {
