@@ -35,7 +35,7 @@ public class TitleActivity extends Activity implements View.OnClickListener {
         mTitleTextView = (TextView) findViewById(R.id.text_title);
         mContentLayout = (FrameLayout) findViewById(R.id.layout_content);
         mBackwardbButton = (Button) findViewById(R.id.button_backward);
-        mForwardButton = (Button) findViewById(R.id.button_forward);
+        mForwardButton = (Button) findViewById(R.id.button_message);
     }
 
     /**
@@ -145,7 +145,7 @@ public class TitleActivity extends Activity implements View.OnClickListener {
                 onBackward(v);
                 break;
 
-            case R.id.button_forward:
+            case R.id.button_message:
                 onForward(v);
                 break;
 

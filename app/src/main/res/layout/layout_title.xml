@@ -31,15 +31,15 @@
             android:drawablePadding="6dp"
             android:ellipsize="end"
             android:gravity="center"
+            android:onClick="onClick"
             android:paddingStart="5dp"
             android:singleLine="true"
-            android:text="返回"
             android:textColor="#ffffffff"
             android:textSize="18sp"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <Button
-            android:id="@+id/button_forward"
+            android:id="@+id/button_message"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -50,7 +50,8 @@
             android:gravity="center"
             android:onClick="onClick"
             android:paddingStart="5dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <TextView

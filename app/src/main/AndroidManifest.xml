@@ -13,14 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/test">
+        <activity android:name=".MessagePackage.MessageView"
+            android:parentActivityName=".Home"/>
+
         <activity android:name=".AlarmFromFriend"
             android:parentActivityName=".AwayPhone" />
+
         <activity
             android:name=".AwayPhoneController"
             android:parentActivityName=".AwayPhone" />
         <activity android:name=".AwayPhonePackage.AwayPhoneResult"
             android:parentActivityName=".AwayPhoneController"/>
+        <activity android:name=".AwayPhonePackage.AwayPhoneScreen"
+            android:parentActivityName=".AwayPhoneController"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <service android:name=".AwayPhonePackage.AwayPhoneService"/>
+
         <activity
             android:name=".ThemeStore"
             android:parentActivityName=".Home" />
@@ -45,9 +53,7 @@
             android:parentActivityName=".Home" />
         <activity
             android:name=".AwayPhone"
-            android:parentActivityName=".Home"
-            >
-        </activity>
+            android:parentActivityName=".Home" />
         <activity
             android:name=".SetAlarm"
             android:parentActivityName=".Home" />
