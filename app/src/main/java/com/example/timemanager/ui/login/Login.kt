@@ -1,17 +1,20 @@
 package com.example.timemanager.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.example.timemanager.AwayPhoneTimer
+import com.example.timemanager.GlobalData
+import com.example.timemanager.Home
 import com.example.timemanager.R
 
 class Login : AppCompatActivity() {
@@ -52,14 +55,21 @@ class Login : AppCompatActivity() {
             loading.visibility = View.GONE
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
+                setResult(Activity.RESULT_OK)
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-            }
-            setResult(Activity.RESULT_OK)
+                setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            finish()
+                //设置全局数据，记入登录状态
+                val globalData: GlobalData = application as GlobalData
+                globalData.login_flag=true
+                //Complete and destroy login activity once successful
+                finish()
+                val intent = Intent(this, Home::class.java).apply {
+                }
+                startActivity(intent)
+            }
         })
 
         username.afterTextChanged {

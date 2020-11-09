@@ -1,13 +1,13 @@
 package com.example.timemanager.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import com.example.timemanager.GlobalData
+import com.example.timemanager.R
 import com.example.timemanager.data.LoginRepository
 import com.example.timemanager.data.Result
-
-import com.example.timemanager.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -24,7 +24,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         if (result is Result.Success) {
             _loginResult.value =
                 LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
+
+        }else if (result is Result.Fail) {
+            _loginResult.value = LoginResult(error = R.string.login_failed)
+        }
+        else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }
     }

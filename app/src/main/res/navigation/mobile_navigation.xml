@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/navigation_proflie"
-        android:name="com.example.timemanager.ui.settings.ProfileFragment"
+        android:name="com.example.timemanager.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 

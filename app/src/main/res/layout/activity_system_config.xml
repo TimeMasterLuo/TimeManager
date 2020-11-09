@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.systemconfig.SystemConfig">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="查看信息"
+                android:textColor="#00FFFFFF"
+                android:textSize="14sp" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:layoutMode="clipBounds">
+
+                <Button
+                    android:id="@+id/systemInfo_button"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_info_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:text="版本信息"
+                    android:textAlignment="textStart"
+                    android:textColor="#80808080"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="2" />
+
+                <Button
+                    android:id="@+id/setTheme_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_color_lens_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:text="更换主题"
+                    android:textAlignment="textStart"
+                    android:textColor="#80808080"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="0" />
+
+                <Button
+                    android:id="@+id/linkus_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_add_ic_call_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:text="联系我们"
+                    android:textAlignment="textStart"
+                    android:textColor="#CC808080"
+                    app:layout_column="0"
+                    app:layout_row="1" />
+
+                <Button
+                    android:id="@+id/logout_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_exit_to_app_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:onClick="Logout"
+                    android:text="登出"
+                    android:textAlignment="textStart"
+                    android:textColor="#CC808080"
+                    app:layout_column="0"
+                    app:layout_row="3" />
+
+            </androidx.gridlayout.widget.GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

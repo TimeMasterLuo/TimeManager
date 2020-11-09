@@ -1,4 +1,4 @@
-package com.example.timemanager.ui.settings
+package com.example.timemanager.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
