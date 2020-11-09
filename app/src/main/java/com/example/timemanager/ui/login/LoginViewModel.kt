@@ -52,4 +52,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
     }
+
+    // switch password visibility
+
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A808080"
     tools:context=".ui.settings.AuthorizedFragment">
 
     <ScrollView
@@ -97,7 +96,7 @@
 
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
@@ -105,10 +104,11 @@
 
                 <Button
                     android:id="@+id/friend_button"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:backgroundTint="#FFFFFF"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_group_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
@@ -124,9 +124,11 @@
 
                 <Button
                     android:id="@+id/wallet_button"
-                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_account_balance_wallet_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
@@ -145,6 +147,8 @@
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_color_lens_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
@@ -171,14 +175,15 @@
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFFFFF">
+                android:layout_weight="1">
 
                 <Button
                     android:id="@+id/themeStore_button"
                     style="@android:style/Widget.DeviceDefault.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_shop_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
@@ -205,14 +210,15 @@
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFFFFF">
+                android:layout_weight="1">
 
                 <Button
                     android:id="@+id/staff_button"
                     style="@android:style/Widget.DeviceDefault.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_school_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:text="客服"
@@ -226,6 +232,8 @@
                     style="@android:style/Widget.DeviceDefault.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_settings_36"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:text="设置"
@@ -233,6 +241,21 @@
                     android:textColor="#CC808080"
                     app:layout_column="0"
                     app:layout_row="1" />
+
+                <Button
+                    android:id="@+id/logout_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_exit_to_app_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:text="登出"
+                    android:textAlignment="textStart"
+                    android:textColor="#CC808080"
+                    app:layout_column="0"
+                    app:layout_row="2" />
 
             </androidx.gridlayout.widget.GridLayout>
 
