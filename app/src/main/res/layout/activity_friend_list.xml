@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.friendlist.FriendListFragment">
+    tools:context=".ui.friendlist.FriendList">
 
     <ScrollView
         android:layout_width="0dp"
@@ -66,9 +66,10 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button71"
+                        android:id="@+id/profile_entry"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
+                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>
@@ -96,34 +97,35 @@
                         app:srcCompat="@drawable/avatar2" />
 
                     <LinearLayout
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="20dp"
-                    android:visibility="visible"
-                    app:layout_gravity="fill"
-                    app:layout_rowWeight="4">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="月一"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="我要成为时间管理大师！" />
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="月一"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="我要成为时间管理大师！" />
+
+                    </LinearLayout>
 
                     <Button
-                        android:id="@+id/button72"
+                        android:id="@+id/config_button"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
+                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>
@@ -176,9 +178,10 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button73"
+                        android:id="@+id/button3"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
+                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.friendlist.FriendList">
-
+    tools:context=".ui.friendlist.FriendListFragment">
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,10 +65,9 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/profile_entry"
+                        android:id="@+id/button71"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
-                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>
@@ -122,10 +120,9 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/config_button"
+                        android:id="@+id/button72"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
-                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>
@@ -178,10 +175,9 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/button73"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_weight="1"
-                        android:onClick="onClick"
                         android:text="查看详情"
                         app:layout_rowWeight="4" />
                 </androidx.gridlayout.widget.GridLayout>
@@ -190,5 +186,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
