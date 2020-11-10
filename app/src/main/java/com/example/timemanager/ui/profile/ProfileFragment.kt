@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.*
+import com.example.timemanager.ui.friendlist.FriendList
 import com.example.timemanager.ui.login.Login
 import com.example.timemanager.ui.systemconfig.SystemConfig
 

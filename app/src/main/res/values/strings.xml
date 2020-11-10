@@ -6,6 +6,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_friendlist">friendlist</string>
     <string name="title_profile">Profile</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -50,4 +51,6 @@
     <string name="深度模式">深度模式</string>
     <string name="pause_timer">Pause Timer</string>
     <string name="resume_timer">Resume Timer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

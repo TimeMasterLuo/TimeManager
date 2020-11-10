@@ -12,7 +12,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.AwayPhoneTimer
 import com.example.timemanager.GlobalData
 import com.example.timemanager.Home
 import com.example.timemanager.R
@@ -63,10 +62,12 @@ class Login : AppCompatActivity() {
 
                 //设置全局数据，记入登录状态
                 val globalData: GlobalData = application as GlobalData
-                globalData.login_flag=true
+                globalData.login_flag = true
                 //Complete and destroy login activity once successful
                 finish()
                 val intent = Intent(this, Home::class.java).apply {
+                    //清空之前堆叠的栈
+                    setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 }
                 startActivity(intent)
             }

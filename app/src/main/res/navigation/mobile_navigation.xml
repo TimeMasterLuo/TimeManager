@@ -29,10 +29,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.timemanager.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_friendlist"
+        android:name="com.example.timemanager.ui.friendlist.FriendListFragment"
+        android:label="@string/title_friendlist"
+        tools:layout="@layout/fragment_friend_list" />
 
     <fragment
         android:id="@+id/navigation_proflie"

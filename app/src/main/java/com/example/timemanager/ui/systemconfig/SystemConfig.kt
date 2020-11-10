@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.timemanager.FriendProfile
 import com.example.timemanager.GlobalData
 import com.example.timemanager.Home
 import com.example.timemanager.R
@@ -20,6 +19,8 @@ class SystemConfig : AppCompatActivity() {
         globalData.login_flag=false
 
         val intent = Intent(this, Home::class.java).apply {
+            //清空之前堆叠的栈
+            setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intent)
     }
