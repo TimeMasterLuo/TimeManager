@@ -1,25 +1,20 @@
-package com.example.timemanager
+package com.example.timemanager.ui.alarm
 
-import android.app.AppOpsManager
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Process
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Switch
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
-import com.example.timemanager.util.dialog.ShowDialog
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
 import kotlinx.android.synthetic.main.activity_alarm_manage.*
@@ -61,7 +56,8 @@ class AlarmManage : AppCompatActivity(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             var viewHolder= MyViewHolder(
                 LayoutInflater.from(
-                this@AlarmManage).inflate(R.layout.layout_alarm_list, parent,
+                this@AlarmManage).inflate(
+                    R.layout.layout_alarm_list, parent,
                 false))
 
             return viewHolder;

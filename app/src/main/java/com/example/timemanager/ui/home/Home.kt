@@ -1,6 +1,5 @@
-package com.example.timemanager
+package com.example.timemanager.ui.home
 
-import android.app.Application
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -9,8 +8,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonMessage
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_title.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

@@ -1,20 +1,14 @@
 package com.example.timemanager.AwayPhonePackage
 
 import android.annotation.SuppressLint
-import android.app.Service
-import android.content.ComponentName
-import android.content.ServiceConnection
-import android.graphics.Color
 import android.os.Bundle
-import android.os.IBinder
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ServiceUtils
-import com.example.timemanager.Home
+import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
-import com.example.timemanager.ui.title.ButtonBackward
 import kotlinx.android.synthetic.main.activity_away_phone_result.*
 import kotlinx.android.synthetic.main.layout_title.*
 

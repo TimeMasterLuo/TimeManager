@@ -10,7 +10,7 @@ import android.graphics.Point
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import com.example.timemanager.AlarmActivity
+import com.example.timemanager.ui.alarm.AlarmActivity
 
 @SuppressLint("ViewConstructor")
 class PuzzleBoardView(context: Context, val n: Int) : View(context) {

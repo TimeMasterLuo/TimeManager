@@ -4,15 +4,9 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.ColorSpace
-import android.net.Uri
-import android.os.Bundle
-import com.example.timemanager.AlramReceiver
-import com.example.timemanager.SetAlarm
-import com.example.timemanager.TimeManager
+import com.example.timemanager.ui.alarm.AlramReceiver
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AlarmTools {
 

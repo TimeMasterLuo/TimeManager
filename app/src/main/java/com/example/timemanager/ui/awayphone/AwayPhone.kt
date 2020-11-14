@@ -1,4 +1,4 @@
-package com.example.timemanager
+package com.example.timemanager.ui.awayphone
 
 import android.app.AppOpsManager
 import android.content.Context
@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.util.dialog.ShowDialog
 import kotlinx.android.synthetic.main.activity_away_phone.*
