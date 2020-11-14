@@ -9,7 +9,7 @@
         android:id="@+id/biaoti"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:background="#ed4255">
+        android:background="#673AB7">
 
         <TextView
             android:id="@+id/text_title"
@@ -26,31 +26,33 @@
             android:id="@+id/button_backward"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:background="#ed4255"
-            android:drawableStart="@drawable/arrow_back"
-            android:drawablePadding="6dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:singleLine="true"
-            android:text="返回"
-            android:textColor="#ffffffff"
-            android:textSize="18sp"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/button_forward"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:background="#ed4255"
-            android:drawableStart="@drawable/mail"
+            android:layout_marginLeft="20dp"
+            android:background="#673AB7"
+            android:drawableStart="@drawable/ic_baseline_keyboard_arrow_left_24"
             android:drawablePadding="6dp"
             android:ellipsize="end"
             android:gravity="center"
             android:onClick="onClick"
             android:paddingStart="5dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_message"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="#673AB7"
+            android:drawableStart="@drawable/ic_baseline_chat_bubble_24"
+            android:drawablePadding="6dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:paddingStart="5dp"
+            android:singleLine="true"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <TextView

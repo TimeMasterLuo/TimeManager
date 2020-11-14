@@ -78,4 +78,15 @@ dependencies {
 
     //AAChartCore
     implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
+
+    //AndroidUtilCode
+    implementation 'com.blankj:utilcode:1.30.4'
+
+    //folding-cell-android
+    implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
+
+    //Fancybuttons
+    implementation 'com.github.medyo:fancybuttons:1.9.1'
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:1.9.1"
 }

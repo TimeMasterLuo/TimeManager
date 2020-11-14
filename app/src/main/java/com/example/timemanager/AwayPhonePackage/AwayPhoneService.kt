@@ -10,29 +10,42 @@ import android.net.Uri
 import android.os.*
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.blankj.utilcode.constant.TimeConstants
+import com.blankj.utilcode.util.ClickUtils
+import com.blankj.utilcode.util.TimeUtils
 import java.util.*
 
 
 class AwayPhoneService : Service() {
     private var mContext: Context? = null
+    private var mBinder: MyBinder = MyBinder()
     private var mTimer: Timer? = null
     private var mytime: Float = 0.0F
     private var running = true
     private var model: String? = "normal"
     private val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+    private val notification2: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
     private var r = RingtoneManager.getRingtone(application, notification)
 
     private var whitelistFocus: Array<String> = arrayOf("com.example.timemanager")
     private var whitelistNormal: Array<String> = arrayOf("com.example.timemanager", "com.android.chrome")
     private var whitelist: Array<String> = arrayOf("")
 
+    private lateinit var startTime: Date
+    private lateinit var endTime: Date
+
+    internal inner class MyBinder : Binder() {
+        val service: AwayPhoneService
+            get() = this@AwayPhoneService
+    }
     override fun onBind(intent: Intent): IBinder? {
-        return null
+        return mBinder
     }
 
     override fun onCreate() {
         super.onCreate()
         mContext = this
+        startTime = TimeUtils.getNowDate()
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -102,25 +115,26 @@ class AwayPhoneService : Service() {
                         usageStatsMap[usageStatsMap.lastKey()]!!.packageName
 
 
-                    if (getLauncherPackageName(mContext) == topPackageName || whitelist.contains(topPackageName)) {
+                    if ((getLauncherPackageName(mContext) == topPackageName || whitelist.contains(topPackageName))) {
                         return
                     }
 
                     Log.e("TopPackage Name", topPackageName)
                     //模拟home键点击
-                    val intent = Intent(Intent.ACTION_MAIN)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    intent.addCategory(Intent.CATEGORY_HOME)
-                    startActivity(intent)
-                    //Toast.makeText(this, "服务已开启！", Toast.LENGTH_SHORT).show()
-                    //启动提示页面
+                    ClickUtils.back2HomeFriendly("远离手机模式结束！")
+
+                    //转到提示页面
                     val intent1 = Intent(mContext, AwayPhoneResult::class.java).apply {  }
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    val seconds = mytime/1000
+                    endTime = TimeUtils.getNowDate()
+                    val seconds = TimeUtils.getTimeSpan(endTime, startTime, TimeConstants.MSEC)/1000F
                     intent1.putExtra("time",seconds.toString())
-                    intent1.putExtra("clock", r.toString())
+                    intent1.putExtra("startTime",TimeUtils.date2String(startTime))
+                    intent1.putExtra("endTime",TimeUtils.date2String(endTime))
+                    //intent1.putExtra("clock", r.toString())
                     startActivity(intent1)
-                    Log.e("alarm", r.toString())
+                    Log.e("startTime", TimeUtils.date2String(startTime))
+                    Log.e("endTime", TimeUtils.date2String(endTime))
 
                     r.play()
                     running = false
@@ -141,5 +155,19 @@ class AwayPhoneService : Service() {
         } else {
             res.activityInfo.packageName
         }
+    }
+
+    fun manualStop(){
+        val intent1 = Intent(mContext, AwayPhoneResult::class.java).apply {  }
+        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        endTime = TimeUtils.getNowDate()
+        val seconds = TimeUtils.getTimeSpan(endTime, startTime, TimeConstants.MSEC)/1000F
+        intent1.putExtra("time",seconds.toString())
+        intent1.putExtra("startTime",TimeUtils.date2String(startTime))
+        intent1.putExtra("endTime",TimeUtils.date2String(endTime))
+        //r = RingtoneManager.getRingtone(applicationContext, notification2)
+        startActivity(intent1)
+        r.play()
+        running = false
     }
 }
