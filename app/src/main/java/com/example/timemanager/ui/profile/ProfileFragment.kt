@@ -41,12 +41,10 @@ class ProfileFragment : Fragment() {
                     startActivity(intent)
                 }
             })
-            val btn2 : Button = root.findViewById(R.id.friend_button)
-            btn2.setOnClickListener(object : View.OnClickListener {
+            val ssb_btn2 : Button = root.findViewById(R.id.subscribe_button)
+            ssb_btn2.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
-                    val intent = Intent(getActivity(), FriendList::class.java).apply {
-                    }
-                    startActivity(intent)
+                    // TODO: 2020/11/14
                 }
             })
             val btn3 : Button = root.findViewById(R.id.profile_entry)
