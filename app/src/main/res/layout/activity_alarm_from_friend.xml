@@ -105,7 +105,7 @@
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.example.timemanager.compoents.CircleImageView
+                    <com.example.timemanager.components.CircleImageView
                         android:id="@+id/imageView3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -145,7 +145,7 @@
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.example.timemanager.compoents.CircleImageView
+                    <com.example.timemanager.components.CircleImageView
                         android:id="@+id/imageView4"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -177,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.example.timemanager.compoents.CircleImageView
+                    <com.example.timemanager.components.CircleImageView
                         android:id="@+id/imageView5"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
