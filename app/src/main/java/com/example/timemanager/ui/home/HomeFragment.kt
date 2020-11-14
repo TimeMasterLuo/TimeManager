@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.timemanager.AlarmManage
 import com.example.timemanager.AwayPhone
 import com.example.timemanager.R
 import com.example.timemanager.SetAlarm
@@ -35,7 +36,7 @@ class HomeFragment : Fragment() {
         btn1.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View?) {
                 textView.text = "Clicked button1"
-                val intent = Intent(activity, SetAlarm::class.java).apply {
+                val intent = Intent(activity, AlarmManage::class.java).apply {
                 }
                 startActivity(intent)
             }

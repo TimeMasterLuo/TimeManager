@@ -11,8 +11,8 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_setAlarm"
-            app:destination="@id/setAlarm" />
+            android:id="@+id/action_navigation_home_to_alarm_manage"
+            app:destination="@id/AlarmManage" />
         <action
             android:id="@+id/action_navigation_home_to_away_phone"
             app:destination="@id/away_phone" />
@@ -41,10 +41,10 @@
         tools:layout="@layout/fragment_profile" />
 
     <activity
-        android:id="@+id/setAlarm"
-        android:name="com.example.timemanager.SetAlarm"
-        android:label="activity_set_alarm"
-        tools:layout="@layout/activity_set_alarm" />
+        android:id="@+id/AlarmManage"
+        android:name="com.example.timemanager.AlarmManage"
+        android:label="activity_alarm_manage"
+        tools:layout="@layout/activity_alarm_manage" />
     <activity
         android:id="@+id/away_phone"
         android:name="com.example.timemanager.AwayPhone"

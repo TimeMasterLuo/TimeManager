@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
         //默认为未登入
         var root = inflater.inflate(R.layout.fragment_profile_unauthorized, container, false)
         //获取全局变量flag
-        var flag: Boolean = (activity!!.application as GlobalData).login_flag
+        var flag: Boolean = (activity!!.application as TimeManager).login_flag
 
         if (flag) {
             //渲染fragment_profile_authorized并绑定监听

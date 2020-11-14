@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.GlobalData
-import com.example.timemanager.Profile
-import com.example.timemanager.R
-import com.example.timemanager.ThemeStore
+import com.example.timemanager.*
 import com.example.timemanager.ui.login.Login
 import com.example.timemanager.ui.profile.ProfileViewModel
 import com.example.timemanager.ui.systemconfig.SystemConfig
@@ -31,7 +28,7 @@ class FriendListFragment : Fragment() {
         //默认为未登入
         var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
         //获取全局变量flag
-        var flag: Boolean = (activity!!.application as GlobalData).login_flag
+        var flag: Boolean = (activity!!.application as TimeManager).login_flag
 
         if (flag) {
             //渲染fragment_friendlist_authorized并绑定监听

@@ -15,14 +15,14 @@ import kotlinx.android.synthetic.main.layout_title.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class GlobalData : Application() {
-    var login_flag = false
-
-    override fun onCreate() {
-        login_flag = false
-        super.onCreate()
-    }
-}
+//class GlobalData : Application() {
+//    var login_flag = false
+//
+//    override fun onCreate() {
+//        login_flag = false
+//        super.onCreate()
+//    }
+//}
 
 class Home : AppCompatActivity() {
 
