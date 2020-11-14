@@ -2,6 +2,7 @@ package com.example.timemanager
 
 import android.app.Application
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
