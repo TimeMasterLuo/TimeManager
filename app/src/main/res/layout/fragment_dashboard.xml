@@ -123,7 +123,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/history_entry"
+                        android:id="@+id/config_button"
                         android:layout_weight="1"
                         android:text="@string/查看详情"
                         app:layout_rowWeight="4" />

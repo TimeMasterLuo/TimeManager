@@ -1,16 +1,23 @@
 package com.example.timemanager
 
-import android.content.Intent
+import android.app.Application
 import android.os.Bundle
-import android.view.Window
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.layout_title.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+class GlobalData : Application() {
+    var login_flag = false
+
+    override fun onCreate() {
+        login_flag = false
+        super.onCreate()
+    }
+}
 
 class Home : AppCompatActivity() {
 
@@ -31,7 +38,10 @@ class Home : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_settings
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_friendlist,
+                R.id.navigation_proflie
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myself"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false">
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:rowCount="3">
+
+                    <com.example.timemanager.compoents.CircleImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="83dp"
+                        android:layout_height="57dp"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:scaleType="centerInside"
+                        app:layout_column="0"
+                        app:layout_row="0"
+                        app:srcCompat="@drawable/avatar2" />
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:visibility="visible"
+                        app:layout_gravity="fill"
+                        app:layout_rowWeight="4">
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="username"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textColor="#673AB7" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="待办：?  已办：？   " />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/profile_entry"
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        android:text="个人主页 〉"
+                        android:textColor="#80808080"
+                        app:layout_rowWeight="4" />
+                </androidx.gridlayout.widget.GridLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="查看信息"
+                android:textColor="#00FFFFFF"
+                android:textSize="14sp" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:layoutMode="clipBounds">
+
+                <Button
+                    android:id="@+id/subscribe_button"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_color_lens_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:text="我的订阅"
+                    android:textAlignment="textStart"
+                    android:textColor="#80808080"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="1" />
+
+                <Button
+                    android:id="@+id/wallet_button"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_account_balance_wallet_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:text="剩余资产"
+                    android:textAlignment="textStart"
+                    android:textColor="#80808080"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="2" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="兑换服务"
+                android:textColor="#00000000"
+                android:textSize="14sp" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/themeStore_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_shop_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:text="兑换主题"
+                    android:textAlignment="textStart"
+                    android:textColor="#80808080"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="0" />
+            </androidx.gridlayout.widget.GridLayout>
+            >
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="更多服务"
+                android:textColor="#00000000"
+                android:textSize="14sp" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/staff_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_school_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:text="客服"
+                    android:textAlignment="textStart"
+                    android:textColor="#CC808080"
+                    app:layout_column="0"
+                    app:layout_row="0" />
+
+                <Button
+                    android:id="@+id/config_button"
+                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_settings_36"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:text="设置"
+                    android:textAlignment="textStart"
+                    android:textColor="#CC808080"
+                    app:layout_column="0"
+                    app:layout_row="1" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+        </LinearLayout>
+        >
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
