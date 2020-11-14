@@ -8,5 +8,8 @@
     <color name="RGB_EFEFF4">#EFEFF4</color>
     <color name="RGB_FFFFFF">#FFFFFF</color>
     <color name="RGB_000000">#000000</color>
+    <color name="gameBackground">#FAFAFA</color>
+    <color name="puzzleBlock">#BBDEFB</color>
+    <color name="puzzleBlockText">#025da9</color>
 
 </resources>

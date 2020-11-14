@@ -7,6 +7,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import com.example.timemanager.puzzle.PuzzleFragment
 import com.example.timemanager.tools.AlarmTools
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
@@ -21,6 +23,9 @@ class AlarmActivity: AppCompatActivity() {
     private var model = T_ALARM_CLOCK();
     private var id :String ="";
     private var task :String ="";
+    val fragmentManager: FragmentManager = supportFragmentManager
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
@@ -46,7 +51,6 @@ class AlarmActivity: AppCompatActivity() {
             where("ID","=",id).findFirst();
             uiThread {
                 if (model==null) return@uiThread
-                task_text.text = model.Task;
                 stop_rt.visibility= View.VISIBLE;
                 if (model.ACTIVE == "1"){
                     initMediaPlayer();
@@ -59,6 +63,7 @@ class AlarmActivity: AppCompatActivity() {
                 }
             }
         }
+        showPuzzleFragment(3);
     }
 
     private fun initMediaPlayer() {
@@ -88,5 +93,12 @@ class AlarmActivity: AppCompatActivity() {
             DbTool.saveOrUpdate(model);
             AlarmTools.cancelAlarm(this,model);
         }
+    }
+    fun showPuzzleFragment(newN: Int) {
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = PuzzleFragment()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
