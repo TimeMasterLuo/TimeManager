@@ -63,7 +63,9 @@ class AlarmActivity: AppCompatActivity() {
                 }
             }
         }
-        showPuzzleFragment(3);
+        if(task.equals("PUZZLE")){
+            showPuzzleFragment(3)
+        };
     }
 
     private fun initMediaPlayer() {
@@ -100,5 +102,7 @@ class AlarmActivity: AppCompatActivity() {
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+       // if(fragment.)
+
     }
 }
