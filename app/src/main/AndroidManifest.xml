@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timemanager">
 
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
     <application
         android:name=".GlobalData"
         android:allowBackup="true"
@@ -17,8 +21,11 @@
             android:name=".AlarmFromFriend"
             android:parentActivityName=".Away_phone" />
         <activity
-            android:name=".AwayPhoneTimer"
-            android:parentActivityName=".Away_phone" />
+            android:name=".AwayPhoneController"
+            android:parentActivityName=".AwayPhone" />
+        <activity android:name=".AwayPhonePackage.AwayPhoneResult"
+            android:parentActivityName=".AwayPhoneController"/>
+        <service android:name=".AwayPhonePackage.AwayPhoneService"/>
         <activity
             android:name=".ThemeStore"
             android:parentActivityName=".Home" />
@@ -42,8 +49,10 @@
             android:label="@string/title_activity_login"
             android:parentActivityName=".Home" />
         <activity
-            android:name=".Away_phone"
-            android:parentActivityName=".Home" />
+            android:name=".AwayPhone"
+            android:parentActivityName=".Home"
+            >
+        </activity>
         <activity
             android:name=".SetAlarm"
             android:parentActivityName=".Home" />
@@ -57,5 +66,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
