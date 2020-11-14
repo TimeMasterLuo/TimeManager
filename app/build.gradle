@@ -75,4 +75,7 @@ dependencies {
     //time-datapicker
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.loperSeven:DateTimePicker:0.2.0'
+
+    //AAChartCore
+    implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
 }
