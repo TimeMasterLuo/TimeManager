@@ -27,6 +27,8 @@
         <activity android:name=".AwayPhonePackage.AwayPhoneScreen"
             android:parentActivityName=".AwayPhoneController"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".AwayPhonePackage.AwayPhoneWhitelist"
+            android:parentActivityName=".AwayPhoneController"/>
         <service android:name=".AwayPhonePackage.AwayPhoneService"/>
 
         <activity

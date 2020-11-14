@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
 import com.example.timemanager.AwayPhonePackage.AwayPhoneScreen
 import com.example.timemanager.AwayPhonePackage.AwayPhoneService
+import com.example.timemanager.AwayPhonePackage.AwayPhoneWhitelist
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.ui.title.ButtonMessage
 import kotlinx.android.synthetic.main.activity_away_phone_timer.*
@@ -40,6 +41,7 @@ class AwayPhoneController : AppCompatActivity() {
         if(model == "normal"){
             text_title.text = "远离手机：普通模式"
             artwords_model.background = ResourceUtils.getDrawable(ResourceUtils.getIdByName("@drawable/artwords_normal"))
+            whitelist.visibility = View.VISIBLE
         }
         else{
             text_title.text = "远离手机：深度模式"
@@ -70,6 +72,11 @@ class AwayPhoneController : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
+        }
+        whitelist.setOnClickListener {
+            val intent = Intent(this, AwayPhoneWhitelist::class.java).apply {  }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
     }
 
