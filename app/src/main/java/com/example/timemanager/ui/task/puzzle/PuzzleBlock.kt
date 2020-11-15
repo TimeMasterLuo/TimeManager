@@ -1,9 +1,8 @@
-package com.example.timemanager.puzzle
+package com.example.timemanager.ui.task.puzzle
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.*
 import com.example.timemanager.R
 

@@ -1,4 +1,4 @@
-package com.example.timemanager.ui.friendlist.FriendListAdapter
+package com.example.timemanager.Adapter.FriendListAdapter
 
 import android.app.Activity
 import android.view.LayoutInflater

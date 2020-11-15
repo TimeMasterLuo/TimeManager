@@ -1,4 +1,4 @@
-package com.example.timemanager.AwayPhonePackage
+package com.example.timemanager.ui.AwayPhonePackage
 
 import android.app.Service
 import android.app.usage.UsageStats

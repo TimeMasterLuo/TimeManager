@@ -1,4 +1,4 @@
-package com.example.timemanager.tools
+package com.example.timemanager.utils.tools
 
 import android.app.AlarmManager
 import android.app.PendingIntent

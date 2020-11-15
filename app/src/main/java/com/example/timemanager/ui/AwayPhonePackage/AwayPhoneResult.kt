@@ -1,4 +1,4 @@
-package com.example.timemanager.AwayPhonePackage
+package com.example.timemanager.ui.AwayPhonePackage
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,20 +1,15 @@
-package com.example.timemanager.AwayPhonePackage
+package com.example.timemanager.ui.AwayPhonePackage
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.ListView
-import android.widget.SimpleAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.ConvertUtils
-import com.blankj.utilcode.util.ResourceUtils
 import com.example.timemanager.Adapter.AwayPhoneAdapter.WhitelistAdapter
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
-import kotlinx.android.synthetic.main.activity_away_phone_whitelist.*
 import kotlinx.android.synthetic.main.layout_title.*
 
 

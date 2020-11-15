@@ -12,7 +12,7 @@ import android.view.Window
 import android.widget.Toast
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
-import com.example.timemanager.util.dialog.ShowDialog
+import com.example.timemanager.utils.dialog.ShowDialog
 import kotlinx.android.synthetic.main.activity_away_phone.*
 import kotlinx.android.synthetic.main.layout_title.*
 

@@ -1,4 +1,4 @@
-package com.example.timemanager.MessagePackage
+package com.example.timemanager.ui.notifications
 
 import android.os.Bundle
 import android.view.Window

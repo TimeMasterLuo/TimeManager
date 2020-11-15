@@ -23,7 +23,7 @@
             android:name=".ui.systemconfig.SystemConfig"
             android:parentActivityName=".ui.home.Home" />
         <activity
-            android:name=".MessagePackage.MessageView"
+            android:name=".ui.notifications.MessageView"
             android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.alarm.AlarmFromFriend"
@@ -32,17 +32,17 @@
             android:name=".ui.awayphone.AwayPhoneController"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
         <activity
-            android:name=".AwayPhonePackage.AwayPhoneResult"
+            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneResult"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
         <activity
-            android:name=".AwayPhonePackage.AwayPhoneScreen"
+            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneScreen"
             android:parentActivityName=".ui.awayphone.AwayPhoneController"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".AwayPhonePackage.AwayPhoneWhitelist"
+            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneWhitelist"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
 
-        <service android:name=".AwayPhonePackage.AwayPhoneService" />
+        <service android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneService" />
 
         <activity
             android:name=".ui.themestore.ThemeStore"

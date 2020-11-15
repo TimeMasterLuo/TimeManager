@@ -1,4 +1,4 @@
-package com.example.timemanager.tools
+package com.example.timemanager.utils.tools
 
 import org.json.JSONObject
 import org.json.JSONArray
