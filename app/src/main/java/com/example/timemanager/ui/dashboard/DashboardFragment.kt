@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.HistoryDetail
 import com.example.timemanager.R
-import com.example.timemanager.Analyze
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 

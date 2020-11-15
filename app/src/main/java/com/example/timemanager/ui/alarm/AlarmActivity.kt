@@ -1,4 +1,4 @@
-package com.example.timemanager
+package com.example.timemanager.ui.alarm
 
 import android.media.MediaPlayer
 import android.net.Uri
@@ -8,12 +8,12 @@ import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import com.example.timemanager.R
 import com.example.timemanager.puzzle.PuzzleFragment
 import com.example.timemanager.tools.AlarmTools
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
 import kotlinx.android.synthetic.main.layout_alarm.*
-import kotlinx.android.synthetic.main.layout_alarm_list.note_text
 import kotlinx.android.synthetic.main.layout_title.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread

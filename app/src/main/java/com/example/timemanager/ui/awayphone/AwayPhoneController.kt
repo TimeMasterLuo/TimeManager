@@ -1,23 +1,18 @@
-package com.example.timemanager
+package com.example.timemanager.ui.awayphone
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
-import com.asp.fliptimerviewlibrary.CountDownClock
-import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
-import com.example.timemanager.AwayPhonePackage.AwayPhoneScreen
-import com.example.timemanager.AwayPhonePackage.AwayPhoneService
-import com.example.timemanager.AwayPhonePackage.AwayPhoneWhitelist
+import com.example.timemanager.awayPhonePackage.AwayPhoneScreen
+import com.example.timemanager.awayPhonePackage.AwayPhoneService
+import com.example.timemanager.awayPhonePackage.AwayPhoneWhitelist
+import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
-import com.example.timemanager.ui.title.ButtonMessage
 import kotlinx.android.synthetic.main.activity_away_phone_timer.*
 import kotlinx.android.synthetic.main.layout_title.*
 

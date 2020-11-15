@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    tools:context=".ui.profile.Profile">
 
     <ScrollView
         android:id="@+id/scollview_profile"
@@ -34,7 +34,7 @@
                 android:background="#FFFFFF"
                 app:rowCount="3">
 
-                <com.example.timemanager.compoents.CircleImageView
+                <com.example.timemanager.components.CircleImageView
                     android:id="@+id/imageView1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"

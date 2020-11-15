@@ -12,9 +12,9 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.Home
+import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
-import com.example.timemanager.TimeManager
+import com.example.timemanager.application.TimeManager
 
 class Login : AppCompatActivity() {
 

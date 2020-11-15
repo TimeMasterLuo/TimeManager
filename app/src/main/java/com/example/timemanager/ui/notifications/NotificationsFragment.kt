@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.R
-import com.example.timemanager.AlarmFromFriend
+import com.example.timemanager.ui.alarm.AlarmFromFriend
 
 class NotificationsFragment : Fragment() {
 

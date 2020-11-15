@@ -45,7 +45,7 @@ class DbTool {
             return emptyList();
         }
 
-        fun delete(entity:Object){
+        fun delete(entity: Any){
             try {
                  dbManager.delete(entity);
             } catch (e: DbException) {

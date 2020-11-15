@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.timemanager.AlarmActivity
+import com.example.timemanager.ui.alarm.AlarmActivity
 import com.example.timemanager.R
 import kotlinx.android.synthetic.main.fragment_task_3puzzle.*
 

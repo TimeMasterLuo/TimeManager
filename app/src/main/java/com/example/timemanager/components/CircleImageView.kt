@@ -1,11 +1,10 @@
-package com.example.timemanager.compoents
+package com.example.timemanager.components
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
-import android.widget.ImageView
 
 class CircleImageView : androidx.appcompat.widget.AppCompatImageView {
     //画笔

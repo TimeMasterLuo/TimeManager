@@ -1,8 +1,10 @@
-package com.example.timemanager
+package com.example.timemanager.application
 
 import android.app.Application
 import org.xutils.x
 import kotlin.properties.Delegates
+
+//app开始运行时初始化，可以用来放全局变量等信息
 
 class TimeManager : Application() {
 

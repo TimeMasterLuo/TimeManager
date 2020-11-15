@@ -42,7 +42,7 @@
                     android:layout_height="match_parent"
                     app:rowCount="3">
 
-                    <com.example.timemanager.compoents.CircleImageView
+                    <com.example.timemanager.components.CircleImageView
                         android:id="@+id/imageView1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"

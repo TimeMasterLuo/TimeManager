@@ -1,10 +1,8 @@
-package com.example.timemanager
+package com.example.timemanager.ui.dashboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.view.ViewGroup.LayoutParams
-import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.timemanager.R
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
 

@@ -42,17 +42,17 @@
 
     <activity
         android:id="@+id/AlarmManage"
-        android:name="com.example.timemanager.AlarmManage"
+        android:name="com.example.timemanager.ui.alarm.AlarmManage"
         android:label="activity_alarm_manage"
         tools:layout="@layout/activity_alarm_manage" />
     <activity
         android:id="@+id/away_phone"
-        android:name="com.example.timemanager.AwayPhone"
+        android:name="com.example.timemanager.ui.awayphone.AwayPhone"
         android:label="activity_away_phone"
         tools:layout="@layout/activity_away_phone" />
     <activity
         android:id="@+id/analyze"
-        android:name="com.example.timemanager.Analyze"
+        android:name="com.example.timemanager.ui.dashboard.Analyze"
         android:label="activity_analyze"
         tools:layout="@layout/activity_analyze" />
 </navigation>

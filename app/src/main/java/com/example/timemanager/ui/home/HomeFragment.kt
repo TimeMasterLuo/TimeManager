@@ -10,10 +10,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.AlarmManage
-import com.example.timemanager.AwayPhone
+import com.example.timemanager.ui.alarm.AlarmManage
+import com.example.timemanager.ui.awayphone.AwayPhone
 import com.example.timemanager.R
-import com.example.timemanager.SetAlarm
 
 class HomeFragment : Fragment() {
 

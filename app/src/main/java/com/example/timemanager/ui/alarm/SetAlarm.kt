@@ -1,4 +1,4 @@
-package com.example.timemanager
+package com.example.timemanager.ui.alarm
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.view.Window
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.timemanager.R
 import com.example.timemanager.tools.AlarmTools
 import com.example.timemanager.tools.FileTools
 import com.example.timemanager.ui.title.ButtonBackward
@@ -18,7 +19,6 @@ import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
 import com.loper7.date_time_picker.DateTimeConfig
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.activity_set_alarm.note_text
-import kotlinx.android.synthetic.main.layout_alarm_list.*
 import kotlinx.android.synthetic.main.layout_title.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -126,7 +126,7 @@ class SetAlarm : AppCompatActivity() {
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName,Task.Buttons.chnName,Task.Random.chnName);
+            Task.None.chnName, Task.Buttons.chnName, Task.Random.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")

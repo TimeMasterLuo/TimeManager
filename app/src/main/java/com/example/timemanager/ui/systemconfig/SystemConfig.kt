@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.timemanager.TimeManager
-import com.example.timemanager.Home
+import com.example.timemanager.application.TimeManager
+import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
 
 class SystemConfig : AppCompatActivity() {

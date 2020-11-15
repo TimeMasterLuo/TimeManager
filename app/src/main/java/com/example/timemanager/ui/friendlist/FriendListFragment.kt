@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.*
-import com.example.timemanager.ui.login.Login
-import com.example.timemanager.ui.profile.ProfileViewModel
-import com.example.timemanager.ui.systemconfig.SystemConfig
+import com.example.timemanager.adapter.awayPhoneAdapter.WhitelistAdapter
+import com.example.timemanager.application.TimeManager
 
 
 class FriendListFragment : Fragment() {

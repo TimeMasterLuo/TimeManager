@@ -1,7 +1,8 @@
-package com.example.timemanager
+package com.example.timemanager.ui.alarm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.timemanager.R
 import kotlinx.android.synthetic.main.activity_alarm_from_friend.*
 
 class AlarmFromFriend : AppCompatActivity() {
