@@ -25,12 +25,14 @@
         <activity
             android:name=".ui.notifications.MessageView"
             android:parentActivityName=".ui.home.Home" />
+
         <activity
             android:name=".ui.alarm.AlarmFromFriend"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
         <activity
             android:name=".ui.awayphone.AwayPhoneController"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
+
         <activity
             android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneResult"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
@@ -43,6 +45,7 @@
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
 
         <service android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneService" />
+
 
         <activity
             android:name=".ui.themestore.ThemeStore"

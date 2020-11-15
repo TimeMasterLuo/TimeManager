@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
+
 import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneScreen
 import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneService
 import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneWhitelist
+
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
 import kotlinx.android.synthetic.main.activity_away_phone_timer.*

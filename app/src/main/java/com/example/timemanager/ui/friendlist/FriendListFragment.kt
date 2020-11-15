@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.Adapter.FriendListAdapter.ListItem
