@@ -1,4 +1,4 @@
-package com.example.timemanager.awayPhonePackage
+package com.example.timemanager.ui.awayPhonePackage
 
 import android.app.Service
 import android.app.usage.UsageStats
@@ -170,4 +170,5 @@ class AwayPhoneService : Service() {
         r.play()
         running = false
     }
+
 }

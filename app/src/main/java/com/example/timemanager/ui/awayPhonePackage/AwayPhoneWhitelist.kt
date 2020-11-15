@@ -1,4 +1,4 @@
-package com.example.timemanager.awayPhonePackage
+package com.example.timemanager.ui.awayPhonePackage
 
 import android.content.Intent
 import android.content.pm.ResolveInfo

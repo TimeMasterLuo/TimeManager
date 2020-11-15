@@ -1,4 +1,4 @@
-package com.example.timemanager.ui.AwayPhonePackage
+package com.example.timemanager.ui.awayPhonePackage
 
 import android.app.Service
 import android.content.ComponentName

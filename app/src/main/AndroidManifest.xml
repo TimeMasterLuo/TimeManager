@@ -34,17 +34,17 @@
             android:parentActivityName=".ui.awayphone.AwayPhone" />
 
         <activity
-            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneResult"
+            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneResult"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
         <activity
-            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneScreen"
+            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneScreen"
             android:parentActivityName=".ui.awayphone.AwayPhoneController"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneWhitelist"
+            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneWhitelist"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
 
-        <service android:name="com.example.timemanager.ui.AwayPhonePackage.AwayPhoneService" />
+        <service android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneService" />
 
 
         <activity
