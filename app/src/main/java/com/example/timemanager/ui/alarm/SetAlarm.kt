@@ -177,6 +177,19 @@ class SetAlarm : AppCompatActivity() {
         DbTool.delete(model as Object);
         finish();
     }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        data?:return;
+        try {
+            val pickedUri = data.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
+            mRingtoneUri = pickedUri;
+            model.SOUND=mRingtoneUri.toString();
+            sound_text.text= FileTools.getFileName(FileTools.getRealFilePath(this, Uri.parse(model.SOUND)))
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 //    fun onCheckboxClicked(view: View) {
 //        if (view is CheckBox) {
 //            val checked: Boolean = view.isChecked
