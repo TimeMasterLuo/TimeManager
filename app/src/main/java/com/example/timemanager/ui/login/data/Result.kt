@@ -1,4 +1,4 @@
-package com.example.timemanager.data
+package com.example.timemanager.ui.login.data
 
 /**
  * A generic class that holds a value with its loading status.

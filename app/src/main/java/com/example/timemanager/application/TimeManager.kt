@@ -11,7 +11,7 @@ class TimeManager : Application() {
     var login_flag = false
 
     override fun onCreate() {
-        login_flag = false
+        login_flag = true
         super.onCreate()
         instance = this;
         x.Ext.init(instance);

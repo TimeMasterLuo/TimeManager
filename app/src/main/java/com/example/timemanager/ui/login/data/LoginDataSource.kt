@@ -1,6 +1,6 @@
-package com.example.timemanager.data
+package com.example.timemanager.ui.login.data
 
-import com.example.timemanager.data.model.LoggedInUser
+import com.example.timemanager.ui.login.data.model.LoggedInUser
 import java.io.IOException
 
 /**

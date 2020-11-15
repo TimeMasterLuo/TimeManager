@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.timemanager.R
-import com.example.timemanager.data.LoginRepository
-import com.example.timemanager.data.Result
+import com.example.timemanager.ui.login.data.LoginRepository
+import com.example.timemanager.ui.login.data.Result
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
