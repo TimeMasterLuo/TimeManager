@@ -13,9 +13,10 @@ public class FocusRecordEntity {
     private String mode;
     private Integer credit;
     private String remark;
+    private UserBasicEntity userBasicByUserId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -25,7 +26,7 @@ public class FocusRecordEntity {
     }
 
     @Basic
-    @Column(name = "start_time")
+    @Column(name = "start_time", nullable = true)
     public Timestamp getStartTime() {
         return startTime;
     }
@@ -35,7 +36,7 @@ public class FocusRecordEntity {
     }
 
     @Basic
-    @Column(name = "end_time")
+    @Column(name = "end_time", nullable = true)
     public Timestamp getEndTime() {
         return endTime;
     }
@@ -45,7 +46,7 @@ public class FocusRecordEntity {
     }
 
     @Basic
-    @Column(name = "mode")
+    @Column(name = "mode", nullable = true, length = 255)
     public String getMode() {
         return mode;
     }
@@ -55,7 +56,7 @@ public class FocusRecordEntity {
     }
 
     @Basic
-    @Column(name = "credit")
+    @Column(name = "credit", nullable = true)
     public Integer getCredit() {
         return credit;
     }
@@ -65,7 +66,7 @@ public class FocusRecordEntity {
     }
 
     @Basic
-    @Column(name = "remark")
+    @Column(name = "remark", nullable = true, length = 255)
     public String getRemark() {
         return remark;
     }
@@ -90,5 +91,15 @@ public class FocusRecordEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, startTime, endTime, mode, credit, remark);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public UserBasicEntity getUserBasicByUserId() {
+        return userBasicByUserId;
+    }
+
+    public void setUserBasicByUserId(UserBasicEntity userBasicByUserId) {
+        this.userBasicByUserId = userBasicByUserId;
     }
 }
