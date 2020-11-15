@@ -1,4 +1,4 @@
-package com.example.timemanager.puzzle
+package com.example.timemanager.ui.task.puzzle
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog

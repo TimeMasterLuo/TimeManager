@@ -1,4 +1,4 @@
-package com.example.timemanager.util.dialog;
+package com.example.timemanager.utils.dialog;
 
 import android.content.Context;
 

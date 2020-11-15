@@ -11,8 +11,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.timemanager.R
-import com.example.timemanager.tools.AlarmTools
-import com.example.timemanager.tools.FileTools
+import com.example.timemanager.utils.tools.AlarmTools
+import com.example.timemanager.utils.tools.FileTools
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK

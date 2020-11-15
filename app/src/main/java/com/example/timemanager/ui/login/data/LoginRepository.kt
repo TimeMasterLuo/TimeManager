@@ -1,6 +1,6 @@
-package com.example.timemanager.data
+package com.example.timemanager.ui.login.data
 
-import com.example.timemanager.data.model.LoggedInUser
+import com.example.timemanager.ui.login.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

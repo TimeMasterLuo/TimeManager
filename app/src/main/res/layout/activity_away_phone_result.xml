@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:context=".awayPhonePackage.AwayPhoneResult">
+    tools:context=".ui.AwayPhonePackage.AwayPhoneResult">
+
 
     <TextView
         android:id="@+id/proverb"
