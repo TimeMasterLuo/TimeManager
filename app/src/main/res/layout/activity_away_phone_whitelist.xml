@@ -7,6 +7,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/whitelistTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/inWhitelist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已加入白名单" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/notinWhitelist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未加入白名单" />
+
+    </com.google.android.material.tabs.TabLayout>
+
     <ListView
         android:id="@+id/whitelist"
         android:layout_width="match_parent"

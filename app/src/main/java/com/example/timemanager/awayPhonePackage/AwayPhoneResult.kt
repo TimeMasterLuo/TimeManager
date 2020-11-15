@@ -1,4 +1,4 @@
-package com.example.timemanager.AwayPhonePackage
+package com.example.timemanager.awayPhonePackage
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.layout_title.*
 
 class AwayPhoneResult : AppCompatActivity() {
     private var gettime : String?= "0"
-    private var myService: AwayPhoneService? = null
+    //private var myService: AwayPhoneService? = null
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +35,13 @@ class AwayPhoneResult : AppCompatActivity() {
 
         gettime = intent.getStringExtra("time")
         gettime += "s"
-        totalTime.text = "持续时间："+gettime
-        totalTime2.text = "持续时间："+gettime
+        totalTime.text = "持续时间：$gettime"
+        totalTime2.text = "持续时间：$gettime"
 
-        var getstartTime = intent.getStringExtra("startTime")
-        var getendTime = intent.getStringExtra("endTime")
-        startTime.text = "开始时间："+getstartTime
-        endTime.text = "结束时间："+getendTime
+        val getstartTime = intent.getStringExtra("startTime")
+        val getendTime = intent.getStringExtra("endTime")
+        startTime.text = "开始时间：$getstartTime"
+        endTime.text = "结束时间：$getendTime"
 
     }
 

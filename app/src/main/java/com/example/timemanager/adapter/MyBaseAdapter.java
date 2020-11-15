@@ -1,4 +1,4 @@
-package com.example.timemanager.Adapter;
+package com.example.timemanager.adapter;
 
 import android.content.Context;
 import android.view.View;

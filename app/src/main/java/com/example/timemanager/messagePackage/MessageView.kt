@@ -1,4 +1,4 @@
-package com.example.timemanager.MessagePackage
+package com.example.timemanager.messagePackage
 
 import android.os.Bundle
 import android.view.Window
