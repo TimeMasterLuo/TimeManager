@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
 
-import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneScreen
-import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneService
-import com.example.timemanager.ui.AwayPhonePackage.AwayPhoneWhitelist
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneScreen
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneService
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneWhitelist
 
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward

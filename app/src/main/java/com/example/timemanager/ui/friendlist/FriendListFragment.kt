@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
-import com.example.timemanager.Adapter.FriendListAdapter.ListItem
-import com.example.timemanager.Adapter.FriendListAdapter.MyAdapter
+import com.example.timemanager.adapter.FriendListAdapter.ListItem
+import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
 
 
 class FriendListFragment : Fragment() {
