@@ -51,15 +51,15 @@ class AlarmActivity: AppCompatActivity() {
             where("ID","=",id).findFirst();
             uiThread {
                 if (model==null) return@uiThread
-                stop_rt.visibility= View.VISIBLE;
+                //stop_rt.visibility= View.VISIBLE;
                 if (model.ACTIVE == "1"){
                     initMediaPlayer();
-                    stop_rt.setOnClickListener {
-                        if (mMediaPlayer.isPlaying){
-                            mMediaPlayer.stop()
-                        }
-                        finish();
-                    }
+//                    stop_rt.setOnClickListener {
+//                        if (mMediaPlayer.isPlaying){
+//                            mMediaPlayer.stop()
+//                        }
+                        //finish();
+                    //}
                 }
             }
         }
@@ -96,13 +96,12 @@ class AlarmActivity: AppCompatActivity() {
             AlarmTools.cancelAlarm(this,model);
         }
     }
-    fun showPuzzleFragment(newN: Int) {
+    private fun showPuzzleFragment(newN: Int) {
         val transaction = fragmentManager.beginTransaction()
         val fragment = PuzzleFragment()
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
-       // if(fragment.)
 
     }
 }

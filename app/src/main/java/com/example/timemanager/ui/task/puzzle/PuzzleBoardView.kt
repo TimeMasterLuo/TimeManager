@@ -1,8 +1,6 @@
 package com.example.timemanager.ui.task.puzzle
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.app.FragmentManager
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -14,11 +12,9 @@ import com.example.timemanager.ui.alarm.AlarmActivity
 
 @SuppressLint("ViewConstructor")
 class PuzzleBoardView(context: Context, val n: Int) : View(context) {
-
     private val paint = Paint()
-
     private var containerWidth: Int = 0
-
+    private val alarmActivity=context;
     private var size = 0
 
     private val mat = Array(n) { Array(n) { PuzzleBlock(context, 0, 0F, 0F, 0F) } }
@@ -70,7 +66,7 @@ class PuzzleBoardView(context: Context, val n: Int) : View(context) {
         }
     }
 
-    private fun isSolution(): Boolean {
+    fun isSolution(): Boolean {
         var count = 1
         for (i in 0 until mat.size) {
             for (j in 0 until mat[0].size) {
@@ -94,22 +90,24 @@ class PuzzleBoardView(context: Context, val n: Int) : View(context) {
         swapBlock(i, j)
         invalidate()
         if (isSolution()) {
-            val alertDialog = AlertDialog.Builder(context).create()
-            alertDialog.setTitle("Congratulations!")
-            alertDialog.setCancelable(false)
-            alertDialog.setMessage("Do you want to play again?")
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, _ ->
-                // refresh the game
-                initGame()
-                invalidate()
-                dialog.dismiss()
-            }
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No") { dialog, _ ->
-                // return to main menu
-                (context as AlarmActivity).fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                dialog.dismiss()
-            }
-            alertDialog.show()
+            (alarmActivity as AlarmActivity).finish();
+            //context.application.finish()
+//            val alertDialog = AlertDialog.Builder(context).create()
+//            alertDialog.setTitle("Congratulations!")
+//            alertDialog.setCancelable(false)
+//            alertDialog.setMessage("Do you want to play again?")
+//            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, _ ->
+//                // refresh the game
+//                initGame()
+//                invalidate()
+//                dialog.dismiss()
+//            }
+//            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No") { dialog, _ ->
+//                // return to main menu
+//                (context as AlarmActivity).fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+//                dialog.dismiss()
+//            }
+//            alertDialog.show()
         }
     }
 

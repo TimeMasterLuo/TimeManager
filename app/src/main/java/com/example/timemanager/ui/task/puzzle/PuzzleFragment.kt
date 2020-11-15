@@ -11,7 +11,6 @@ import com.example.timemanager.R
 import kotlinx.android.synthetic.main.fragment_task_3puzzle.*
 
 class PuzzleFragment : Fragment() {
-
     private val logTag = "PuzzleFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +25,12 @@ class PuzzleFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val mainActivity: AlarmActivity = activity as AlarmActivity
-        val puzzleBoardView = context?.let { PuzzleBoardView(it, 3) }
+        val puzzleBoardView = context?.let { PuzzleBoardView(activity as AlarmActivity, 3) }
         puzzle_container.addView(puzzleBoardView)
-
         button_new_game.setOnClickListener {
             if (puzzleBoardView != null) {
                 puzzleBoardView.initGame()
+                //(activity as AlarmActivity).finish()
             }
             if (puzzleBoardView != null) {
                 puzzleBoardView.invalidate()

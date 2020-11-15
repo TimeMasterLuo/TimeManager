@@ -121,12 +121,12 @@ class SetAlarm : AppCompatActivity() {
     }
     public enum class Task(val chnName:String){
         None("无"),
-        Buttons("Press Button"),
+        PUZZLE("PUZZLE"),
         Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName, Task.Buttons.chnName, Task.Random.chnName);
+            Task.None.chnName, Task.PUZZLE.chnName, Task.Random.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")
@@ -143,24 +143,7 @@ class SetAlarm : AppCompatActivity() {
             .setNegativeButton("取消",null);
         daySelectDialog.show();
     }
-    fun testSetAlarm(){
-        model.ID = UUID.randomUUID().toString()
-        model.TIME="17:50"
-        model.ACTIVE="1"
-        model.Date="2020/11/11"
-        model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
-        model.FROM="来自：me"
-        model.TO="me"
-        model.NOTE="This is a test alarm"
-        DbTool.saveOrUpdate(model);
-        setAlarmClock();
-        val intent = Intent(applicationContext, AlarmActivity::class.java).apply {
-        }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-        intent.putExtra("ID", model.ID)
-        applicationContext!!.startActivity(intent)
-        //finish();
-    }
+
     private fun setAlarmClock(){
         AlarmTools.setAlarm(this,model);
     }
