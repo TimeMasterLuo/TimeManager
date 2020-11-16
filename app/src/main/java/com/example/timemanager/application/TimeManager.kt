@@ -14,7 +14,7 @@ class TimeManager : Application() {
     var userLevel = "资深用户"
     var register_time = "2020-10-01"
     var intro = "这个人很懒，什么也没写。"
-    var uid = 1
+    var uid = "1"
     var email = "1481796592@qq.com"
 
     override fun onCreate() {

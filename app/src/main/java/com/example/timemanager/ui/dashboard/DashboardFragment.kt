@@ -16,6 +16,9 @@ import com.example.timemanager.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.example.timemanager.utils.clock.Clock
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DashboardFragment : Fragment() {
@@ -33,16 +36,14 @@ class DashboardFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
         val btn1 : FloatingActionButton = root.findViewById(R.id.analyze_button)
-        btn1.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(activity, Analyze::class.java).apply {
-                }
-                val bundle = Bundle()
-                intent.putExtras(bundle)
-                startActivity(intent)
+        btn1.setOnClickListener {
+            val intent = Intent(activity, Analyze::class.java).apply {
             }
-        })
-        val tab_layout: TabLayout=root.findViewById(R.id.tab_layout)
+            val bundle = Bundle()
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+        val tabLayout: TabLayout=root.findViewById(R.id.tab_layout)
         val mTabSelectedColorListener = object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val tag=tab.text as String
@@ -68,15 +69,18 @@ class DashboardFragment : Fragment() {
                 Log.e("reselected",tab.text as String)
             }
         }
-        tab_layout.addOnTabSelectedListener(mTabSelectedColorListener);
+        tabLayout.addOnTabSelectedListener(mTabSelectedColorListener);
         val btn2 : Button = root.findViewById(R.id.config_button)
-        btn2.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(getActivity(), HistoryDetail::class.java).apply {
-                }
-                startActivity(intent)
-            }
-        })
+        btn2.setOnClickListener {
+            val intent = Intent(activity, HistoryDetail::class.java)
+            val format =SimpleDateFormat("yyyy-MM-dd")
+            val date=format.parse("2020-11-16")
+            val clock=object :Clock("自设闹钟","月一老贼",date,"11:00","10min","A",1000,"这是备注"){}
+            val bundle=Bundle()
+            bundle.putSerializable("clock",clock)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
         return root
     }
 }

@@ -78,7 +78,9 @@ class AwayPhoneController : AppCompatActivity() {
     }
 
     fun openService(view: View?) {
-        startService(Intent(this@AwayPhoneController, AwayPhoneService::class.java))
+        val intent = Intent(this@AwayPhoneController, AwayPhoneService::class.java)
+        intent.putExtra("model", model)
+        startService(intent)
         Toast.makeText(this, "服务已开启！", Toast.LENGTH_SHORT).show()
     }
 
