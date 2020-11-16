@@ -1,5 +1,6 @@
 package com.example.timemanager.ui.friendlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.adapter.FriendListAdapter.ListItem
 import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
+import com.example.timemanager.ui.systemconfig.SystemConfig
 
 
 class FriendListFragment : Fragment() {
@@ -42,8 +44,16 @@ class FriendListFragment : Fragment() {
             listview.adapter=adapter
             listview.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
                 when (i) {
-                    0 -> Toast.makeText(activity!!, "我终于找到你了......", Toast.LENGTH_SHORT).show()
-                    1 -> Toast.makeText(activity!!, "我终于找到你了......", Toast.LENGTH_SHORT).show()
+                    0 -> {
+                        //Toast.makeText(activity!!, "我终于找到你了......", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
+                        }
+                        startActivity(intent)
+                    }
+                    1 ->  {
+                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
+                        }
+                        startActivity(intent)}
                 }
             })
         }else{

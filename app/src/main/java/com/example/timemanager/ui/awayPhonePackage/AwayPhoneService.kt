@@ -8,11 +8,17 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.*
+import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.blankj.utilcode.constant.TimeConstants
 import com.blankj.utilcode.util.ClickUtils
 import com.blankj.utilcode.util.TimeUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.example.timemanager.utils.LocalDataBase.DbTool
+import com.example.timemanager.utils.LocalDataBase.T_WHITELIST
+import com.example.timemanager.utils.dialog.ShowDialog
 import java.util.*
 
 
@@ -24,12 +30,10 @@ class AwayPhoneService : Service() {
     private var running = true
     private var model: String? = "normal"
     private val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-    private val notification2: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+
     private var r = RingtoneManager.getRingtone(application, notification)
 
-    private var whitelistFocus: Array<String> = arrayOf("com.example.timemanager")
-    private var whitelistNormal: Array<String> = arrayOf("com.example.timemanager", "com.android.chrome")
-    private var whitelist: Array<String> = arrayOf("")
+    private var whitelist: List<T_WHITELIST>? = null
 
     private lateinit var startTime: Date
     private lateinit var endTime: Date
@@ -50,12 +54,7 @@ class AwayPhoneService : Service() {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         model = intent.getStringExtra("model")
-        whitelist = if(model.equals("normal")){
-            whitelistNormal
-        } else {
-            whitelistFocus
-        }
-
+        findAllAppsinWhitelist()
         mytime = 0.0F
         running = true
         mTimer = Timer()
@@ -64,10 +63,6 @@ class AwayPhoneService : Service() {
         val handler: Handler = object : Handler(Looper.getMainLooper()) {
             override fun handleMessage(msg: Message?) {
                 super.handleMessage(msg)
-                if(running){
-                    mytime += 200F
-                    //Log.d("TAG", "handleMessage: $mytime")
-                }
             }
         }
         val task: TimerTask = object : TimerTask() {
@@ -114,14 +109,20 @@ class AwayPhoneService : Service() {
                     val topPackageName =
                         usageStatsMap[usageStatsMap.lastKey()]!!.packageName
 
-
-                    if ((getLauncherPackageName(mContext) == topPackageName || whitelist.contains(topPackageName))) {
+                    if ((getLauncherPackageName(mContext) == topPackageName || topPackageName == "com.example.timemanager")) {
                         return
+                    }
+                    if(model == "normal"){
+                        for(app in this.whitelist!!){
+                            if(app.PACKAGENAME ==  topPackageName)
+                                return
+                        }
                     }
 
                     Log.e("TopPackage Name", topPackageName)
                     //模拟home键点击
-                    ClickUtils.back2HomeFriendly("远离手机模式结束！")
+                    //ClickUtils.back2HomeFriendly("远离手机模式结束！")
+                    ToastUtils.make().show("远离手机模式结束！")
 
                     //转到提示页面
                     val intent1 = Intent(mContext, AwayPhoneResult::class.java).apply {  }
@@ -131,6 +132,7 @@ class AwayPhoneService : Service() {
                     intent1.putExtra("time",seconds.toString())
                     intent1.putExtra("startTime",TimeUtils.date2String(startTime))
                     intent1.putExtra("endTime",TimeUtils.date2String(endTime))
+                    intent1.putExtra("model",model)
                     //intent1.putExtra("clock", r.toString())
                     startActivity(intent1)
                     Log.e("startTime", TimeUtils.date2String(startTime))
@@ -165,10 +167,15 @@ class AwayPhoneService : Service() {
         intent1.putExtra("time",seconds.toString())
         intent1.putExtra("startTime",TimeUtils.date2String(startTime))
         intent1.putExtra("endTime",TimeUtils.date2String(endTime))
+        intent1.putExtra("model",model)
         //r = RingtoneManager.getRingtone(applicationContext, notification2)
         startActivity(intent1)
         r.play()
         running = false
+    }
+
+    private fun findAllAppsinWhitelist(){
+        whitelist = DbTool.getDbManager().selector(T_WHITELIST::class.java).findAll()
     }
 
 }

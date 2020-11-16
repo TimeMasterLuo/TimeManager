@@ -2,25 +2,47 @@ package com.example.timemanager.ui.dashboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import com.example.timemanager.R
+import com.example.timemanager.ui.title.ButtonBackward
 import com.github.aachartmodel.aainfographics.aachartcreator.*
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
+import kotlinx.android.synthetic.main.activity_analyze.*
+import kotlinx.android.synthetic.main.layout_title.*
 
 
 class Analyze : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_analyze)
-        /*val picture=ImageView(this)
-        picture.setImageResource(R.drawable.timeanalyze)
-        val param=LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
-        val a=findViewById<ConstraintLayout>(R.id.container)
-        a.addView(picture,param)*/
+        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
+        this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "数据分析"
+
         val aaChartView = findViewById<AAChartView>(R.id.aa_chart_view)
         val aaChartModel = AAChartModel()
             .chartType(AAChartType.Area)
             .title("title")
+                .yAxisTitle("时间")
+                .animationType(AAChartAnimationType.EaseInCirc)
             .subtitle("subtitle")
-            .backgroundColor("#4b2b7f")
+                .dataLabelsEnabled(true)
+            .backgroundColor("#ffffff")
+                .categories(arrayOf("January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"))
             .series(arrayOf(
                 AASeriesElement()
                     .name("Tokyo")
@@ -37,5 +59,45 @@ class Analyze : AppCompatActivity() {
             )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
+        val aaChartModel1=AAChartModel()
+                .chartType(AAChartType.Pie)
+                .title("各功能使用时间")
+                .backgroundColor("#ffffff")
+                .subtitle("virtual data")
+                .dataLabelsEnabled(true)
+                .yAxisTitle("分钟")
+                .series(
+                arrayOf(
+                        AASeriesElement()
+                                .name("Language market shares")
+                                .data(
+                                        arrayOf(
+                                                arrayOf("自设闹钟", 20),
+                                                arrayOf("好友闹钟", 50),
+                                                arrayOf("深度模式", 100),
+                                                arrayOf("普通模式", 200)
+                                        )
+                                )
+                )
+        )
+        aaChartView1.aa_drawChartWithChartModel(aaChartModel1)
+        val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
+        val aaChartModel2=AAChartModel()
+                .chartType(AAChartType.Bar)
+                .title("各功能完成率")
+                .dataLabelsEnabled(true)
+                .backgroundColor("#ffffff")
+                .yAxisTitle("成功率")
+                .categories(arrayOf(
+                        "自设闹钟",
+                        "好友闹钟",
+                        "深度模式",
+                        "普通模式"
+                ))
+                .series(arrayOf(AASeriesElement()
+                        .name("完成率")
+                        .data(arrayOf(0.95, 0.8, 0.9, 0.7))))
+        aaChartView2.aa_drawChartWithChartModel(aaChartModel2)
     }
 }

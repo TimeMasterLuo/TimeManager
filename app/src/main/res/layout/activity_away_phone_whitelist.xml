@@ -26,9 +26,14 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <ListView
-        android:id="@+id/whitelist"
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/inWitelistView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="match_parent" />
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/notinWitelistView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone" />
 </LinearLayout>
