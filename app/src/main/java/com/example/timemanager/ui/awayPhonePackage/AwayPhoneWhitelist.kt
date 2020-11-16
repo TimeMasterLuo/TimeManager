@@ -2,13 +2,19 @@ package com.example.timemanager.ui.awayPhonePackage
 
 import android.content.Intent
 import android.content.pm.ResolveInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import com.baoyz.swipemenulistview.SwipeMenuCreator
+import com.baoyz.swipemenulistview.SwipeMenuItem
+import com.baoyz.swipemenulistview.SwipeMenuListView
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.ConvertUtils.dp2px
+import com.blankj.utilcode.util.ToastUtils
 import com.example.timemanager.R
 import com.example.timemanager.adapter.awayPhoneAdapter.WhitelistAdapter
 import com.example.timemanager.ui.title.ButtonBackward
@@ -24,14 +30,17 @@ class AwayPhoneWhitelist : AppCompatActivity() {
     private var NOTINWHITELIST = "NOTINWHITELIST"
     private var type = INWHITELIST
     private var context = this
-
-    private var listView: ListView? = null
+    
     private lateinit var appsNotinWhitelistInfo: MutableList<AppUtils.AppInfo>
     private lateinit var appsinWhitelistInfo: MutableList<AppUtils.AppInfo>
-    private var targetlist: MutableList<AppUtils.AppInfo> = arrayListOf()
-    private var myadapter: WhitelistAdapter? = null
+    private var tmpinWhitelist: MutableList<AppUtils.AppInfo> = arrayListOf()
+    private var tmpNotinWhitelist: MutableList<AppUtils.AppInfo> = arrayListOf()
+    private var inWhitelistadapter: WhitelistAdapter? = null
+    private var notinWhitelistadapter: WhitelistAdapter? = null
     private var resolveInfoList: List<ResolveInfo>? = null
     private var whitelist: List<T_WHITELIST>? = null
+    private lateinit var deleteCreator: SwipeMenuCreator
+    private lateinit var addCreator: SwipeMenuCreator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +52,14 @@ class AwayPhoneWhitelist : AppCompatActivity() {
 
         text_title.text = "管理APP白名单"
         button_backward.setOnClickListener(ButtonBackward(this))
-        listView = findViewById<View>(R.id.whitelist) as ListView
+        
+        createDeleteSwipMenu()
+        inWitelistView.setMenuCreator(deleteCreator)
+        setRemoveOnClikcListener(inWitelistView)
+        
+        createAddSwipMenu()
+        notinWitelistView.setMenuCreator(addCreator)
+        setAddOnClikcListener(notinWitelistView)
 
         findAllAppsinWhitelist()
 
@@ -66,13 +82,14 @@ class AwayPhoneWhitelist : AppCompatActivity() {
                 appsNotinWhitelistInfo.add(appinfo)
         }
 
-        if(type == INWHITELIST)
-            targetlist.addAll(appsinWhitelistInfo)
-        else
-            targetlist.addAll(appsNotinWhitelistInfo)
-        myadapter = WhitelistAdapter(this, targetlist)
-        listView!!.adapter = myadapter
-        Log.e("?","t")
+        tmpinWhitelist.addAll(appsinWhitelistInfo)
+        tmpNotinWhitelist.addAll(appsNotinWhitelistInfo)
+
+        inWhitelistadapter = WhitelistAdapter(this, tmpinWhitelist)
+        notinWhitelistadapter = WhitelistAdapter(this, tmpNotinWhitelist)
+        inWitelistView.adapter = inWhitelistadapter
+        notinWitelistView.adapter = notinWhitelistadapter
+
         whitelistTab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
@@ -84,12 +101,13 @@ class AwayPhoneWhitelist : AppCompatActivity() {
 
                 if (tab != null) {
                     if (tab.position == 0){
-                        myadapter!!.resetData(appsinWhitelistInfo)
+                        inWitelistView.visibility = View.VISIBLE
+                        notinWitelistView.visibility = View.GONE
                     }
                     else if(tab.position == 1){
-                        myadapter!!.resetData(appsNotinWhitelistInfo)
+                        inWitelistView.visibility = View.GONE
+                        notinWitelistView.visibility = View.VISIBLE
                     }
-                    myadapter!!.notifyDataSetChanged()
                 }
             }
 
@@ -132,5 +150,98 @@ class AwayPhoneWhitelist : AppCompatActivity() {
         intent.action = Intent.ACTION_MAIN
         resolveInfoList = packageManager.queryIntentActivities(intent, 0)
     }
+
+    private fun createDeleteSwipMenu() {
+        deleteCreator = SwipeMenuCreator { menu ->
+            val openItem = SwipeMenuItem(
+                applicationContext
+            )
+            // set item background
+            openItem.background = ColorDrawable(
+                Color.rgb(
+                    0xF9, 0x3F, 0x25
+                )
+            )
+            // set item width
+            openItem.width = dp2px(90F)
+            // set item title
+            openItem.title = "删除"
+            // set item title fontsize
+            openItem.titleSize = 18
+            // set item title font color
+            openItem.titleColor = Color.WHITE
+            // add to menu
+            menu.addMenuItem(openItem)
+        }
+    }
+
+    private fun createAddSwipMenu() {
+        addCreator = SwipeMenuCreator { menu ->
+            val openItem = SwipeMenuItem(
+                applicationContext
+            )
+            // set item background
+            openItem.background = ColorDrawable(
+                Color.rgb(
+                    0xC9, 0xC9, 0xCE
+                )
+            )
+            // set item width
+            openItem.width = dp2px(90F)
+            // set item title
+            openItem.title = "添加"
+            // set item title fontsize
+            openItem.titleSize = 18
+            // set item title font color
+            openItem.titleColor = Color.WHITE
+            // add to menu
+            menu.addMenuItem(openItem)
+        }
+    }
+
+
+    private fun setAddOnClikcListener(swipeMenuListView : SwipeMenuListView){
+        swipeMenuListView.setOnMenuItemClickListener { position, menu, index ->
+            val appinfo = appsNotinWhitelistInfo.get(position)
+            Log.e("add", "testadd")
+            addtoWhitelist(appinfo)
+            return@setOnMenuItemClickListener false
+        }
+    }
+
+    private fun setRemoveOnClikcListener(swipeMenuListView : SwipeMenuListView){
+        swipeMenuListView.setOnMenuItemClickListener { position, menu, index ->
+            val appinfo = appsinWhitelistInfo.get(position)
+            Log.e("remove", "testremove")
+            deleteinWhitelist(appinfo)
+            return@setOnMenuItemClickListener false
+        }
+    }
+
+    private fun addtoWhitelist(appinfo: AppUtils.AppInfo) {
+        appsNotinWhitelistInfo.remove(appinfo)
+        appsinWhitelistInfo.add(appinfo)
+
+        notinWhitelistadapter?.resetData(appsNotinWhitelistInfo)
+        inWhitelistadapter?.resetData(appsinWhitelistInfo)
+        notinWhitelistadapter?.notifyDataSetChanged()
+        inWhitelistadapter?.notifyDataSetChanged()
+        saveApptoWhitelist(appinfo)
+        ToastUtils.make().show("成功添加到App白名单！")
+    }
+
+    private fun deleteinWhitelist(appinfo: AppUtils.AppInfo) {
+        Log.e("indelete", appinfo.toString())
+        appsinWhitelistInfo.remove(appinfo)
+        appsNotinWhitelistInfo.add(appinfo)
+
+        inWhitelistadapter?.resetData(appsinWhitelistInfo)
+        notinWhitelistadapter?.resetData(appsNotinWhitelistInfo)
+        inWhitelistadapter?.notifyDataSetChanged()
+        notinWhitelistadapter?.notifyDataSetChanged()
+        deleteAppinWhitelist(appinfo.packageName)
+        ToastUtils.make().show("成功从App白名单中移除！")
+    }
+
 }
 

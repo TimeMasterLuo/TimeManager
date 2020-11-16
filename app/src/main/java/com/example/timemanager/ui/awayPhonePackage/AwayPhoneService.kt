@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import com.blankj.utilcode.constant.TimeConstants
 import com.blankj.utilcode.util.ClickUtils
 import com.blankj.utilcode.util.TimeUtils
+import com.example.timemanager.utils.LocalDataBase.DbTool
+import com.example.timemanager.utils.LocalDataBase.T_WHITELIST
 import java.util.*
 
 
@@ -29,7 +31,7 @@ class AwayPhoneService : Service() {
 
     private var whitelistFocus: Array<String> = arrayOf("com.example.timemanager")
     private var whitelistNormal: Array<String> = arrayOf("com.example.timemanager", "com.android.chrome")
-    private var whitelist: Array<String> = arrayOf("")
+    private var whitelist: List<T_WHITELIST>? = null
 
     private lateinit var startTime: Date
     private lateinit var endTime: Date
@@ -49,12 +51,13 @@ class AwayPhoneService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        findAllAppsinWhitelist()
         model = intent.getStringExtra("model")
-        whitelist = if(model.equals("normal")){
-            whitelistNormal
-        } else {
-            whitelistFocus
-        }
+//        whitelist = if(model.equals("normal")){
+//            whitelistNormal
+//        } else {
+//            whitelistFocus
+//        }
 
         mytime = 0.0F
         running = true
@@ -115,8 +118,12 @@ class AwayPhoneService : Service() {
                         usageStatsMap[usageStatsMap.lastKey()]!!.packageName
 
 
-                    if ((getLauncherPackageName(mContext) == topPackageName || whitelist.contains(topPackageName))) {
+                    if ((getLauncherPackageName(mContext) == topPackageName || topPackageName == "com.example.timemanager")) {
                         return
+                    }
+                    for(app in this.whitelist!!){
+                        if(app.PACKAGENAME ==  topPackageName)
+                            return
                     }
 
                     Log.e("TopPackage Name", topPackageName)
@@ -169,6 +176,10 @@ class AwayPhoneService : Service() {
         startActivity(intent1)
         r.play()
         running = false
+    }
+
+    private fun findAllAppsinWhitelist(){
+        whitelist = DbTool.getDbManager().selector(T_WHITELIST::class.java).findAll()
     }
 
 }
