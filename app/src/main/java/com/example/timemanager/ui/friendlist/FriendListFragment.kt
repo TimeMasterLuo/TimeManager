@@ -2,19 +2,24 @@ package com.example.timemanager.ui.friendlist
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.timemanager.*
+
+import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
+import com.example.timemanager.adapter.FriendListAdapter.ListItem
+import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
+import com.example.timemanager.ui.systemconfig.SystemConfig
 
 
 class FriendListFragment : Fragment() {
 
     private lateinit var friendListViewModel:FriendListViewModel
+    private val friends=ArrayList<ListItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +36,24 @@ class FriendListFragment : Fragment() {
         if (flag) {
             //渲染fragment_friendlist_authorized并绑定监听
             root = inflater.inflate(R.layout.fragment_friendlist_authorized, container, false)
-            val btn1 : Button = root.findViewById(R.id.button71)
-            btn1.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val intent = Intent(getActivity(), FriendProfile::class.java).apply {
+
+            //load friend list with the data from adapter
+            initFriends() //初始化列表数据
+            val adapter= MyAdapter(activity!!, R.layout.list_item, friends)
+            val listview:ListView = root.findViewById(R.id.listview)
+            listview.adapter=adapter
+            listview.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                when (i) {
+                    0 -> {
+                        //Toast.makeText(activity!!, "我终于找到你了......", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
+                        }
+                        startActivity(intent)
                     }
-                    startActivity(intent)
+                    1 ->  {
+                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
+                        }
+                        startActivity(intent)}
                 }
             })
         }else{
@@ -44,5 +61,13 @@ class FriendListFragment : Fragment() {
             //TODO("绑定未登录状态下展示UI的监听")
         }
         return root
+    }
+
+    private fun initFriends(){
+        repeat(2){
+            for (i in 0..20){
+                friends.add(ListItem("username", R.drawable.avatar2))
+            }
+        }
     }
 }

@@ -9,8 +9,8 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.timemanager.R
-import com.example.timemanager.puzzle.PuzzleFragment
-import com.example.timemanager.tools.AlarmTools
+import com.example.timemanager.ui.task.puzzle.PuzzleFragment
+import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
 import kotlinx.android.synthetic.main.layout_alarm.*
@@ -51,15 +51,15 @@ class AlarmActivity: AppCompatActivity() {
             where("ID","=",id).findFirst();
             uiThread {
                 if (model==null) return@uiThread
-                stop_rt.visibility= View.VISIBLE;
+                //stop_rt.visibility= View.VISIBLE;
                 if (model.ACTIVE == "1"){
                     initMediaPlayer();
-                    stop_rt.setOnClickListener {
-                        if (mMediaPlayer.isPlaying){
-                            mMediaPlayer.stop()
-                        }
-                        finish();
-                    }
+//                    stop_rt.setOnClickListener {
+//                        if (mMediaPlayer.isPlaying){
+//                            mMediaPlayer.stop()
+//                        }
+                        //finish();
+                    //}
                 }
             }
         }
@@ -96,13 +96,12 @@ class AlarmActivity: AppCompatActivity() {
             AlarmTools.cancelAlarm(this,model);
         }
     }
-    fun showPuzzleFragment(newN: Int) {
+    private fun showPuzzleFragment(newN: Int) {
         val transaction = fragmentManager.beginTransaction()
         val fragment = PuzzleFragment()
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
-       // if(fragment.)
 
     }
 }

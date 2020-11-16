@@ -7,9 +7,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/whitelist"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/whitelistTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/inWhitelist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已加入白名单" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/notinWhitelist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未加入白名单" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/inWitelistView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/notinWitelistView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone" />
 </LinearLayout>

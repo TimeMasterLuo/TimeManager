@@ -16,9 +16,9 @@ class CircleImageView : androidx.appcompat.widget.AppCompatImageView {
     //图片的宿放比例
     private var mScale = 0f
 
-    constructor(context: Context?) : super(context) {}
+    constructor(context: Context?) : super(context!!) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(
-        context,
+        context!!,
         attrs
     ) {
     }
@@ -27,7 +27,7 @@ class CircleImageView : androidx.appcompat.widget.AppCompatImageView {
         context: Context?,
         attrs: AttributeSet?,
         defStyleAttr: Int
-    ) : super(context, attrs, defStyleAttr) {
+    ) : super(context!!, attrs, defStyleAttr) {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

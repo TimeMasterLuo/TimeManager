@@ -2,8 +2,8 @@ package com.example.timemanager.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.timemanager.data.LoginDataSource
-import com.example.timemanager.data.LoginRepository
+import com.example.timemanager.ui.login.data.LoginDataSource
+import com.example.timemanager.ui.login.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
