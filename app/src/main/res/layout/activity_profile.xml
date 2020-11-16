@@ -117,6 +117,7 @@
                     android:paddingLeft="20dp"
                     android:text="intro"
                     android:textAlignment="textStart"
+                    android:textAllCaps="false"
                     android:textColor="#000000"
                     app:layout_column="0"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -133,11 +134,10 @@
                     android:drawableStart="@drawable/ic_baseline_date_range_24"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:gravity="start|center_horizontal|center_vertical"
                     android:inputType="text"
                     android:paddingLeft="20dp"
                     android:text="注册时间:   "
-                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_column="0"
@@ -159,6 +159,7 @@
                     android:paddingLeft="20dp"
                     android:text="完成任务总数：21 |  累计专注时间：100 min"
                     android:textAlignment="textStart"
+                    android:textAllCaps="false"
                     android:textColor="#000000"
                     app:layout_column="0"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -191,4 +192,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

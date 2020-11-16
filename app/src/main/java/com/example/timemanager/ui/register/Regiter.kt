@@ -1,4 +1,4 @@
-package com.example.timemanager.ui.login
+package com.example.timemanager.ui.register
 
 import android.app.Activity
 import android.content.Intent
@@ -14,20 +14,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
+import com.example.timemanager.ui.login.LoggedInUserView
+import com.example.timemanager.ui.login.LoginViewModel
+import com.example.timemanager.ui.login.LoginViewModelFactory
 
-class Login : AppCompatActivity() {
+class Register : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
-        val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.login)
-        val loading = findViewById<ProgressBar>(R.id.loading)
+        val username = findViewById<EditText>(R.id.username2)
+        val password = findViewById<EditText>(R.id.password2)
+        val login = findViewById<Button>(R.id.login2)
+        val loading = findViewById<ProgressBar>(R.id.loading2)
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -68,7 +71,7 @@ class Login : AppCompatActivity() {
             }
         })
 
-        username.afterTextChanged {
+        username.afterTextChanged2 {
             loginViewModel.loginDataChanged(
                 username.text.toString(),
                 password.text.toString()
@@ -76,7 +79,7 @@ class Login : AppCompatActivity() {
         }
 
         password.apply {
-            afterTextChanged {
+            afterTextChanged2 {
                 loginViewModel.loginDataChanged(
                     username.text.toString(),
                     password.text.toString()
@@ -86,7 +89,7 @@ class Login : AppCompatActivity() {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
+                        loginViewModel.register(
                             application,
                             applicationContext,
                             username.text.toString(),
@@ -98,13 +101,13 @@ class Login : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(application,applicationContext,username.text.toString(), password.text.toString())
+                loginViewModel.register(application,applicationContext,username.text.toString(), password.text.toString())
             }
-        }
+       }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
+        val welcome = getString(R.string.register_success)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
         Toast.makeText(
@@ -122,7 +125,7 @@ class Login : AppCompatActivity() {
 /**
  * Extension function to simplify setting an afterTextChanged action to EditText components.
  */
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+fun EditText.afterTextChanged2(afterTextChanged: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable?) {
             afterTextChanged.invoke(editable.toString())

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.timemanager">
+    package="com.example.timemanager" >
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -18,8 +18,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/test">
-        <activity android:name=".StudyEamples.SendHttpRequestExample"></activity>
+        android:theme="@style/test" >
+        <activity android:name=".StudyEamples.SendHttpRequestExample" />
         <activity
             android:name=".ui.systemconfig.SystemConfig"
             android:parentActivityName=".ui.home.Home" />
@@ -65,6 +65,10 @@
             android:label="@string/title_activity_login"
             android:parentActivityName=".ui.home.Home" />
         <activity
+            android:name=".ui.register.Register"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".ui.home.Home" />
+        <activity
             android:name=".ui.awayphone.AwayPhone"
             android:parentActivityName=".ui.home.Home" />
         <activity
@@ -78,7 +82,7 @@
             android:parentActivityName=".ui.alarm.AlarmActivity" />
         <activity
             android:name=".ui.home.Home"
-            android:label="@string/title_activity_home">
+            android:label="@string/title_activity_home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,8 +92,8 @@
 
         <receiver
             android:name=".ui.alarm.AlramReceiver"
-            android:exported="false">
-            <intent-filter android:priority="20">
+            android:exported="false" >
+            <intent-filter android:priority="20" >
                 <action android:name=".Home" />
             </intent-filter>
         </receiver>

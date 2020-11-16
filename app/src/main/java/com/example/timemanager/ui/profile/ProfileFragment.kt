@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.*
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.login.Login
+import com.example.timemanager.ui.register.Register
 import com.example.timemanager.ui.systemconfig.SystemConfig
 import com.example.timemanager.ui.themestore.ThemeStore
 
@@ -79,6 +80,14 @@ class ProfileFragment : Fragment() {
             btn1.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     val intent = Intent(getActivity(), Login::class.java).apply {
+                    }
+                    startActivity(intent)
+                }
+            })
+            val btn2 : Button = root.findViewById(R.id.register_button)
+            btn2.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val intent = Intent(getActivity(), Register::class.java).apply {
                     }
                     startActivity(intent)
                 }
