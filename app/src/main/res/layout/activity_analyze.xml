@@ -4,21 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
     tools:context=".ui.dashboard.Analyze">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:orientation="vertical"
-    tools:ignore="MissingConstraints">
-<com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-    android:id="@+id/aa_chart_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
-</LinearLayout>
-<!--    <ImageView-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:orientation="vertical"-->
+<!--        tools:ignore="MissingConstraints">-->
+
+<!--        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
+<!--            android:id="@+id/aa_chart_view"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="250dp"-->
+<!--            android:layout_gravity="center|center_vertical">-->
+
+<!--        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:orientation="vertical"-->
+<!--        >-->
+
+<!--        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
+<!--            android:id="@+id/aa_chart_view1"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center">-->
+
+<!--        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
+<!--    </LinearLayout>-->
+
+<!--<LinearLayout-->
+<!--android:layout_width="416dp"-->
+<!--android:layout_height="416dp"-->
+<!--android:orientation="vertical"-->
+<!--tools:ignore="MissingConstraints"-->
+<!--tools:layout_editor_absoluteY="832dp"-->
+<!--    >-->
+
+<!--<com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
+<!--    android:id="@+id/aa_chart_view2"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--</com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
+<!--</LinearLayout>-->
+    <!--    <ImageView-->
 <!--        android:id="@+id/imageView3"-->
 <!--        android:layout_width="312dp"-->
 <!--        android:layout_height="563dp"-->
@@ -35,5 +68,60 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:srcCompat="@android:drawable/ic_menu_share" />-->
+<ScrollView
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="48dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/aa_chart_view"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center|center_vertical">
+
+            </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/aa_chart_view1"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center|center_vertical">
+
+            </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/aa_chart_view2"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center|center_vertical">
+
+            </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
