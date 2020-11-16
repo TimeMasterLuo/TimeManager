@@ -11,6 +11,8 @@ class TimeManager : Application() {
     var login_flag = false
     var username = "YueYi"
     var intro = "这个人很懒，什么也没写。"
+    var uid = 1
+    var email = "1481796592@qq.com"
 
     override fun onCreate() {
         login_flag = true
