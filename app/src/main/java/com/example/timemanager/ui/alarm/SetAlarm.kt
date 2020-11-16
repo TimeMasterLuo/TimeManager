@@ -109,24 +109,16 @@ class SetAlarm : AppCompatActivity() {
                 note_text.text = model.NOTE;
             }.setNegativeButton("取消", null).show()
     }
-    public enum class WeekDAY(val chnName:String){
-        Never("从不"),
-        Monday("每周一"),
-        Tuesday("每周二"),
-        Wednesday("每周三"),
-        Thursday("每周四"),
-        Friday("每周五"),
-        Saturday("每周六"),
-        Sunday("每周日")
-    }
+
     public enum class Task(val chnName:String){
         None("无"),
         PUZZLE("PUZZLE"),
-        Random("随机")
+        //PUZZLE2("2PUZZLE")
+//        Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName, Task.PUZZLE.chnName, Task.Random.chnName);
+            Task.None.chnName, Task.PUZZLE.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")

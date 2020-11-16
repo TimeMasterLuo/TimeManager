@@ -9,10 +9,12 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.timemanager.R
+import com.example.timemanager.ui.task.none.NoneFragment
 import com.example.timemanager.ui.task.puzzle.PuzzleFragment
 import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
+import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.layout_alarm.*
 import kotlinx.android.synthetic.main.layout_title.*
 import org.jetbrains.anko.doAsync
@@ -23,6 +25,7 @@ class AlarmActivity: AppCompatActivity() {
     private var model = T_ALARM_CLOCK();
     private var id :String ="";
     private var task :String ="";
+
     val fragmentManager: FragmentManager = supportFragmentManager
 
 
@@ -63,8 +66,12 @@ class AlarmActivity: AppCompatActivity() {
                 }
             }
         }
-        if(task.equals("PUZZLE")){
-            showPuzzleFragment(3)
+        println(task);
+        if(task == "PUZZLE"){
+            showPuzzleFragment()
+        };
+        if(task == "无"){
+            showNoneFragment()
         };
     }
 
@@ -90,13 +97,13 @@ class AlarmActivity: AppCompatActivity() {
     }
 
     private fun resetActiveType(){
-        if(model!=null && model.Date== SetAlarm.WeekDAY.Never.chnName){
+        if(model!=null ){
             model.ACTIVE="0"
             DbTool.saveOrUpdate(model);
             AlarmTools.cancelAlarm(this,model);
         }
     }
-    private fun showPuzzleFragment(newN: Int) {
+    private fun showPuzzleFragment() {
         val transaction = fragmentManager.beginTransaction()
         val fragment = PuzzleFragment()
         transaction.replace(R.id.fragment_holder, fragment)
@@ -104,4 +111,12 @@ class AlarmActivity: AppCompatActivity() {
         transaction.commit()
 
     }
+    private fun showNoneFragment(){
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = NoneFragment()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
 }
