@@ -7,8 +7,10 @@ import kotlin.properties.Delegates
 //app开始运行时初始化，可以用来放全局变量等信息
 
 class TimeManager : Application() {
-
+    //这里存放所有全局变量，kotlin自带get，set方法
     var login_flag = false
+    var username = "YueYi"
+    var intro = "这个人很懒，什么也没写。"
 
     override fun onCreate() {
         login_flag = true
