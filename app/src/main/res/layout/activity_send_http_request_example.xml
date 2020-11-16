@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onclick"
     tools:context=".StudyEamples.SendHttpRequestExample">
 
     <TextView
@@ -41,10 +42,11 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:onClick="onclick"
         android:text="发送"
         app:layout_constraintBottom_toTopOf="@+id/text"
-        app:layout_constraintEnd_toEndOf="@+id/text"
-        app:layout_constraintStart_toStartOf="@+id/text" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
