@@ -37,9 +37,12 @@
                     app:rowCount="3">
 
                     <com.example.timemanager.components.CircleImageView
-                        android:id="@+id/imageView1"
+                        android:id="@+id/userAvatar"
                         android:layout_width="83dp"
                         android:layout_height="57dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_weight="1"
                         android:background="#FFFFFF"
                         android:scaleType="centerInside"
@@ -56,26 +59,29 @@
                         app:layout_rowWeight="4">
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/username_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
                             android:layout_weight="1"
                             android:text="username"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             android:textColor="#673AB7" />
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/intro_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
                             android:layout_weight="1"
-                            android:text="待办：?  已办：？   " />
+                            android:text="个人简介" />
 
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/profile_entry"
-                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                        android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:backgroundTint="#FFFFFF"
                         android:text="个人主页 〉"

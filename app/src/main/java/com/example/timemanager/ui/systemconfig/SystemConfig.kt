@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
@@ -20,6 +21,7 @@ class SystemConfig : AppCompatActivity() {
 
         val intent = Intent(this, Home::class.java).apply {
             //清空之前堆叠的栈
+            Toast.makeText(applicationContext, "登出成功", Toast.LENGTH_SHORT).show()
             setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intent)
