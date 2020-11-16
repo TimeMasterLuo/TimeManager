@@ -19,33 +19,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/test">
+        <activity android:name=".StudyEamples.SendHttpRequestExample"></activity>
         <activity
             android:name=".ui.systemconfig.SystemConfig"
             android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.notifications.MessageView"
             android:parentActivityName=".ui.home.Home" />
-
         <activity
             android:name=".ui.alarm.AlarmFromFriend"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
         <activity
             android:name=".ui.awayphone.AwayPhoneController"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
-
         <activity
-            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneResult"
+            android:name=".ui.awayPhonePackage.AwayPhoneResult"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
         <activity
-            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneScreen"
+            android:name=".ui.awayPhonePackage.AwayPhoneScreen"
             android:parentActivityName=".ui.awayphone.AwayPhoneController"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneWhitelist"
+            android:name=".ui.awayPhonePackage.AwayPhoneWhitelist"
             android:parentActivityName=".ui.awayphone.AwayPhoneController" />
 
-        <service android:name="com.example.timemanager.ui.awayPhonePackage.AwayPhoneService" />
-
+        <service android:name=".ui.awayPhonePackage.AwayPhoneService" />
 
         <activity
             android:name=".ui.themestore.ThemeStore"

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.ui.alarm.AlarmManage
 import com.example.timemanager.ui.awayphone.AwayPhone
 import com.example.timemanager.R
+import com.example.timemanager.StudyEamples.SendHttpRequestExample
 
 class HomeFragment : Fragment() {
 
@@ -46,6 +47,15 @@ class HomeFragment : Fragment() {
             override fun onClick(v: View?) {
                 textView.text = "Clicked button2"
                 val intent = Intent(getActivity(), AwayPhone::class.java).apply {
+                }
+                startActivity(intent)
+            }
+        })
+
+        val btn3 : Button = root.findViewById(R.id.studybutton)
+        btn3.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent(getActivity(), SendHttpRequestExample::class.java).apply {
                 }
                 startActivity(intent)
             }
