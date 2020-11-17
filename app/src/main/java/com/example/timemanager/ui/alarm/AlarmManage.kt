@@ -145,10 +145,10 @@ class AlarmManage : AppCompatActivity(){
                     model.ACTIVE="1"
                     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:SS")
                     var df = SimpleDateFormat("yyyy-MM-dd")
-                    df.timeZone = TimeZone.getTimeZone("GMT+8:00");
+                    //df.timeZone = TimeZone.getTimeZone("GMT+8:00");
                     model.Date=df.format(sdf.parse(item["recordTime"] as String)).toString()
                     df = SimpleDateFormat("HH:mm:SS")
-                    df.timeZone = TimeZone.getTimeZone("GMT+8:00");
+                    //df.timeZone = TimeZone.getTimeZone("GMT+8:00");
                     model.TIME= df.format(sdf.parse(item["recordTime"] as String)).toString()
                     DbTool.saveOrUpdate(model);
                 }
