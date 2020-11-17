@@ -64,7 +64,7 @@ class Analyze : AppCompatActivity() {
                 .series(
                 arrayOf(
                         AASeriesElement()
-                                .name("Language market shares")
+                                .name("使用时间（分钟）")
                                 .data(
                                         arrayOf(
                                                 arrayOf("自设闹钟", 20),
