@@ -123,7 +123,7 @@ class AwayPhoneWhitelist : AppCompatActivity() {
         appinfoTable.VERSIONNAME = appinfo.versionName
         appinfoTable.VERSIONCODE = appinfo.versionCode
         appinfoTable.ISSYSTEM = appinfo.isSystem
-        DbTool.saveOrUpdate(appinfoTable)
+        //DbTool.saveOrUpdate(appinfoTable)
     }
 
     private fun findAllAppsinWhitelist(){

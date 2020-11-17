@@ -37,7 +37,7 @@ class SendHttpRequestExample : AppCompatActivity() {
             //失败情况调用的callback
             { error ->
                 // TODO: Handle error
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
                     .show();
                 log.text = "Response: %s".format(error.toString())
             }

@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import com.example.timemanager.R
+import com.example.timemanager.ui.title.ButtonBackward
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
 import kotlinx.android.synthetic.main.activity_analyze.*
+import kotlinx.android.synthetic.main.layout_title.*
 
 
 class Analyze : AppCompatActivity() {
@@ -16,6 +18,10 @@ class Analyze : AppCompatActivity() {
         setContentView(R.layout.activity_analyze)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "数据分析"
+
         val aaChartView = findViewById<AAChartView>(R.id.aa_chart_view)
         val aaChartModel = AAChartModel()
             .chartType(AAChartType.Area)

@@ -6,4 +6,7 @@ enum class Tables(val tablepath:String){
 
     //白名单表
     T_WHITELIST("com.example.timemanager.utils.LocalDataBase.T_WHITELIST"),
+
+    //远离手机历史记录
+    T_AWAY_PHONE("com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE")
 }
