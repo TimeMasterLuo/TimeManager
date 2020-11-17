@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,16 +15,25 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.home.Home
+import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.networkRequest.MySingleton
 import kotlinx.android.synthetic.main.activity_edit_intro.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.layout_title.*
 import org.json.JSONObject
 
 
 class EditIntro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_edit_intro)
+        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
+        this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "修改信息"
+
         newIntro.setText((this.application as TimeManager).intro)
     }
     fun confirmOnclick(view: View){
