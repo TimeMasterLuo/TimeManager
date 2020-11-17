@@ -44,6 +44,7 @@ class LoginViewModel: ViewModel() {
                     globalData.uid= response.get("id").toString()
                     globalData.email= response.get("email") as String
                     globalData.intro= response.get("intro") as String
+                    globalData.friendlist= response.get("friend") as MutableSet<String>
                 }
                 else{
                     _loginResult.value = LoginResult(error = R.string.login_failed)
