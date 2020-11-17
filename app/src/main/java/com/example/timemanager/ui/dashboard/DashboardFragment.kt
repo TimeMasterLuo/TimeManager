@@ -45,13 +45,13 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        var flag: Boolean = (activity!!.application as TimeManager).login_flag
-        var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
-        if(flag) {
-            root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+//        var flag: Boolean = (activity!!.application as TimeManager).login_flag
+//        var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
+//        if(flag) {
+            val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
             var user: Int = (activity!!.application as TimeManager).uid.toInt()
             val param = JSONObject()
-            param.put("toid", user)
+            param.put("toid", 5)
             val url = "http://59.78.38.19:8080/getAllClock"
             var listview = root.findViewById<ListView>(R.id.Clock_list)
             clocks = arrayListOf()
@@ -141,7 +141,7 @@ class DashboardFragment : Fragment() {
 //            intent.putExtras(bundle)
 //            startActivity(intent)
 //        }
-        }
+//        }
         return root
     }
 }
