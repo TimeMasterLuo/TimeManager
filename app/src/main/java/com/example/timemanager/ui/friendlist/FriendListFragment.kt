@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 
@@ -14,6 +15,7 @@ import com.example.timemanager.application.TimeManager
 import com.example.timemanager.adapter.FriendListAdapter.ListItem
 import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
 import com.example.timemanager.ui.systemconfig.SystemConfig
+import kotlinx.android.synthetic.main.activity_send_http_request_example.view.*
 
 
 class FriendListFragment : Fragment() {
@@ -43,18 +45,11 @@ class FriendListFragment : Fragment() {
             val listview:ListView = root.findViewById(R.id.listview)
             listview.adapter=adapter
             listview.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                when (i) {
-                    0 -> {
-                        //Toast.makeText(activity!!, "我终于找到你了......", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
-                        }
-                        startActivity(intent)
-                    }
-                    1 ->  {
-                        val intent = Intent(getActivity(), FriendProfile::class.java).apply {
-                        }
-                        startActivity(intent)}
+                //define onclick func
+                val intent = Intent(getActivity(), FriendProfile::class.java).putExtra("friendChoosed",friends[i].name).apply {
                 }
+                startActivity(intent)
+
             })
         }else{
             //渲染fragment_friendlist_unauthorized并绑定监听
