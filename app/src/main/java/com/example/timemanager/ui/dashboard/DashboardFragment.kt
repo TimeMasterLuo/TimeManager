@@ -54,11 +54,14 @@ class DashboardFragment : Fragment() {
                 Request.Method.POST, url, param,
                 //成功获取返回时的callback
                 { response ->
+                    Log.e("response error",response.toString())
                    val clockArray=response.getJSONArray("data")
+                    Log.e("length",clockArray.length().toString())
                     var index=0
                     while (index<clockArray.length()){
-                        val format =SimpleDateFormat("yyyy-MM-dd HH:MM:SS")
+                        val format =SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         val date=format.parse(clockArray.getJSONObject(index).getString("recordTime"))
+                        Log.e("date",date.toString())
                         val setter=clockArray.getJSONObject(index).getString("fromName")
                         val user=clockArray.getJSONObject(index).getString("toName")
                         val note=clockArray.getJSONObject(index).getString("note")
@@ -72,6 +75,7 @@ class DashboardFragment : Fragment() {
                         val coins=clockArray.getJSONObject(index).getInt("coins")
                         val clock=object :Clock(type,setter,date,status,grade,coins,note,user){}
                         clocks.add(clock)
+                        Log.e("date",clocks.toString())
                         index++
                     }
                     clockAdapter= ClockAdapter(this.activity,clocks)
