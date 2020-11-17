@@ -3,19 +3,28 @@ package com.example.timemanager.ui.friendlist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
+import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.networkRequest.MySingleton
+import kotlinx.android.synthetic.main.layout_title.*
 import org.json.JSONObject
 
 class AddFriend : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_add_friend)
+        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
+        this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "添加好友"
     }
     fun confirmAddOnclick(view: View){
         val globalData: TimeManager = application as TimeManager
