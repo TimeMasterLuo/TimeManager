@@ -11,6 +11,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.timemanager.R
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.tools.FileTools
 import com.example.timemanager.ui.title.ButtonBackward
@@ -75,7 +76,7 @@ class SetAlarm : AppCompatActivity() {
             button_delete.visibility= View.VISIBLE;
         }
         if (TYPE==TYPE_ADD){
-            model.ID = UUID.randomUUID().toString();
+            model.ID = TimeManager.instance().alarmCount++;
         }
 
         dateTimePicker.setOnDateTimeChangedListener { millisecond -> time_edit(millisecond)  }
@@ -109,24 +110,16 @@ class SetAlarm : AppCompatActivity() {
                 note_text.text = model.NOTE;
             }.setNegativeButton("取消", null).show()
     }
-    public enum class WeekDAY(val chnName:String){
-        Never("从不"),
-        Monday("每周一"),
-        Tuesday("每周二"),
-        Wednesday("每周三"),
-        Thursday("每周四"),
-        Friday("每周五"),
-        Saturday("每周六"),
-        Sunday("每周日")
-    }
+
     public enum class Task(val chnName:String){
         None("无"),
         PUZZLE("PUZZLE"),
-        Random("随机")
+        //PUZZLE2("2PUZZLE")
+//        Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName, Task.PUZZLE.chnName, Task.Random.chnName);
+            Task.None.chnName, Task.PUZZLE.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")
@@ -134,6 +127,7 @@ class SetAlarm : AppCompatActivity() {
                 DialogInterface.OnClickListener {
                         dialog, which ->
                     newSelected= taskList[which] as String;
+                    println("selected task:"+newSelected)
                 })
             .setPositiveButton("好", DialogInterface.OnClickListener {
                     dialog, which ->
@@ -146,6 +140,7 @@ class SetAlarm : AppCompatActivity() {
 
     private fun setAlarmClock(){
         AlarmTools.setAlarm(this,model);
+        
     }
     private fun doPickPingtone(){
         val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
@@ -170,12 +165,26 @@ class SetAlarm : AppCompatActivity() {
         model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
         DbTool.saveOrUpdate(model);
         println("saving model:"+model.ID);
+        println("saving model task:"+model.Task);
         setAlarmClock();
         finish();
     }
     private fun deleteClock(){
         DbTool.delete(model as Object);
         finish();
+    }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        data?:return;
+        try {
+            val pickedUri = data.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
+            mRingtoneUri = pickedUri;
+            model.SOUND=mRingtoneUri.toString();
+            sound_text.text= FileTools.getFileName(FileTools.getRealFilePath(this, Uri.parse(model.SOUND)))
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 //    fun onCheckboxClicked(view: View) {
 //        if (view is CheckBox) {

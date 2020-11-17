@@ -17,6 +17,7 @@ class TimeManager : Application() {
     var uid = "1"
     var email = "1481796592@qq.com"
     var friendlist= mutableSetOf<String>()
+    var alarmCount = 0 //用于闹钟设置
 
     override fun onCreate() {
         login_flag = false
