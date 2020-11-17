@@ -29,7 +29,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="好友申请"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorPurple" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="来自好友的闹钟"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorPurple" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
