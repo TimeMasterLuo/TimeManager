@@ -25,7 +25,9 @@ class HistoryDetail : AppCompatActivity() {
 
         val clock: Clock = intent.getSerializableExtra("clock") as Clock
         val format = SimpleDateFormat("yyyy-MM-dd")
+        val format1 = SimpleDateFormat("HH:mm")
         val date=format.format(clock.date)
+        val date1=format1.format(clock.date)
         val type=findViewById<TextView>(R.id.typeText)
         type.text=clock.type
         val user=findViewById<TextView>(R.id.set_user)
@@ -33,7 +35,7 @@ class HistoryDetail : AppCompatActivity() {
         val dating=findViewById<TextView>(R.id.date)
         dating.text=date
         val time=findViewById<TextView>(R.id.clock_time)
-        time.text="clock.set_time"
+        time.text=date1
         val finishTime=findViewById<TextView>(R.id.time_to_finish)
         finishTime.text=clock.time_to_finish
         val coins=findViewById<TextView>(R.id.coins)

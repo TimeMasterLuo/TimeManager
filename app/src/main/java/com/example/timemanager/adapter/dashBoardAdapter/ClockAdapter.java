@@ -37,15 +37,17 @@ public class ClockAdapter extends MyBaseAdapter<Clock> {
             ImageView image=(ImageView) convertView.findViewById(R.id.setter);
             image.setImageResource(R.drawable.friend_clock);
         }
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 =new SimpleDateFormat("HH:mm");
+        format.format(mList.get(position).getDate());
+        format1.format(mList.get(position).getDate());
         TextView clockName = (TextView) convertView.findViewById(R.id.detail);
-        clockName.setText(mList.get(position).getDate().toString());
+        clockName.setText(format.format(mList.get(position).getDate())+" "+format1.format(mList.get(position).getDate()));
         Button detail=convertView.findViewById(R.id.detail_button);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, HistoryDetail.class);
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd");
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 =new SimpleDateFormat("HH:mm");
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("clock",mList.get(position));
                 intent.putExtras(bundle);
