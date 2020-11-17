@@ -20,6 +20,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.example.timemanager.R
 import com.example.timemanager.adapter.awayPhoneAdapter.WhitelistAdapter
 import com.example.timemanager.adapter.dashBoardAdapter.ClockAdapter
+import com.example.timemanager.application.TimeManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -44,61 +45,65 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val param=JSONObject()
-        param.put("toid",5)
-        val url="http://59.78.38.19:8080/getAllClock"
-        var listview=root.findViewById<ListView>(R.id.Clock_list)
-        clocks= arrayListOf()
-        val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.POST, url, param,
-                //成功获取返回时的callback
-                { response ->
-                    Log.e("response error",response.toString())
-                   val clockArray=response.getJSONArray("data")
-                    Log.e("length",clockArray.length().toString())
-                    var index=0
-                    while (index<clockArray.length()){
-                        val format =SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
-                        val date=format.parse(clockArray.getJSONObject(index).getString("recordTime"))
-                        Log.e("date",date.toString())
-                        val setter=clockArray.getJSONObject(index).getString("fromName")
-                        val user=clockArray.getJSONObject(index).getString("toName")
-                        val note=clockArray.getJSONObject(index).getString("note")
-                        val type = if(setter==user){
-                            "自设闹钟"
-                        }else{
-                            "好友闹钟"
+        var flag: Boolean = (activity!!.application as TimeManager).login_flag
+        var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
+        if(flag) {
+            root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+            var user: Int = (activity!!.application as TimeManager).uid.toInt()
+            val param = JSONObject()
+            param.put("toid", user)
+            val url = "http://59.78.38.19:8080/getAllClock"
+            var listview = root.findViewById<ListView>(R.id.Clock_list)
+            clocks = arrayListOf()
+            val jsonObjectRequest = JsonObjectRequest(
+                    Request.Method.POST, url, param,
+                    //成功获取返回时的callback
+                    { response ->
+                        Log.e("response error", response.toString())
+                        val clockArray = response.getJSONArray("data")
+                        Log.e("length", clockArray.length().toString())
+                        var index = 0
+                        while (index < clockArray.length()) {
+                            val format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+                            val date = format.parse(clockArray.getJSONObject(index).getString("recordTime"))
+                            Log.e("date", date.toString())
+                            val setter = clockArray.getJSONObject(index).getString("fromName")
+                            val user = clockArray.getJSONObject(index).getString("toName")
+                            val note = clockArray.getJSONObject(index).getString("note")
+                            val type = if (setter == user) {
+                                "自设闹钟"
+                            } else {
+                                "好友闹钟"
+                            }
+                            val status = clockArray.getJSONObject(index).getString("status")
+                            val grade = clockArray.getJSONObject(index).getInt("score").toString()
+                            val coins = clockArray.getJSONObject(index).getInt("coins")
+                            val clock = object : Clock(type, setter, date, status, grade, coins, note, user) {}
+                            clocks.add(clock)
+                            Log.e("date", clocks.toString())
+                            index++
                         }
-                        val status=clockArray.getJSONObject(index).getString("status")
-                        val grade=clockArray.getJSONObject(index).getInt("score").toString()
-                        val coins=clockArray.getJSONObject(index).getInt("coins")
-                        val clock=object :Clock(type,setter,date,status,grade,coins,note,user){}
-                        clocks.add(clock)
-                        Log.e("date",clocks.toString())
-                        index++
+                        clockAdapter = ClockAdapter(this.activity, clocks)
+                        listview.adapter = clockAdapter
+                    },
+                    //失败情况调用的callback
+                    { error ->
+                        // TODO: Handle error
+                        Log.e("response error", error.toString())
                     }
-                    clockAdapter= ClockAdapter(this.activity,clocks)
-                    listview.adapter=clockAdapter
-                },
-                //失败情况调用的callback
-                { error ->
-                    // TODO: Handle error
-                    Log.e("response error",error.toString())
+            )
+            this.activity?.let { MySingleton.getInstance(it).addToRequestQueue(jsonObjectRequest) }
+            val btn1: FloatingActionButton = root.findViewById(R.id.analyze_button)
+            btn1.setOnClickListener {
+                val intent = Intent(activity, Analyze::class.java).apply {
                 }
-        )
-        this.activity?.let { MySingleton.getInstance(it).addToRequestQueue(jsonObjectRequest) }
-        val btn1 : FloatingActionButton = root.findViewById(R.id.analyze_button)
-        btn1.setOnClickListener {
-            val intent = Intent(activity, Analyze::class.java).apply {
+                val bundle = Bundle()
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
-            val bundle = Bundle()
-            intent.putExtras(bundle)
-            startActivity(intent)
-        }
-        val tabLayout: TabLayout=root.findViewById(R.id.tab_layout)
-        val mTabSelectedColorListener = object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
+            val tabLayout: TabLayout = root.findViewById(R.id.tab_layout)
+            val mTabSelectedColorListener = object : OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
 //                val tag=tab.text as String
 //                if(tag=="任务闹钟"){
 //                    val card:CardView=root.findViewById(R.id.away)
@@ -114,15 +119,17 @@ class DashboardFragment : Fragment() {
 //                    val card:CardView=root.findViewById(R.id.friend)
 //                    card.visibility = VISIBLE
 //                }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab) {
+                    Log.e("unselected", tab.text as String)
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab) {
+                    Log.e("reselected", tab.text as String)
+                }
             }
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                Log.e("unselected",tab.text as String)
-            }
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                Log.e("reselected",tab.text as String)
-            }
-        }
-        tabLayout.addOnTabSelectedListener(mTabSelectedColorListener);
+            tabLayout.addOnTabSelectedListener(mTabSelectedColorListener);
 //        val btn2 : Button = root.findViewById(R.id.config_button)
 //        btn2.setOnClickListener {
 //            val intent = Intent(activity, HistoryDetail::class.java)
@@ -134,6 +141,7 @@ class DashboardFragment : Fragment() {
 //            intent.putExtras(bundle)
 //            startActivity(intent)
 //        }
+        }
         return root
     }
 }
