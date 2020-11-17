@@ -87,7 +87,6 @@ class Analyze : AppCompatActivity() {
                 .chartType(AAChartType.Pie)
                 .title("各功能使用时间")
                 .backgroundColor("#ffffff")
-                .subtitle("virtual data")
                 .dataLabelsEnabled(true)
                 .yAxisTitle("分钟")
                 .series(
@@ -132,7 +131,6 @@ class Analyze : AppCompatActivity() {
                     .chartType(AAChartType.Pie)
                     .title("各功能使用时间")
                     .backgroundColor("#ffffff")
-                    .subtitle("virtual data")
                     .dataLabelsEnabled(true)
                     .yAxisTitle("分钟")
                     .series(
@@ -176,6 +174,7 @@ class Analyze : AppCompatActivity() {
                     .title("周使用时间")
                     .yAxisTitle("时间")
                     .animationType(AAChartAnimationType.EaseInCirc)
+                    .animationDuration(1000)
                     .dataLabelsEnabled(true)
                     .backgroundColor("#ffffff")
                     .categories(arrayOf("11-16",
@@ -196,7 +195,6 @@ class Analyze : AppCompatActivity() {
                     .chartType(AAChartType.Pie)
                     .title("各功能使用时间")
                     .backgroundColor("#ffffff")
-                    .subtitle("virtual data")
                     .dataLabelsEnabled(true)
                     .yAxisTitle("分钟")
                     .series(
@@ -242,6 +240,7 @@ class Analyze : AppCompatActivity() {
                     .title("月使用时间")
                     .yAxisTitle("时间")
                     .animationType(AAChartAnimationType.EaseInCirc)
+                    .animationDuration(1000)
                     .dataLabelsEnabled(true)
                     .backgroundColor("#ffffff")
                     .categories(arrayOf("11-1至11-5",
@@ -261,7 +260,6 @@ class Analyze : AppCompatActivity() {
                     .chartType(AAChartType.Pie)
                     .title("各功能使用时间")
                     .backgroundColor("#ffffff")
-                    .subtitle("virtual data")
                     .dataLabelsEnabled(true)
                     .yAxisTitle("分钟")
                     .series(
@@ -307,6 +305,7 @@ class Analyze : AppCompatActivity() {
                     .title("年使用时间")
                     .yAxisTitle("时间")
                     .animationType(AAChartAnimationType.EaseInCirc)
+                    .animationDuration(1000)
                     .dataLabelsEnabled(true)
                     .backgroundColor("#ffffff")
                     .categories(arrayOf("一月",
@@ -333,7 +332,6 @@ class Analyze : AppCompatActivity() {
                     .chartType(AAChartType.Pie)
                     .title("各功能使用时间")
                     .backgroundColor("#ffffff")
-                    .subtitle("virtual data")
                     .dataLabelsEnabled(true)
                     .yAxisTitle("分钟")
                     .series(
