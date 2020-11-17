@@ -17,7 +17,7 @@ data class T_AWAY_PHONE(
     @Column(name = "COINS")var COINS:Int=0,
     @Column(name = "USERID")var USERID:String="",
     @Column(name = "USERNAME")var USERNAME:String="",
-    @Column(name = "MODEL")var MODEL:String="normal"
+    @Column(name = "TYPE")var TYPE:String="normal"
 ) : Parcelable {
 
 }
