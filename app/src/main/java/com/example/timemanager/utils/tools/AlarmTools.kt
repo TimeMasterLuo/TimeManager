@@ -27,9 +27,9 @@ class AlarmTools {
                 var intent = Intent(context, AlramReceiver::class.java);
                 intent.action = TimeManager.instance().packageName;
                 intent.putExtra("ID",model.ID);
-                intent.putExtra("TASK",model.Task);
+                //intent.putExtra("TASK",model.Task);
             println("set alarm:"+model.ID);
-                var pi = PendingIntent.getBroadcast(context,0,intent,0);
+                var pi = PendingIntent.getBroadcast(context,model.ID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(AlarmManager.RTC_WAKEUP,model.TIMESTAMP.toLong(),pi);
         }
 
@@ -37,7 +37,7 @@ class AlarmTools {
                 var intent = Intent(context, AlramReceiver::class.java);
                 intent.action = TimeManager.instance().packageName;
                 intent.putExtra("ID",model.ID);
-                var pi = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_NO_CREATE);
+                var pi = PendingIntent.getBroadcast(context,model.ID,intent,PendingIntent.FLAG_NO_CREATE);
                 if(pi !=null){
                     alarmManager.cancel(pi)
                 }

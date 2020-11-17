@@ -11,6 +11,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.timemanager.R
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.tools.FileTools
 import com.example.timemanager.ui.title.ButtonBackward
@@ -75,7 +76,7 @@ class SetAlarm : AppCompatActivity() {
             button_delete.visibility= View.VISIBLE;
         }
         if (TYPE==TYPE_ADD){
-            model.ID = UUID.randomUUID().toString();
+            model.ID = TimeManager.instance().alarmCount++;
         }
 
         dateTimePicker.setOnDateTimeChangedListener { millisecond -> time_edit(millisecond)  }
@@ -126,6 +127,7 @@ class SetAlarm : AppCompatActivity() {
                 DialogInterface.OnClickListener {
                         dialog, which ->
                     newSelected= taskList[which] as String;
+                    println("selected task:"+newSelected)
                 })
             .setPositiveButton("好", DialogInterface.OnClickListener {
                     dialog, which ->
@@ -138,6 +140,7 @@ class SetAlarm : AppCompatActivity() {
 
     private fun setAlarmClock(){
         AlarmTools.setAlarm(this,model);
+        
     }
     private fun doPickPingtone(){
         val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
@@ -162,6 +165,7 @@ class SetAlarm : AppCompatActivity() {
         model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
         DbTool.saveOrUpdate(model);
         println("saving model:"+model.ID);
+        println("saving model task:"+model.Task);
         setAlarmClock();
         finish();
     }

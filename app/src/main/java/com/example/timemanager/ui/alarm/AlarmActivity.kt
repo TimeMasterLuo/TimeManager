@@ -23,7 +23,7 @@ import org.jetbrains.anko.uiThread
 class AlarmActivity: AppCompatActivity() {
     var  mMediaPlayer = MediaPlayer();
     private var model = T_ALARM_CLOCK();
-    private var id :String ="";
+    private var id :Int=0;
     private var task :String ="";
 
     val fragmentManager: FragmentManager = supportFragmentManager
@@ -47,8 +47,8 @@ class AlarmActivity: AppCompatActivity() {
     }
 
     private fun initViews(){
-        id = intent.getStringExtra("ID")
-        task = intent.getStringExtra("TASK")
+        id = intent.getIntExtra("ID",0)
+        //task = intent.getStringExtra("TASK")
         doAsync {
             model = DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).
             where("ID","=",id).findFirst();
@@ -57,6 +57,15 @@ class AlarmActivity: AppCompatActivity() {
                 //stop_rt.visibility= View.VISIBLE;
                 if (model.ACTIVE == "1"){
                     initMediaPlayer();
+                    if(model.Task == "PUZZLE"){
+                        showPuzzleFragment()
+                    }else if(model.Task == "无"){
+                        showNoneFragment()
+                    }else{
+                        showNoneFragment()
+                        println("task error")
+                    };
+
 //                    stop_rt.setOnClickListener {
 //                        if (mMediaPlayer.isPlaying){
 //                            mMediaPlayer.stop()
@@ -66,13 +75,8 @@ class AlarmActivity: AppCompatActivity() {
                 }
             }
         }
-        println(task);
-        if(task == "PUZZLE"){
-            showPuzzleFragment()
-        };
-        if(task == "无"){
-            showNoneFragment()
-        };
+        //println(task);
+
     }
 
     private fun initMediaPlayer() {
@@ -93,6 +97,9 @@ class AlarmActivity: AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         resetActiveType();
+        if (mMediaPlayer.isPlaying){
+            mMediaPlayer.stop()
+        }
         mMediaPlayer.release();
     }
 
