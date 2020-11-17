@@ -11,21 +11,12 @@
         android:layout_height="58dp"
         android:background="#673AB7">
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ellipsize="marquee"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/App_title"
-            android:textColor="#fff"
-            android:textSize="21sp" />
-
         <Button
             android:id="@+id/button_backward"
             android:layout_width="70dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="20dp"
             android:background="#673AB7"
             android:drawableStart="@drawable/ic_baseline_keyboard_arrow_left_24"
@@ -38,6 +29,17 @@
             android:textColor="#ffffffff"
             android:textSize="18sp"
             android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/App_title"
+            android:textColor="#fff"
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/button_message"

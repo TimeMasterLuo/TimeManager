@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
+import com.blankj.utilcode.util.TimeUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.LocalDataBase.DbTool
@@ -26,9 +25,10 @@ import kotlin.math.roundToInt
 
 class AwayPhoneResult : AppCompatActivity() {
     private var gettime : String?= "0"
-    private var getstartTime: String? = null
-    private var getendTime: String? = null
+    private var getstartDate: String? = null
+    private var getendDate: String? = null
     private var model: String? = "normal"
+    private var id = "0"
     //private var myService: AwayPhoneService? = null
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,41 +48,52 @@ class AwayPhoneResult : AppCompatActivity() {
         }
 
         gettime = intent.getStringExtra("time")
-        totalTime.text = "持续时间：$gettime s"
-        totalTime2.text = "持续时间：$gettime s"
+        getcoins.text = "恭喜您获得${getCoins(gettime.toString())} 枚金币！请再接再厉哦！"
+        getcoins2.text = "获得金币：${getCoins(gettime.toString())}"
 
-        getstartTime = intent.getStringExtra("startTime")
-        getendTime = intent.getStringExtra("endTime")
-        startTime.text = "开始时间：$getstartTime"
-        endTime.text = "结束时间：$getendTime"
+        getstartDate = intent.getStringExtra("startTime")
+        getendDate = intent.getStringExtra("endTime")
+        startTime.text = "开始时间：$getstartDate"
+        endTime.text = "结束时间：$getendDate"
+
+        val hour = TimeUtils.getSafeDateFormat("HH:mm")
+        val data = TimeUtils.getSafeDateFormat("MM-dd")
+
+        timeRange.text = "${hour.format(TimeUtils.string2Date(getstartDate))} ~ ${hour.format(TimeUtils.string2Date(getendDate))}"
+        time.text = "$gettime s"
 
         model = intent.getStringExtra("model")
-
-        addAwayPhoneHistory()
-
-        testHttpbtn.setOnClickListener {
-            testHttp()
+        if(model == "normal"){
+            modelname.setImageDrawable(ResourceUtils.getDrawable(ResourceUtils.getIdByName("@drawable/artwords_normal")))
         }
+
+        else{
+            modelname.setImageDrawable(ResourceUtils.getDrawable(ResourceUtils.getIdByName("@drawable/artwords_focus")))
+        }
+
+        addAwayPhoneHistoryinServer()
+        //Log.e("test", TimeUtils.string2Date(getstartDate).toString())
+        //addAwayPhoneHistoryinLocal()
     }
 
     fun close(view: View?) {
         ServiceUtils.stopService(AwayPhoneService::class.java)
-        ActivityUtils.finishToActivity(Home::class.java, false, true)
+        //ActivityUtils.finishToActivity(Home::class.java, false, true)
+        finish()
     }
 
-    private fun addAwayPhoneHistory() {
+    private fun addAwayPhoneHistoryinLocal(id: String) {
         val globalData: TimeManager = application as TimeManager
         val awayPhoneHistory = T_AWAY_PHONE()
-        awayPhoneHistory.ID = getId()
-        awayPhoneHistory.STARTDATE = getstartTime.toString()
-        awayPhoneHistory.ENDDATE = getendTime.toString()
+        awayPhoneHistory.ID = id
+        awayPhoneHistory.STARTDATE = getstartDate.toString()
+        awayPhoneHistory.ENDDATE = getendDate.toString()
         awayPhoneHistory.TIME = gettime.toString()
         awayPhoneHistory.COINS = getCoins(gettime.toString())
         awayPhoneHistory.USERNAME = globalData.username
         awayPhoneHistory.USERID = globalData.uid
-        awayPhoneHistory.MODEL = model.toString()
+        awayPhoneHistory.TYPE = model.toString()
         DbTool.saveOrUpdate(awayPhoneHistory)
-        Log.e("储存成功", "1")
     }
 
     private fun getCoins(time: String): Int {
@@ -90,17 +101,57 @@ class AwayPhoneResult : AppCompatActivity() {
     }
 
     private fun getId(): String {
-        return getstartTime.toString() + gettime.toString()
+        return getstartDate.toString() + gettime.toString()
+    }
+
+    private fun addAwayPhoneHistoryinServer() {
+        val globalData: TimeManager = application as TimeManager
+        val data = JSONObject()
+        val url = "http://59.78.38.19:8080/addFocus"
+        //data.put("id", getId())
+        data.put("startDate", getstartDate.toString())
+        data.put("endDate", getendDate.toString())
+        data.put("time", gettime.toString())
+        data.put("coins", getCoins(gettime.toString()))
+        data.put("username", globalData.username)
+        data.put("userid", globalData.uid.toInt())
+        data.put("type", model.toString())
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url , data,
+            //成功获取返回时的callback
+            { response ->
+
+                ToastUtils.make().show(response.toString())
+                id = response.get("message").toString()
+                addAwayPhoneHistoryinLocal(id)
+                Log.e("response", response.get("message").toString())
+
+            },
+            //失败情况调用的callback
+            { error ->
+
+                ToastUtils.make().show(error.toString())
+                Log.e("error", error.toString())
+
+            }
+        )
+
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
     private fun testHttp(){
         val url2 = "http://47.112.132.142:8088/loginmessage"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":"Youyu", "password":"123"}""")
+        val data = JSONObject()
+        data.put("username","Youyu")
+        data.put("password", "123")
+        //val params = JSONObject("""{"username":"Youyu", "password":"123"}""")
+
 
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, url2 , params,
+            Request.Method.POST, url2 , data,
             //成功获取返回时的callback
             { response ->
 
