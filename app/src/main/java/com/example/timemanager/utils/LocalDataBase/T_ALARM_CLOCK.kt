@@ -11,13 +11,13 @@ import org.xutils.db.annotation.Table
 @Parcelize
 @Table(name = "T_ALARM_CLOCK")
 data class T_ALARM_CLOCK(
-    @Column(name = "ID",isId = true)var ID:String="",
+    @Column(name = "ID",isId = true)var ID:Int=0,
     @Column(name = "TIME")var TIME:String="",//后端不用存
     @Column(name = "TIMESTAMP")var TIMESTAMP:String="",
     @Column(name = "Date")var Date:String="",//后端不用存
     @Column(name = "NOTE")var NOTE:String="",
     @Column(name = "Score")var Score:String="",
-    @Column(name = "task")var Task:String="None",
+    @Column(name = "task")var Task:String="无",
     @Column(name = "FROM")var FROM:String="me",
     @Column(name = "TO")var TO:String="me",
     @Column(name = "SOUND")var SOUND:String=RingtoneManager.//后端不用存
