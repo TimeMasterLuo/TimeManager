@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.tools.AlarmTools
@@ -17,10 +20,15 @@ import com.example.timemanager.utils.tools.FileTools
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
+import com.example.timemanager.utils.networkRequest.MySingleton
+import com.google.gson.GsonBuilder
+import com.google.gson.internal.UnsafeAllocator.create
 import com.loper7.date_time_picker.DateTimeConfig
 import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.activity_set_alarm.note_text
 import kotlinx.android.synthetic.main.layout_title.*
+import org.json.JSONArray
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,6 +40,7 @@ class SetAlarm : AppCompatActivity() {
     private var TYPE : String = TYPE_ADD;
 
     private var model = T_ALARM_CLOCK();
+    private lateinit var friendList: kotlin.Array<CharSequence>;
 
     //用于选择铃声后作相应的判断标记
     private val REQUEST_CODE_PICK_RINGTONE = 1
@@ -69,7 +78,7 @@ class SetAlarm : AppCompatActivity() {
             model = bundle!!.getParcelable("MODEL")!!;
             val defaultMillisecond=Date().time;
             dateTimePicker.setDefaultMillisecond(defaultMillisecond)
-            to_text.text = model.TO;
+            //to_text.text = model.TO;
             task_text.text=model.Task;
             note_text.text = model.NOTE;
             sound_text.text= FileTools.getFileName(FileTools.getRealFilePath(this, Uri.parse(model.SOUND)));
@@ -83,16 +92,50 @@ class SetAlarm : AppCompatActivity() {
         card_sound.setOnClickListener { doPickPingtone(); }
         card_note.setOnClickListener { alert_edit(); }
         card_task.setOnClickListener{alertTaskSelect();}
+        //card_to.setOnClickListener{alertToSelect();}
         button_submit.setOnClickListener{SaveClock();}
         button_delete.setOnClickListener{deleteClock();}
+
+        //getFriendList()
         //testSetAlarm()
 
     }
+    private fun getFriendList(){
+        val url2 = "http://59.78.38.19:8080/getFriends"
+        //var param= mutableMapOf("username" to TimeManager.instance().username)
+        var param= mutableMapOf("username" to "123456")
+        val params = JSONObject(param as Map<*, *>)
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url2, params,
+            { response ->
+                println("fetch data response:$response")
+                var array=response.get("friend_names") as JSONArray;
+                array.put(TimeManager.instance().username);
+               // var gson=GsonBuilder().create()
+                //var list=gson.fromJson(array.toString(),String::class.java)
+                //friendList = arrayOf<CharSequence>(array);
+                //friendList=list;
+                println("FriendList:$friendList");
+            },
+            { error ->
+                // TODO: Handle error
+                println("AlarmManage.kt:126: fetch data error:$error")
+                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                    .show();
+            }
+        )
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    }
     private fun time_edit(millisecond:Long){
         val l=Date(millisecond);
-        model.TIMESTAMP= millisecond.toString();
+
         println(l);
-        val sdf = SimpleDateFormat("HH:mm")
+        val tdf = SimpleDateFormat("yyyy-MM-dd HH:mm:SS")
+        tdf.timeZone = TimeZone.getTimeZone("GMT+8:00");
+        //println(tdf.format(Date(model.TIMESTAMP.toLong())));
+        model.TIMESTAMP= tdf.format(l);
+        val sdf = SimpleDateFormat("HH:mm:SS")
         sdf.timeZone = TimeZone.getTimeZone("GMT+8:00");
         model.TIME= sdf.format(l);
         val df = SimpleDateFormat("yyyy/MM/dd")
@@ -110,7 +153,6 @@ class SetAlarm : AppCompatActivity() {
                 note_text.text = model.NOTE;
             }.setNegativeButton("取消", null).show()
     }
-
     public enum class Task(val chnName:String){
         None("无"),
         PUZZLE("PUZZLE"),
@@ -137,9 +179,27 @@ class SetAlarm : AppCompatActivity() {
             .setNegativeButton("取消",null);
         daySelectDialog.show();
     }
-
+//    private fun alertToSelect(){//TODO:添加ToId
+//
+//        var newSelected :String = "" ;
+//        val toSelectDialog = AlertDialog.Builder(this).setTitle("选择设置闹钟的对象")
+//            .setSingleChoiceItems(friendList,0,
+//                DialogInterface.OnClickListener {
+//                        dialog, which ->
+//                    newSelected= friendList[which] as String;
+//                    println("selected friend:"+newSelected)
+//                })
+//            .setPositiveButton("好", DialogInterface.OnClickListener {
+//                    dialog, which ->
+//                model.TO = if(newSelected.isNullOrBlank()) TimeManager.instance().username else newSelected;
+//                to_text.text  = model.TO;
+//            })
+//            .setNegativeButton("取消",null);
+//        toSelectDialog.show();
+//    }
     private fun setAlarmClock(){
         AlarmTools.setAlarm(this,model);
+        UploadAlarm();
         
     }
     private fun doPickPingtone(){
@@ -185,6 +245,42 @@ class SetAlarm : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+    private fun UploadAlarm(){
+        val url2 = "http://59.78.38.19:8080/setAlarm"
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:SS")
+        sdf.timeZone = TimeZone.getTimeZone("GMT+8:00");
+        var param= mutableMapOf(
+            "from" to TimeManager.instance().username,
+            "to" to TimeManager.instance().username,//TO DO:完成好友相关功能
+            "to_id" to TimeManager.instance().uid,
+            "alarmId" to model.RemoteID,
+            "timestamp" to model.TIMESTAMP,
+            "note" to model.NOTE,
+            //"score" to model.Score,
+            "score" to 80,
+            //"coins" to model.Coins,
+            "coins" to 10,
+            "task" to model.Task,
+            //"status" to model.Status
+            "status" to "unfinished"
+        )
+        val params = JSONObject(param as Map<*, *>)
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url2, params,
+            { response ->
+                println("fetch data response:$response")
+                model.RemoteID= response.get("message").toString().toInt()
+            },
+            { error ->
+                // TODO: Handle error
+                println("SetAlarm.kt:217:fetch data error:$error")
+                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                    .show();
+            }
+        )
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 //    fun onCheckboxClicked(view: View) {
 //        if (view is CheckBox) {

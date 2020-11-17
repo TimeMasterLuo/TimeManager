@@ -2,7 +2,6 @@ package com.example.timemanager.ui.alarm
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +9,29 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
+import com.example.timemanager.utils.networkRequest.MySingleton
+import com.example.timemanager.utils.tools.JsonTools
 import kotlinx.android.synthetic.main.activity_alarm_manage.*
 import kotlinx.android.synthetic.main.layout_title.*
-import org.jetbrains.anko.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.indeterminateProgressDialog
+import org.jetbrains.anko.uiThread
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AlarmManage : AppCompatActivity(){
     var mContext=this;
@@ -47,6 +59,7 @@ class AlarmManage : AppCompatActivity(){
 
     override fun onResume() {
         super.onResume()
+        fetchData();
         loadData();
     }
 
@@ -104,7 +117,51 @@ class AlarmManage : AppCompatActivity(){
 
 
     }
+    private fun fetchData(){
+        val url2 = "http://59.78.38.19:8080/getAllClock"
+        var param= mutableMapOf("toid" to TimeManager.instance().uid)
+        val params = JSONObject(param as Map<*, *>)
 
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url2, params,
+            { response ->
+                println("fetch data response:$response")
+                var alarmArray = response.get("data").toString();
+                var alarmList= JsonTools.parserJsonArrToMapList(alarmArray);
+                println("alarmList:$alarmList");
+                alarmList?.forEach { item->
+                    var model=DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).where("RemoteID","=",item["id"].toString().toInt()).findFirst();
+                    println("find model:$model")
+                    if (model==null)model = T_ALARM_CLOCK();
+                    model.RemoteID= item["id"].toString().toInt()
+                    model.TO= item["toName"] as String
+                    model.ToID= item["toId"].toString().toInt()
+                    model.FROM= item["fromName"] as String
+                    model.NOTE=item["note"] as String
+                    model.Status=item["status"] as String
+                    model.Score=item["score"].toString().toInt()
+                    model.TIMESTAMP=item["recordTime"] as String
+                    model.Task=item["task"] as String
+                    model.ACTIVE="1"
+                    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:SS")
+                    var df = SimpleDateFormat("yyyy-MM-dd")
+                    df.timeZone = TimeZone.getTimeZone("GMT+8:00");
+                    model.Date=df.format(sdf.parse(item["recordTime"] as String)).toString()
+                    df = SimpleDateFormat("HH:mm:SS")
+                    df.timeZone = TimeZone.getTimeZone("GMT+8:00");
+                    model.TIME= df.format(sdf.parse(item["recordTime"] as String)).toString()
+                    DbTool.saveOrUpdate(model);
+                }
+            },
+            { error ->
+                // TODO: Handle error
+                println("AlarmManage.kt:126: fetch data error:$error")
+                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                    .show();
+            }
+        )
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    }
     private fun loadData(){
         dialog = indeterminateProgressDialog("正在加载数据");
         doAsync {
