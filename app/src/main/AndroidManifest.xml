@@ -52,13 +52,16 @@
         <activity
             android:name=".ui.dashboard.HistoryDetail"
             android:parentActivityName=".ui.home.Home" />
+        <activity android:name=".ui.friendlist.AddFriend"
+            android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.friendlist.FriendProfile"
             android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.profile.Profile"
             android:parentActivityName=".ui.home.Home" />
-        <activity android:name=".ui.profile.EditIntro"
+        <activity
+            android:name=".ui.profile.EditIntro"
             android:parentActivityName=".ui.profile.Profile" />
         <activity
             android:name=".ui.dashboard.Analyze"

@@ -15,6 +15,7 @@ import com.example.timemanager.application.TimeManager
 import com.example.timemanager.adapter.FriendListAdapter.ListItem
 import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
 import com.example.timemanager.ui.systemconfig.SystemConfig
+import com.getbase.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_send_http_request_example.view.*
 
 
@@ -39,6 +40,16 @@ class FriendListFragment : Fragment() {
             //渲染fragment_friendlist_authorized并绑定监听
             root = inflater.inflate(R.layout.fragment_friendlist_authorized, container, false)
 
+            //添加好友按钮事件绑定
+            val addFriend : com.google.android.material.floatingactionbutton.FloatingActionButton = root.findViewById(R.id.addFriendButton)
+            addFriend.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val intent = Intent(getActivity(), AddFriend::class.java).apply {
+                    }
+                    startActivity(intent)
+                }
+            })
+
             //load friend list with the data from adapter
             initFriends() //初始化列表数据
             val adapter= MyAdapter(activity!!, R.layout.list_item, friends)
@@ -49,7 +60,6 @@ class FriendListFragment : Fragment() {
                 val intent = Intent(getActivity(), FriendProfile::class.java).putExtra("friendChoosed",friends[i].name).apply {
                 }
                 startActivity(intent)
-
             })
         }else{
             //渲染fragment_friendlist_unauthorized并绑定监听
@@ -63,7 +73,7 @@ class FriendListFragment : Fragment() {
 //        Toast.makeText(activity, friendArray.toString(), Toast.LENGTH_SHORT).show()
         repeat(1){
             for (item in friendArray){
-                friends.add(ListItem(item, R.drawable.avatar2))
+                friends.add(ListItem(item, R.drawable.avatar_1))
             }
         }
     }

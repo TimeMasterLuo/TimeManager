@@ -8,12 +8,10 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import com.blankj.utilcode.util.ResourceUtils
-import com.blankj.utilcode.util.ServiceUtils
-import com.blankj.utilcode.util.TimeUtils
-import com.blankj.utilcode.util.ToastUtils
+import com.blankj.utilcode.util.*
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
+import com.example.timemanager.ui.home.Home
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE
 import com.example.timemanager.utils.networkRequest.MySingleton
@@ -78,8 +76,8 @@ class AwayPhoneResult : AppCompatActivity() {
 
     fun close(view: View?) {
         ServiceUtils.stopService(AwayPhoneService::class.java)
-        //ActivityUtils.finishToActivity(Home::class.java, false, true)
-        finish()
+        ActivityUtils.finishToActivity(Home::class.java, false, true)
+        //finish()
     }
 
     private fun addAwayPhoneHistoryinLocal(id: String) {
@@ -122,7 +120,7 @@ class AwayPhoneResult : AppCompatActivity() {
             //成功获取返回时的callback
             { response ->
 
-                ToastUtils.make().show(response.toString())
+                //ToastUtils.make().show(response.toString())
                 id = response.get("message").toString()
                 addAwayPhoneHistoryinLocal(id)
                 Log.e("response", response.get("message").toString())
@@ -131,7 +129,7 @@ class AwayPhoneResult : AppCompatActivity() {
             //失败情况调用的callback
             { error ->
 
-                ToastUtils.make().show(error.toString())
+                //ToastUtils.make().show(error.toString())
                 Log.e("error", error.toString())
 
             }
