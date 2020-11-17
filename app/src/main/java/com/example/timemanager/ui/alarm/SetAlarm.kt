@@ -155,13 +155,14 @@ class SetAlarm : AppCompatActivity() {
     }
     public enum class Task(val chnName:String){
         None("无"),
+        Click("简单的点击"),
         PUZZLE("PUZZLE"),
         //PUZZLE2("2PUZZLE")
 //        Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName, Task.PUZZLE.chnName);
+            Task.None.chnName,Task.Click.chnName, Task.PUZZLE.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")

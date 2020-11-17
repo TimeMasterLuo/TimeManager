@@ -155,7 +155,7 @@ class AlarmManage : AppCompatActivity(){
             },
             { error ->
                 // TODO: Handle error
-                println("AlarmManage.kt:126: fetch data error:$error")
+                println("AlarmManage.kt:158: fetch data error:$error")
                 Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
                     .show();
             }
