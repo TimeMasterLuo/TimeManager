@@ -128,13 +128,13 @@
                         android:background="#FFFFFF"
                         android:scaleType="centerInside"
                         app:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/delisha" />
+                        app:srcCompat="@drawable/awayphone_resulticon1" />
 
                     <TextView
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="德莉莎"
+                        android:text="Youyu"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         app:layout_column="1"
                         app:layout_gravity="center_vertical"
@@ -184,7 +184,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="”和德莉莎一起睡午觉吧“" />
+                            android:text="”这是一条留言“" />
                     </LinearLayout>
 
                 </androidx.gridlayout.widget.GridLayout>
