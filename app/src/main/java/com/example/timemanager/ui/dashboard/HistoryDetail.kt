@@ -27,7 +27,7 @@ class HistoryDetail : AppCompatActivity() {
         val dating=findViewById<TextView>(R.id.date)
         dating.text=date
         val time=findViewById<TextView>(R.id.clock_time)
-        time.text=clock.set_time
+        time.text="clock.set_time"
         val finishTime=findViewById<TextView>(R.id.time_to_finish)
         finishTime.text=clock.time_to_finish
         val coins=findViewById<TextView>(R.id.coins)
