@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.timemanager" >
+    package="com.example.timemanager">
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -52,12 +52,17 @@
         <activity
             android:name=".ui.dashboard.HistoryDetail"
             android:parentActivityName=".ui.home.Home" />
+        <activity android:name=".ui.friendlist.AddFriend"
+            android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.friendlist.FriendProfile"
             android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.profile.Profile"
             android:parentActivityName=".ui.home.Home" />
+        <activity
+            android:name=".ui.profile.EditIntro"
+            android:parentActivityName=".ui.profile.Profile" />
         <activity
             android:name=".ui.dashboard.Analyze"
             android:parentActivityName=".ui.home.Home" />
@@ -83,7 +88,7 @@
             android:parentActivityName=".ui.alarm.AlarmActivity" />
         <activity
             android:name=".ui.home.Home"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,8 +98,8 @@
 
         <receiver
             android:name=".ui.alarm.AlramReceiver"
-            android:exported="false" >
-            <intent-filter android:priority="20" >
+            android:exported="false">
+            <intent-filter android:priority="20">
                 <action android:name=".Home" />
             </intent-filter>
         </receiver>

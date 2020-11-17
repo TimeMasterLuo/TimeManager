@@ -6,7 +6,9 @@ import android.view.Window
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.timemanager.R
+import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.clock.Clock
+import kotlinx.android.synthetic.main.layout_title.*
 import java.text.SimpleDateFormat
 
 class HistoryDetail : AppCompatActivity() {
@@ -17,6 +19,10 @@ class HistoryDetail : AppCompatActivity() {
         setContentView(R.layout.activity_history_detail)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
+
+        text_title.text = "详情"
+        button_backward.setOnClickListener(ButtonBackward(this))
+
         val clock: Clock = intent.getSerializableExtra("clock") as Clock
         val format = SimpleDateFormat("yyyy-MM-dd")
         val date=format.format(clock.date)
@@ -27,7 +33,7 @@ class HistoryDetail : AppCompatActivity() {
         val dating=findViewById<TextView>(R.id.date)
         dating.text=date
         val time=findViewById<TextView>(R.id.clock_time)
-        time.text=clock.set_time
+        time.text="clock.set_time"
         val finishTime=findViewById<TextView>(R.id.time_to_finish)
         finishTime.text=clock.time_to_finish
         val coins=findViewById<TextView>(R.id.coins)

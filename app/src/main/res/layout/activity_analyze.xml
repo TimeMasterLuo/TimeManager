@@ -6,68 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.Analyze">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="250dp"-->
-<!--        android:orientation="vertical"-->
-<!--        tools:ignore="MissingConstraints">-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_analyze"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
-<!--        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
-<!--            android:id="@+id/aa_chart_view"-->
-<!--            android:layout_width="350dp"-->
-<!--            android:layout_height="250dp"-->
-<!--            android:layout_gravity="center|center_vertical">-->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总览" />
 
-<!--        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
-<!--    </LinearLayout>-->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="周" />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="250dp"-->
-<!--        android:orientation="vertical"-->
-<!--        >-->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月" />
 
-<!--        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
-<!--            android:id="@+id/aa_chart_view1"-->
-<!--            android:layout_width="350dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="center">-->
-
-<!--        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
-<!--    </LinearLayout>-->
-
-<!--<LinearLayout-->
-<!--android:layout_width="416dp"-->
-<!--android:layout_height="416dp"-->
-<!--android:orientation="vertical"-->
-<!--tools:ignore="MissingConstraints"-->
-<!--tools:layout_editor_absoluteY="832dp"-->
-<!--    >-->
-
-<!--<com.github.aachartmodel.aainfographics.aachartcreator.AAChartView-->
-<!--    android:id="@+id/aa_chart_view2"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-
-<!--</com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>-->
-<!--</LinearLayout>-->
-    <!--    <ImageView-->
-<!--        android:id="@+id/imageView3"-->
-<!--        android:layout_width="312dp"-->
-<!--        android:layout_height="563dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/timeanalyze" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton6"-->
-<!--        android:layout_width="45dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@android:drawable/ic_menu_share" />-->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年" />
+    </com.google.android.material.tabs.TabLayout>
 <ScrollView
     android:id="@+id/scrollView2"
     android:layout_width="match_parent"
@@ -82,9 +46,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/chart1"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
@@ -97,6 +64,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/chart2"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="vertical">
@@ -110,6 +78,7 @@
             </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/chart3"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="vertical">

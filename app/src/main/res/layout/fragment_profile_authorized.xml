@@ -80,7 +80,7 @@
 
                     <Button
                         android:id="@+id/profile_entry"
-                        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:backgroundTint="#FFFFFF"

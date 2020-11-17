@@ -6,22 +6,26 @@ import java.util.Date;
 public class Clock implements Serializable {
     private String type;
     private String set_person;
+    private String user;
     private Date date;
-    private String set_time;
     private String time_to_finish;
     private String grade;
     private Integer coins;
     private String notes;
 
-    public Clock(String type,String set_person,Date date,String set_time,String time_to_finish,String grade,Integer coins,String notes) {
+    public Clock(String type,String set_person,Date date,String time_to_finish,String grade,Integer coins,String notes,String user) {
         this.type = type;
         this.set_person = set_person;
-        this.set_time = set_time;
         this.date = date;
         this.time_to_finish = time_to_finish;
         this.grade = grade;
         this.coins = coins;
         this.notes = notes;
+        this.user=user;
+    }
+
+    public String getUser() {
+        return user;
     }
 
     public String getType() {
@@ -46,10 +50,6 @@ public class Clock implements Serializable {
 
     public String getSet_person() {
         return set_person;
-    }
-
-    public String getSet_time() {
-        return set_time;
     }
 
     public String getTime_to_finish() {
