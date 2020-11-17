@@ -64,9 +64,11 @@ class FriendListFragment : Fragment() {
     }
 
     private fun initFriends(){
-        repeat(2){
-            for (i in 0..20){
-                friends.add(ListItem("username", R.drawable.avatar2))
+        var friendArray = (activity!!.application as TimeManager).friendlist
+//        Toast.makeText(activity, friendArray.toString(), Toast.LENGTH_SHORT).show()
+        repeat(1){
+            for (item in friendArray){
+                friends.add(ListItem(item, R.drawable.avatar2))
             }
         }
     }

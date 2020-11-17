@@ -41,8 +41,7 @@ class Profile : AppCompatActivity() {
         myGender.text=(this.application as TimeManager).gender
         myLevel.text=(this.application as TimeManager).userLevel
         myRegisterTime.text="注册时间："+(this.application as TimeManager).register_time
-        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
-        this.supportActionBar?.hide()
+
     }
 
     fun editIntroOnclick(view: View){

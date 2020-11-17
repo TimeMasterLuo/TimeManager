@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.networkRequest.MySingleton
+import org.json.JSONArray
 import org.json.JSONObject
 
 class LoginViewModel: ViewModel() {
@@ -34,19 +35,39 @@ class LoginViewModel: ViewModel() {
             //成功获取返回时的callback
             { response ->
                 //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
-                if(response.get("id")!=0){
-                _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = username))
-                    //设置全局数据，记入登录状态
-                    val globalData: TimeManager = application as TimeManager
-                    globalData.login_flag = true
-                    globalData.username=response.get("name").toString()
-                    globalData.uid= response.get("id").toString()
-                    globalData.email= response.get("email") as String
-                    globalData.intro= response.get("intro") as String
-                    globalData.friendlist= response.get("friend") as MutableSet<String>
-                }
-                else{
+                if (response.get("id") != 0) {
+                    _loginResult.value =
+                        LoginResult(success = LoggedInUserView(displayName = username))
+
+                    try {
+                        val jsonObject = JSONObject(response.toString())
+
+                        //设置全局数据，记入登录状态
+                        /**
+                         * 为什么要使用jsonObject.optString， 不使用jsonObject.getString
+                         * 因为jsonObject.optString获取null不会报错
+                         */
+                        val globalData: TimeManager = application as TimeManager
+                        globalData.login_flag = true
+                        globalData.username = jsonObject.optString("name", null)
+                        globalData.uid = jsonObject.optString("id", null)
+                        globalData.email = jsonObject.optString("email", null)
+                        globalData.intro = jsonObject.optString("intro", null)
+                        globalData.gender = jsonObject.optString("gender", null)
+                        globalData.userLevel = jsonObject.optString("level", null)
+
+                        val jsonArray: JSONArray = jsonObject.getJSONArray("friends")
+
+
+                        for (i in 0 until jsonArray.length()) {
+                            globalData.friendlist.add(jsonArray.getString(i))
+                        }
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+                } else {
                     _loginResult.value = LoginResult(error = R.string.login_failed)
                 }
             },
@@ -74,18 +95,17 @@ class LoginViewModel: ViewModel() {
             //成功获取返回时的callback
             { response ->
                 //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
-                if(response.get("id")!=0){
+                if (response.get("id") != 0) {
                     _loginResult.value =
                         LoginResult(success = LoggedInUserView(displayName = username))
                     //设置全局数据，记入登录状态
                     val globalData: TimeManager = application as TimeManager
                     globalData.login_flag = true
-                    globalData.username=response.get("name").toString()
-                    globalData.uid= response.get("id") as String
-                    globalData.email= response.get("email") as String
-                    globalData.intro= response.get("intro") as String
-                }
-                else{
+                    globalData.username = response.get("name").toString()
+                    globalData.uid = response.get("id") as String
+                    globalData.email = response.get("email") as String
+                    globalData.intro = response.get("intro") as String
+                } else {
                     _loginResult.value = LoginResult(error = R.string.register_failed)
                 }
             },
