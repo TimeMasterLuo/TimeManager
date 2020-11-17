@@ -63,7 +63,7 @@ class FriendListFragment : Fragment() {
 //        Toast.makeText(activity, friendArray.toString(), Toast.LENGTH_SHORT).show()
         repeat(1){
             for (item in friendArray){
-                friends.add(ListItem(item, R.drawable.avatar2))
+                friends.add(ListItem(item, R.drawable.avatar_1))
             }
         }
     }

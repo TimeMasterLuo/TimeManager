@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.StringRes
@@ -17,6 +18,8 @@ import com.example.timemanager.R
 import com.example.timemanager.ui.login.LoggedInUserView
 import com.example.timemanager.ui.login.LoginViewModel
 import com.example.timemanager.ui.login.LoginViewModelFactory
+import com.example.timemanager.ui.title.ButtonBackward
+import kotlinx.android.synthetic.main.layout_title.*
 
 class Register : AppCompatActivity() {
 
@@ -25,7 +28,13 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_register)
+        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
+        this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "注册"
 
         val username = findViewById<EditText>(R.id.username2)
         val password = findViewById<EditText>(R.id.password2)
