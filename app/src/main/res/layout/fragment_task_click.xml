@@ -6,15 +6,15 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_task_none"
+        android:id="@+id/button_task_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="299dp"
+        android:layout_marginBottom="318dp"
         android:backgroundTint="#673AB7"
-        android:text="           停止响铃           "
-        android:textSize="20dp"
+        android:text=""
+        android:textSize="30dp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

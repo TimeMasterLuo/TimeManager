@@ -9,6 +9,7 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.timemanager.R
+import com.example.timemanager.ui.task.click.ClickFragment
 import com.example.timemanager.ui.task.none.NoneFragment
 import com.example.timemanager.ui.task.puzzle.PuzzleFragment
 import com.example.timemanager.utils.tools.AlarmTools
@@ -61,7 +62,9 @@ class AlarmActivity: AppCompatActivity() {
                         showPuzzleFragment()
                     }else if(model.Task == "无"){
                         showNoneFragment()
-                    }else{
+                    }else if(model.Task == "简单的点击"){
+                        showClickFragment()
+                    } else{
                         showNoneFragment()
                         println("task error")
                     };
@@ -121,6 +124,13 @@ class AlarmActivity: AppCompatActivity() {
     private fun showNoneFragment(){
         val transaction = fragmentManager.beginTransaction()
         val fragment = NoneFragment()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    private fun showClickFragment(){
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = ClickFragment()
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
