@@ -52,6 +52,9 @@
         <activity
             android:name=".ui.dashboard.HistoryDetail"
             android:parentActivityName=".ui.home.Home" />
+        <activity
+            android:name=".ui.dashboard.HistoryDetailFocus"
+            android:parentActivityName=".ui.home.Home" />
         <activity android:name=".ui.friendlist.AddFriend"
             android:parentActivityName=".ui.home.Home" />
         <activity

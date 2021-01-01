@@ -1,33 +1,111 @@
 package com.example.timemanager.ui.dashboard
 
+import android.icu.util.Calendar
+import android.icu.util.TimeZone
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.Window
 import android.widget.LinearLayout
-import androidx.cardview.widget.CardView
+import androidx.annotation.RequiresApi
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
+import com.example.timemanager.utils.clock.Clock
 import com.github.aachartmodel.aainfographics.aachartcreator.*
-import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_analyze.*
 import kotlinx.android.synthetic.main.layout_title.*
 
 
 class Analyze : AppCompatActivity() {
+    private lateinit var clocks: ArrayList<Clock>
+    var totalCommon:Float=0F
+    var totalDeep:Float=0F
+    private var friendsSuccess:Float=0F
+    private var selfSuccess:Float=0F
+    private var totalSelfClock:Float=0F
+    private var totalFriendsClock:Float=0F
+
+    var weekCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F)
+    var weekDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F)
+    var weekFriendsSuccess:Float=0F
+    var weekSelfSuccess:Float=0F
+    var weekTotalSelfClock:Float=0F
+    var weekTotalFriendsClock:Float=0F
+
+    var monthCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F)
+    var monthDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F)
+    var monthFriendsSuccess:Float=0F
+    var monthSelfSuccess:Float=0F
+    var monthTotalSelfClock:Float=0F
+    var monthTotalFriendsClock:Float=0F
+
+    var yearCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F)
+    var yearDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F)
+    var yearFriendsSuccess:Float=0F
+    var yearSelfSuccess:Float=0F
+    var yearTotalSelfClock:Float=0F
+    var yearTotalFriendsClock:Float=0F
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_analyze)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
-
         button_backward.setOnClickListener(ButtonBackward(this))
         text_title.text = "数据分析"
+        clocks= intent.getSerializableExtra("clocks") as ArrayList<Clock>
+        val currentTime:Calendar= Calendar.getInstance()
+        currentTime.add(Calendar.HOUR,8)
+
+        for (i in clocks.indices){
+            val tmptime:Calendar= Calendar.getInstance()
+            tmptime.time=clocks[i].start_time
+            var thisWeek=false
+            var thisMonth=false
+            var thisYear=false
+            if (tmptime.get(Calendar.YEAR)==currentTime.get(Calendar.YEAR)){
+                thisYear=true
+                if (tmptime.get(Calendar.MONTH)==currentTime.get(Calendar.MONDAY)) {
+                    thisMonth = true
+                    if (tmptime.get(Calendar.WEEK_OF_YEAR) == currentTime.get(Calendar.WEEK_OF_YEAR)) {
+                        thisWeek = true
+                    }
+                }
+            }
+            if(clocks[i].kind=="远离手机"){
+                if(clocks[i].type=="普通模式"){
+                    totalCommon+=clocks[i].last_time.toFloat()
+                    if(thisYear){
+                        yearCommonTime[tmptime.get(Calendar.MONTH)-1]+=clocks[i].last_time.toFloat()
+                        if(thisMonth){
+                            monthCommonTime[tmptime.getActualMaximum(Calendar.DAY_OF_MONTH)/7]+=clocks[i].last_time.toFloat()
+                            if(thisWeek){
+                                weekCommonTime[tmptime.get(Calendar.DAY_OF_WEEK)-1]+=clocks[i].last_time.toFloat()
+                            }
+                        }
+                    }
+                }else{
+                    totalDeep+=clocks[i].last_time.toFloat()
+                }
+            }else{
+                if (clocks[i].type=="自设闹钟"){
+                    totalSelfClock+=1F
+                    if(clocks[i].status!="unfinished"){
+                        selfSuccess+=1F
+                    }
+                }else{
+                    totalFriendsClock+=1F
+                    if(clocks[i].status!="unfinished"){
+                        friendsSuccess+=1F
+                    }
+                }
+            }
+        }
         initChart()
         val tabLayout=findViewById<TabLayout>(R.id.tab_analyze)
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -43,6 +121,7 @@ class Analyze : AppCompatActivity() {
             }
         })
     }
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun initChart(){
         val aaChartView = findViewById<AAChartView>(R.id.aa_chart_view)
         val aaChartModel = AAChartModel()
@@ -95,10 +174,8 @@ class Analyze : AppCompatActivity() {
                                         .name("使用时间（分钟）")
                                         .data(
                                                 arrayOf(
-                                                        arrayOf("自设闹钟", 666),
-                                                        arrayOf("好友闹钟", 487),
-                                                        arrayOf("深度模式", 556),
-                                                        arrayOf("普通模式", 1000)
+                                                        arrayOf("深度模式", totalDeep/60F),
+                                                        arrayOf("普通模式", totalCommon/60F)
                                                 )
                                         )
                         )
@@ -107,19 +184,17 @@ class Analyze : AppCompatActivity() {
         val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
         val aaChartModel2=AAChartModel()
                 .chartType(AAChartType.Bar)
-                .title("各功能完成率")
+                .title("闹钟完成率")
                 .dataLabelsEnabled(true)
                 .backgroundColor("#ffffff")
                 .yAxisTitle("成功率")
                 .categories(arrayOf(
                         "自设闹钟",
-                        "好友闹钟",
-                        "深度模式",
-                        "普通模式"
+                        "好友闹钟"
                 ))
                 .series(arrayOf(AASeriesElement()
                         .name("完成率")
-                        .data(arrayOf(0.95, 0.8, 0.9, 0.7))))
+                        .data(arrayOf(selfSuccess, friendsSuccess))))
         aaChartView2.aa_drawChartWithChartModel(aaChartModel2)
 
     }
@@ -139,10 +214,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("自设闹钟", 666),
-                                                            arrayOf("好友闹钟", 487),
-                                                            arrayOf("深度模式", 556),
-                                                            arrayOf("普通模式", 1000)
+                                                            arrayOf("深度模式", totalDeep/60F),
+                                                            arrayOf("普通模式", totalCommon/60F)
                                                     )
                                             )
                             )
@@ -155,13 +228,11 @@ class Analyze : AppCompatActivity() {
                     .yAxisTitle("成功率")
                     .categories(arrayOf(
                             "自设闹钟",
-                            "好友闹钟",
-                            "深度模式",
-                            "普通模式"
+                            "好友闹钟"
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.95, 0.8, 0.9, 0.7))))
+                            .data(arrayOf(selfSuccess, friendsSuccess))))
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
             aaChartView1.aa_refreshChartWithChartModel(aaChartModel1)
@@ -203,8 +274,6 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("自设闹钟", 100),
-                                                            arrayOf("好友闹钟", 90),
                                                             arrayOf("深度模式", 50),
                                                             arrayOf("普通模式", 110)
                                                     )
@@ -219,13 +288,11 @@ class Analyze : AppCompatActivity() {
                     .yAxisTitle("成功率")
                     .categories(arrayOf(
                             "自设闹钟",
-                            "好友闹钟",
-                            "深度模式",
-                            "普通模式"
+                            "好友闹钟"
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.9, 0.85, 0.6, 0.5))))
+                            .data(arrayOf(0.9, 0.85))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
@@ -268,8 +335,6 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("自设闹钟", 600),
-                                                            arrayOf("好友闹钟", 700),
                                                             arrayOf("深度模式", 500),
                                                             arrayOf("普通模式", 660)
                                                     )
@@ -284,13 +349,11 @@ class Analyze : AppCompatActivity() {
                     .yAxisTitle("成功率")
                     .categories(arrayOf(
                             "自设闹钟",
-                            "好友闹钟",
-                            "深度模式",
-                            "普通模式"
+                            "好友闹钟"
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.7, 0.65, 0.8, 0.7))))
+                            .data(arrayOf(0.7, 0.65))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
@@ -340,8 +403,6 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("自设闹钟", 5555),
-                                                            arrayOf("好友闹钟", 3256),
                                                             arrayOf("深度模式", 2356),
                                                             arrayOf("普通模式", 1579)
                                                     )
@@ -356,13 +417,11 @@ class Analyze : AppCompatActivity() {
                     .yAxisTitle("成功率")
                     .categories(arrayOf(
                             "自设闹钟",
-                            "好友闹钟",
-                            "深度模式",
-                            "普通模式"
+                            "好友闹钟"
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.8, 0.9, 0.7, 0.85))))
+                            .data(arrayOf(0.8, 0.9))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)

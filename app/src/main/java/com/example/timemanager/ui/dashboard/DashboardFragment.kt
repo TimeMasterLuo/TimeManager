@@ -5,20 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ListView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import com.blankj.utilcode.util.AppUtils
 import com.example.timemanager.R
-import com.example.timemanager.adapter.awayPhoneAdapter.WhitelistAdapter
 import com.example.timemanager.adapter.dashBoardAdapter.ClockAdapter
 import com.example.timemanager.application.TimeManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,11 +19,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.example.timemanager.utils.clock.Clock
 import com.example.timemanager.utils.networkRequest.MySingleton
-import com.google.gson.JsonArray
-import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 class DashboardFragment : Fragment() {
@@ -51,37 +41,85 @@ class DashboardFragment : Fragment() {
             val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
             var user: Int = (activity!!.application as TimeManager).uid.toInt()
             val param = JSONObject()
-            param.put("toid", 5)
-            val url = "http://59.78.38.19:8080/getAllClock"
+            param.put("id", 5)
+            val url = "http://139.196.200.26:8080/getAllRecord"
             var listview = root.findViewById<ListView>(R.id.Clock_list)
             clocks = arrayListOf()
             val jsonObjectRequest = JsonObjectRequest(
                     Request.Method.POST, url, param,
                     //成功获取返回时的callback
                     { response ->
-                        Log.e("response error", response.toString())
-                        val clockArray = response.getJSONArray("data")
-                        Log.e("length", clockArray.length().toString())
-                        var index = 0
-                        while (index < clockArray.length()) {
-                            val format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
-                            val date = format.parse(clockArray.getJSONObject(index).getString("recordTime"))
-                            Log.e("date", date.toString())
-                            val setter = clockArray.getJSONObject(index).getString("fromName")
-                            val user = clockArray.getJSONObject(index).getString("toName")
-                            val note = clockArray.getJSONObject(index).getString("note")
-                            val type = if (setter == user) {
-                                "自设闹钟"
-                            } else {
-                                "好友闹钟"
+//                        Log.e("response error", response.toString())
+                        val clockArray = response.getJSONArray("clock_data")
+                        val focusArray= response.getJSONArray("focus_data")
+                        var i=clockArray.length()-1
+                        var j=focusArray.length()-1
+                        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        while (i>=0&&j>=0){
+                            val id=clockArray.getJSONObject(i).getInt("id")
+                            val date_clock=format.parse(clockArray.getJSONObject(i).getString("recordTime"))
+                            val date_focus=format.parse(focusArray.getJSONObject(j).getString("startTime"))
+                            if(date_clock.after(date_focus)){
+                                val setter = clockArray.getJSONObject(i).getString("fromName")
+                                val user = clockArray.getJSONObject(i).getString("toName")
+                                val note = clockArray.getJSONObject(i).getString("note")
+                                val task = clockArray.getJSONObject(i).getString("task")
+                                val type = if (setter == user) {
+                                      "自设闹钟"
+                                   } else {
+                                      "好友闹钟"
+                                }
+                                val status = clockArray.getJSONObject(i).getString("status")
+                                val grade = clockArray.getJSONObject(i).getInt("score").toString()
+                                val coins = clockArray.getJSONObject(i).getInt("coins")
+                                val clock =object :Clock(id,"闹钟",type,task,setter,date_clock,status,grade,coins,note,user){}
+                                clocks.add(clock)
+                                i--
+                            }else{
+                                val id=focusArray.getJSONObject(j).getInt("id")
+                                val user=focusArray.getJSONObject(j).getString("userName")
+                                val end_time=format.parse(focusArray.getJSONObject(j).getString("endTime"))
+                                val type=focusArray.getJSONObject(j).getString("type")
+                                val coins=focusArray.getJSONObject(j).getInt("coins")
+                                val time=focusArray.getJSONObject(j).getString("time")
+                                val clock=object :Clock(id,"远离手机",type,date_focus,end_time,user,time,coins){}
+                                clocks.add(clock)
+                                j--
                             }
-                            val status = clockArray.getJSONObject(index).getString("status")
-                            val grade = clockArray.getJSONObject(index).getInt("score").toString()
-                            val coins = clockArray.getJSONObject(index).getInt("coins")
-                            val clock = object : Clock(type, setter, date, status, grade, coins, note, user) {}
-                            clocks.add(clock)
-                            Log.e("date", clocks.toString())
-                            index++
+                        }
+                        if(i<0){
+                            while (j>=0){
+                                val id=focusArray.getJSONObject(j).getInt("id")
+                                val date_focus=format.parse(focusArray.getJSONObject(j).getString("startTime"))
+                                val user=focusArray.getJSONObject(j).getString("userName")
+                                val end_time=format.parse(focusArray.getJSONObject(j).getString("endTime"))
+                                val type=focusArray.getJSONObject(j).getString("type")
+                                val coins=focusArray.getJSONObject(j).getInt("coins")
+                                val time=focusArray.getJSONObject(j).getString("time")
+                                val clock=object :Clock(id,"远离手机",type,date_focus,end_time,user,time,coins){}
+                                clocks.add(clock)
+                                j--
+                            }
+                        }else{
+                            while (i>=0){
+                                val id=clockArray.getJSONObject(i).getInt("id")
+                                val date_clock=format.parse(clockArray.getJSONObject(i).getString("recordTime"))
+                                val setter = clockArray.getJSONObject(i).getString("fromName")
+                                val user = clockArray.getJSONObject(i).getString("toName")
+                                val note = clockArray.getJSONObject(i).getString("note")
+                                val task = clockArray.getJSONObject(i).getString("task")
+                                val type = if (setter == user) {
+                                    "自设闹钟"
+                                } else {
+                                    "好友闹钟"
+                                }
+                                val status = clockArray.getJSONObject(i).getString("status")
+                                val grade = clockArray.getJSONObject(i).getInt("score").toString()
+                                val coins = clockArray.getJSONObject(i).getInt("coins")
+                                val clock =object :Clock(id,"闹钟",type,task,setter,date_clock,status,grade,coins,note,user){}
+                                clocks.add(clock)
+                                i--
+                            }
                         }
                         clockAdapter = ClockAdapter(this.activity, clocks)
                         listview.adapter = clockAdapter
@@ -97,50 +135,54 @@ class DashboardFragment : Fragment() {
             btn1.setOnClickListener {
                 val intent = Intent(activity, Analyze::class.java).apply {
                 }
-                val bundle = Bundle()
+                val bundle=Bundle()
+                bundle.putSerializable("clocks", clocks as ArrayList<Clock>)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
             val tabLayout: TabLayout = root.findViewById(R.id.tab_layout)
+            val activity=this.activity
             val mTabSelectedColorListener = object : OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
-//                val tag=tab.text as String
-//                if(tag=="任务闹钟"){
-//                    val card:CardView=root.findViewById(R.id.away)
-//                    card.visibility = GONE
-//                }else{
-//                    val card:CardView=root.findViewById(R.id.away)
-//                    card.visibility = VISIBLE
-//                }
-//                if(tag=="好友闹钟"){
-//                    val card:CardView=root.findViewById(R.id.friend)
-//                    card.visibility = GONE
-//                }else{
-//                    val card:CardView=root.findViewById(R.id.friend)
-//                    card.visibility = VISIBLE
-//                }
+                val tag=tab.text as String
+                var tmp: MutableList<Clock> = arrayListOf()
+                if(tag=="任务闹钟"){
+                    for (i in clocks.indices){
+                        if(clocks[i].kind=="闹钟"&&clocks[i].type=="自设闹钟"){
+                            tmp.add(clocks[i])
+                        }
+                    }
+                    val tmpAdapter = ClockAdapter(activity, tmp)
+                    listview.adapter = tmpAdapter
+                }
+                else if(tag=="好友闹钟"){
+                    for (i in clocks.indices){
+                        if(clocks[i].kind=="闹钟"&&clocks[i].type=="好友闹钟"){
+                            tmp.add(clocks[i])
+                        }
+                    }
+                    val tmpAdapter = ClockAdapter(activity, tmp)
+                    listview.adapter = tmpAdapter
+                }else if(tag=="远离手机"){
+                    for (i in clocks.indices){
+                        if(clocks[i].kind=="远离手机"){
+                            tmp.add(clocks[i])
+                        }
+                    }
+                    val tmpAdapter = ClockAdapter(activity, tmp)
+                    listview.adapter = tmpAdapter
+                }else{
+                    listview.adapter = clockAdapter
+                 }
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab) {
-                    Log.e("unselected", tab.text as String)
                 }
 
                 override fun onTabReselected(tab: TabLayout.Tab) {
-                    Log.e("reselected", tab.text as String)
                 }
             }
             tabLayout.addOnTabSelectedListener(mTabSelectedColorListener);
-//        val btn2 : Button = root.findViewById(R.id.config_button)
-//        btn2.setOnClickListener {
-//            val intent = Intent(activity, HistoryDetail::class.java)
-//            val format =SimpleDateFormat("yyyy-MM-dd")
-//            val date=format.parse("2020-11-16")
-//            val clock=object :Clock("自设闹钟","月一老贼",date,"11:00","10min","A",1000,"这是备注",""){}
-//            val bundle=Bundle()
-//            bundle.putSerializable("clock",clock)
-//            intent.putExtras(bundle)
-//            startActivity(intent)
-//        }
 //        }
         return root
     }

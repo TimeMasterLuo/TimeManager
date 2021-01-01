@@ -13,62 +13,55 @@ import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.clock.Clock
 import com.example.timemanager.utils.networkRequest.MySingleton
-import kotlinx.android.synthetic.main.activity_history_detail.*
 import kotlinx.android.synthetic.main.layout_title.*
-import java.text.SimpleDateFormat
 import org.jetbrains.anko.alert
 import org.json.JSONObject
-import java.util.*
+import java.text.SimpleDateFormat
 
-class HistoryDetail : AppCompatActivity() {
-    @SuppressLint("SimpleDateFormat")
-    override fun onCreate(savedInstanceState: Bundle?) {
+class HistoryDetailFocus : AppCompatActivity() {
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
-        setContentView(R.layout.activity_history_detail)
+        setContentView(R.layout.activity_history_detail_focus)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
 
         text_title.text = "详情"
         button_backward.setOnClickListener(ButtonBackward(this))
-
         val clock: Clock = intent.getSerializableExtra("clock") as Clock
-        Log.e("current time",clock.start_time.toString())
-        val calender=Calendar.getInstance()
-        calender.time=clock.start_time
-        calender.add(Calendar.MONTH,3)
-        Log.e("after time",calender.time.toString())
         val format = SimpleDateFormat("yyyy-MM-dd")
         val format1 = SimpleDateFormat("HH:mm")
         val date=format.format(clock.start_time)
         val date1=format1.format(clock.start_time)
+        val date2=format1.format(clock.end_time)
         val type=findViewById<TextView>(R.id.typeText)
-        type.text=clock.type
+        if (clock.type=="normal") {
+            type.text = "普通模式"
+        }else{
+            type.text = "专注模式"
+        }
         val user=findViewById<TextView>(R.id.set_user)
-        user.text=clock.set_person
+        user.text=clock.user
         val dating=findViewById<TextView>(R.id.date)
         dating.text=date
         val time=findViewById<TextView>(R.id.clock_time)
         time.text=date1
         val finishTime=findViewById<TextView>(R.id.time_to_finish)
-        finishTime.text=clock.status
+        finishTime.text=date2
+        val lastTime=findViewById<TextView>(R.id.last_time)
+        lastTime.text=clock.last_time+"s"
         val coins=findViewById<TextView>(R.id.coins)
-        coins.text= clock.coins.toString()
-        val grade=findViewById<TextView>(R.id.grade)
-        grade.text=clock.grade
-        val notes=findViewById<TextView>(R.id.notes)
-        notes.text=clock.notes
-        val task=findViewById<TextView>(R.id.task)
-        task.text=clock.task
-        val btn:Button=findViewById(R.id.button_clock)
+        coins.text= clock.coins.toString()+"金币"
+        val btn: Button =findViewById(R.id.button_focus)
         val context=this
         btn.setOnClickListener {
             alert ("确认删除此条记录吗"){
                 positiveButton("取消"){}
                 negativeButton("删除"){
-                    val param=JSONObject()
+                    val param= JSONObject()
                     param.put("id",clock.id)
-                    param.put("type","clock")
+                    param.put("type","focus")
                     val url="http://139.196.200.26:8080/deleteRecord"
                     val jsonObjectRequest = JsonObjectRequest(
                             Request.Method.POST, url, param,
