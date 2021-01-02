@@ -146,7 +146,7 @@ class DashboardFragment : Fragment() {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                 val tag=tab.text as String
                 var tmp: MutableList<Clock> = arrayListOf()
-                if(tag=="任务闹钟"){
+                if(tag=="自设闹钟"){
                     for (i in clocks.indices){
                         if(clocks[i].kind=="闹钟"&&clocks[i].type=="自设闹钟"){
                             tmp.add(clocks[i])

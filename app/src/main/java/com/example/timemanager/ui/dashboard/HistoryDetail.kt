@@ -21,7 +21,7 @@ import org.json.JSONObject
 import java.util.*
 
 class HistoryDetail : AppCompatActivity() {
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
@@ -53,7 +53,7 @@ class HistoryDetail : AppCompatActivity() {
         val finishTime=findViewById<TextView>(R.id.time_to_finish)
         finishTime.text=clock.status
         val coins=findViewById<TextView>(R.id.coins)
-        coins.text= clock.coins.toString()
+        coins.text= clock.coins.toString()+"金币"
         val grade=findViewById<TextView>(R.id.grade)
         grade.text=clock.grade
         val notes=findViewById<TextView>(R.id.notes)

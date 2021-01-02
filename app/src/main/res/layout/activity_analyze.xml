@@ -13,21 +13,25 @@
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="总览" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="周" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="月" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="年" />
