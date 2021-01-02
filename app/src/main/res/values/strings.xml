@@ -45,7 +45,7 @@
     <string name="logout">登出</string>
     <string name="submit">提交</string>
     <string name="dashboard_all">全部</string>
-    <string name="dashboard_alarm">任务闹钟</string>
+    <string name="dashboard_alarm">自设闹钟</string>
     <string name="dashboard_awayphone">远离手机</string>
     <string name="dashboard_friendalarm">好友闹钟</string>
     <string name="todo">TODO</string>
