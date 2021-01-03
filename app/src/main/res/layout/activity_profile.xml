@@ -7,7 +7,7 @@
     tools:context=".ui.profile.Profile">
 
     <ScrollView
-        android:id="@+id/scollview_profile"
+        android:id="@+id/scollview_friendprofile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/userDiyImage"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:scaleType="fitXY"
@@ -35,7 +35,7 @@
                 app:rowCount="3">
 
                 <com.example.timemanager.components.CircleImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/userIcon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="20dp"
@@ -55,7 +55,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/username_profile_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -67,14 +67,14 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/textView51"
+                    android:id="@+id/myLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/roundtext"
                     android:fadingEdge="horizontal|vertical"
-                    android:text="资深用户"
+                    android:text="用户类型"
                     android:textColor="#FFFFFF"
                     app:layout_column="1"
                     app:layout_row="0" />
@@ -86,7 +86,7 @@
                 android:layout_height="500dp">
 
                 <Button
-                    android:id="@+id/gender_button"
+                    android:id="@+id/myGender"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -106,7 +106,7 @@
                     app:layout_row="0" />
 
                 <Button
-                    android:id="@+id/intro_button"
+                    android:id="@+id/myIntro"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -114,9 +114,11 @@
                     android:drawableStart="@drawable/ic_baseline_edit_24"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
+                    android:onClick="editIntroOnclick"
                     android:paddingLeft="20dp"
-                    android:text="这个人很懒，什么也没留下。"
+                    android:text="intro"
                     android:textAlignment="textStart"
+                    android:textAllCaps="false"
                     android:textColor="#000000"
                     app:layout_column="0"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -125,18 +127,18 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_row="1" />
 
-                <EditText
-                    android:id="@+id/register_time_edittext"
+                <TextView
+                    android:id="@+id/myRegisterTime"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="#FFFFFF"
                     android:drawableStart="@drawable/ic_baseline_date_range_24"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
-                    android:editable="false"
+                    android:gravity="start|center_horizontal|center_vertical"
+                    android:inputType="text"
                     android:paddingLeft="20dp"
-                    android:text="注册时间:   2020-10-10"
-                    android:textAlignment="textStart"
+                    android:text="注册时间:   "
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_column="0"
@@ -147,7 +149,7 @@
                     app:layout_row="2" />
 
                 <Button
-                    android:id="@+id/itemdata_button"
+                    android:id="@+id/my_itemdata_button"
                     style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -158,6 +160,7 @@
                     android:paddingLeft="20dp"
                     android:text="完成任务总数：21 |  累计专注时间：100 min"
                     android:textAlignment="textStart"
+                    android:textAllCaps="false"
                     android:textColor="#000000"
                     app:layout_column="0"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -190,4 +193,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

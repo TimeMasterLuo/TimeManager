@@ -7,17 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Process
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.blankj.utilcode.util.TimeUtils
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
-import com.example.timemanager.util.dialog.ShowDialog
+import com.example.timemanager.utils.LocalDataBase.DbTool
+import com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE
+import com.example.timemanager.utils.dialog.ShowDialog
 import kotlinx.android.synthetic.main.activity_away_phone.*
 import kotlinx.android.synthetic.main.layout_title.*
+import kotlin.math.roundToInt
 
 class AwayPhone : AppCompatActivity() {
     private var mContext: Context? = null
+    private var localAwayPhoneHistory: List<T_AWAY_PHONE>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,11 @@ class AwayPhone : AppCompatActivity() {
 //            setPositiveButton("OK"){dialog, which ->  }
 //            show()
 //        }
+
+
+        getAllLoacalAwayPhoneHistory()
+        val time = localAwayPhoneHistory?.let { getLocalAwayPhoneTime(it) }
+        awayPhonetime.text = "您今天已经远离手机 $time 分钟"
 
         if(!checkPermission()){
             ShowDialog().show(mContext, "该功能需要读取App使用情况，是否前往开启权限？", object: ShowDialog.OnBottomClickListener {
@@ -107,6 +118,23 @@ class AwayPhone : AppCompatActivity() {
             packageName
         )
         return mode == AppOpsManager.MODE_ALLOWED
+    }
+
+    private fun getAllLoacalAwayPhoneHistory() {
+        localAwayPhoneHistory = DbTool.getDbManager().selector(T_AWAY_PHONE::class.java).findAll()
+    }
+
+    private fun getLocalAwayPhoneTime(list: List<T_AWAY_PHONE>) : Int{
+        var time = 0F
+        for(awayPhoneHistory in list){
+            if(TimeUtils.isToday(awayPhoneHistory.ENDDATE)){
+                time = time + awayPhoneHistory.TIME.toFloat()
+            }
+            else{
+                DbTool.delete(awayPhoneHistory)
+            }
+        }
+        return time.roundToInt()
     }
 
 

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.dashboard.HistoryDetail">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="-218dp"
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
@@ -20,7 +20,6 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
@@ -31,12 +30,12 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="288dp"
-                        android:layout_height="200dp"
+                        android:id="@+id/type"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/alarm" />
+                        app:srcCompat="@drawable/new_clock" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -45,29 +44,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/typeText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="center"
-                            android:text="任务闹钟"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+                            android:text="闹钟详情"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                            android:textSize="30sp" />
 
-                        <TextView
-                            android:id="@+id/textView15"
+                        <Button
+                            android:id="@+id/button_clock"
+                            style="@style/Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="10月5日 "
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="10：30 am"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
-
+                            android:background="#C4F36A6A"
+                            android:text="删除闹钟记录"
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -76,7 +70,6 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
@@ -87,117 +80,163 @@
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/SET"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/user" />
 
                         <TextView
-                            android:id="@+id/textView29"
+                            android:id="@+id/set_user"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="设定者"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:text="月一"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:gravity="center_vertical"
+                            android:text="月一老贼"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_calender"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/calendar" />
 
                         <TextView
-                            android:id="@+id/textView31"
+                            android:id="@+id/date"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="闹钟结束时间"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:gravity="center_vertical"
+                            android:text="十月五日"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_up"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/time" />
 
                         <TextView
-                            android:id="@+id/textView32"
+                            android:id="@+id/clock_time"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
+                            android:gravity="center_vertical"
                             android:text="10：40 am"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/task_picture"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/task" />
 
                         <TextView
-                            android:id="@+id/textView33"
+                            android:id="@+id/task"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="拖延时间"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:gravity="center_vertical"
+                            android:text="无"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_finish"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/finish" />
 
                         <TextView
-                            android:id="@+id/textView34"
+                            android:id="@+id/time_to_finish"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
+                            android:gravity="center_vertical"
                             android:text="10 分钟"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_grade"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/grades" />
 
                         <TextView
-                            android:id="@+id/textView37"
+                            android:id="@+id/grade"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="评价"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                        <TextView
-                            android:id="@+id/textView38"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
+                            android:gravity="center_vertical"
                             android:text="A"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_coins"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/coin" />
 
                         <TextView
-                            android:id="@+id/textView35"
+                            android:id="@+id/coins"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:text="获得奖励"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                        <TextView
-                            android:id="@+id/textView36"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
+                            android:gravity="center_vertical"
                             android:text="1000 金币"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
                     </TableRow>
                 </TableLayout>
 
@@ -205,58 +244,36 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView39"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="备注："
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:textSize="36sp" />
+                    <ImageView
+                        android:id="@+id/time_notes"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/note" />
 
                     <EditText
-                        android:id="@+id/editTextTextMultiLine2"
+                        android:id="@+id/notes"
                         style="@style/Widget.AppCompat.AutoCompleteTextView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:ems="10"
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
-                        android:text="        这是一个比较长的备注。它在手机上应该显示至少有两行。"
+                        android:text="这是一个比较长的备注。它在手机上应该显示至少有两行。"
                         android:textSize="24sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <Button
-                    android:id="@+id/button9"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="#C4F36A6A"
-                    android:text="删除记录" />
-
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-
-import com.example.timemanager.messagePackage.MessageView;
+import com.example.timemanager.ui.notifications.MessageView;
 
 
 public class ButtonMessage implements View.OnClickListener {

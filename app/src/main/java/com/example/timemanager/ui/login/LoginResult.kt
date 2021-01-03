@@ -5,6 +5,6 @@ package com.example.timemanager.ui.login
  */
 data class LoginResult(
     val success: LoggedInUserView? = null,
-    val fail: LoggedInUserView? = null,
+    //val fail: LoggedInUserView? = null,
     val error: Int? = null
 )

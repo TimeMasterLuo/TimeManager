@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:layout_marginRight="5dp"
     tools:context=".ui.friendlist.FriendProfile">
 
     <ScrollView
@@ -30,161 +28,167 @@
                 app:srcCompat="@drawable/background1"
                 tools:srcCompat="@drawable/background1" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/me"
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                app:rowCount="3">
 
-                <androidx.gridlayout.widget.GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:rowCount="3">
+                <com.example.timemanager.components.CircleImageView
+                    android:id="@+id/friendAvatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/avatar2" />
 
-                    <com.example.timemanager.components.CircleImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/avatar2" />
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:visibility="visible"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="4">
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingLeft="20dp"
-                        android:visibility="visible"
-                        app:layout_gravity="fill"
-                        app:layout_rowWeight="4">
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="月一"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <TextView
+                    android:id="@+id/friendName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="username"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_column="1"
+                    app:layout_row="0" />
 
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="我要成为时间管理大师！" />
+                <TextView
+                    android:id="@+id/friendLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/roundtext"
+                    android:fadingEdge="horizontal|vertical"
+                    android:text="资深用户"
+                    android:textColor="#FFFFFF"
+                    app:layout_column="1"
+                    app:layout_row="0" />
 
-                    </LinearLayout>
+            </androidx.gridlayout.widget.GridLayout>
 
-                </androidx.gridlayout.widget.GridLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/user_detail"
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardBackgroundColor="@color/colorAccent"
-                app:cardCornerRadius="30dp">
+                android:layout_height="500dp">
 
-                <androidx.gridlayout.widget.GridLayout
+                <Button
+                    android:id="@+id/friendGender"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_wc_24"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:paddingLeft="20dp"
+                    android:text="性别：男"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="0" />
 
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="账户余额:100"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="已完成任务:92"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        app:layout_column="0"
-                        app:layout_row="1" />
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="最长专注时间:1min"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        app:layout_column="0"
-                        app:layout_row="2" />
-                </androidx.gridlayout.widget.GridLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <androidx.gridlayout.widget.GridLayout
+                <Button
+                    android:id="@+id/friendIntro"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_edit_24"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:paddingLeft="20dp"
+                    android:text="这个人很懒，什么也没留下。"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="1" />
 
-                    <ProgressBar
-                        android:id="@+id/progressBar2"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_column="1"
-                        app:layout_row="2" />
+                <TextView
+                    android:id="@+id/friend_register_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_date_range_24"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="注册时间:   2020-10-10"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="2" />
 
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:text="其他数据"
-                        app:layout_column="1"
-                        app:layout_row="0" />
+                <Button
+                    android:id="@+id/itemdata_button"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_assessment_24"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:paddingLeft="20dp"
+                    android:text="完成任务总数：21 |  累计专注时间：100 min"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="3" />
 
-                </androidx.gridlayout.widget.GridLayout>
+                <Button
+                    android:id="@+id/achievement_button"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+                    android:drawableStart="@drawable/ic_baseline_show_chart_24"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                    android:drawingCacheQuality="auto"
+                    android:paddingLeft="20dp"
+                    android:text="成就展示"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    app:layout_column="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_row="4" />
 
-            </androidx.cardview.widget.CardView>
+            </androidx.gridlayout.widget.GridLayout>
 
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/button9"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_circle_shape"
-            android:text="删除好友" />
-
-        <Button
-            android:id="@+id/button8"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_circle_shape_agree"
-            android:text="为好友设定闹钟" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

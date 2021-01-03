@@ -37,7 +37,8 @@ class XDaoConfig {
                     .setTableCreateListener { _db, table ->
 
                         if (table.name == Tables.T_ALARM_CLOCK.name
-                            || table.name == Tables.T_WHITELIST.name){
+                            || table.name == Tables.T_WHITELIST.name
+                            || table.name == Tables.T_AWAY_PHONE.name){
                             println("${table.name} 创建成功");
                         }
                     }

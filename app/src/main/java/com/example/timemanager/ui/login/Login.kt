@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.StringRes
@@ -15,6 +16,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
+import com.example.timemanager.ui.title.ButtonBackward
+import kotlinx.android.synthetic.main.layout_title.*
 
 class Login : AppCompatActivity() {
 
@@ -23,7 +26,13 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.activity_login)
+        window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
+        this.supportActionBar?.hide()
+
+        button_backward.setOnClickListener(ButtonBackward(this))
+        text_title.text = "登录"
 
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
@@ -59,9 +68,6 @@ class Login : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
 
-                //设置全局数据，记入登录状态
-                val globalData: TimeManager = application as TimeManager
-                globalData.login_flag = true
                 //Complete and destroy login activity once successful
                 finish()
                 val intent = Intent(this, Home::class.java).apply {
@@ -91,6 +97,8 @@ class Login : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
+                            application,
+                            applicationContext,
                             username.text.toString(),
                             password.text.toString()
                         )
@@ -100,7 +108,7 @@ class Login : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                loginViewModel.login(application,applicationContext,username.text.toString(), password.text.toString())
             }
         }
     }

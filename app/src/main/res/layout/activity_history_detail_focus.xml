@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.dashboard.HistoryDetail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-218dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/type"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/hourglass" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/typeText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="闹钟详情"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                            android:textSize="30sp" />
+
+                        <Button
+                            android:id="@+id/button_focus"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="#C4F36A6A"
+                            android:text="删除专注记录"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/SET"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/user" />
+
+                        <TextView
+                            android:id="@+id/set_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="月一老贼"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_calender"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/calendar" />
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="十月五日"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_up"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/start1" />
+
+                        <TextView
+                            android:id="@+id/clock_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="10：40 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_finish"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/finish" />
+
+                        <TextView
+                            android:id="@+id/time_to_finish"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="10 分钟"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/last"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/time" />
+
+                        <TextView
+                            android:id="@+id/last_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="10：40 am"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/time_coins"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/coin" />
+
+                        <TextView
+                            android:id="@+id/coins"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="1000 金币"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp" />
+                    </TableRow>
+                </TableLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,39 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timemanager">
 
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".application.TimeManager"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".application.TimeManager"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/test">
+        android:theme="@style/test"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".StudyEamples.SendHttpRequestExample" />
         <activity
             android:name=".ui.systemconfig.SystemConfig"
             android:parentActivityName=".ui.home.Home" />
-        <activity android:name=".messagePackage.MessageView"
-            android:parentActivityName=".ui.home.Home"/>
+        <activity
+            android:name=".ui.notifications.MessageView"
+            android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.alarm.AlarmFromFriend"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
         <activity
             android:name=".ui.awayphone.AwayPhoneController"
             android:parentActivityName=".ui.awayphone.AwayPhone" />
-        <activity android:name=".awayPhonePackage.AwayPhoneResult"
-            android:parentActivityName=".ui.awayphone.AwayPhoneController"/>
-        <activity android:name=".awayPhonePackage.AwayPhoneScreen"
+        <activity
+            android:name=".ui.awayPhonePackage.AwayPhoneResult"
+            android:parentActivityName=".ui.awayphone.AwayPhoneController" />
+        <activity
+            android:name=".ui.awayPhonePackage.AwayPhoneScreen"
             android:parentActivityName=".ui.awayphone.AwayPhoneController"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".awayPhonePackage.AwayPhoneWhitelist"
-            android:parentActivityName=".ui.awayphone.AwayPhoneController"/>
-        <service android:name=".awayPhonePackage.AwayPhoneService"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ui.awayPhonePackage.AwayPhoneWhitelist"
+            android:parentActivityName=".ui.awayphone.AwayPhoneController" />
+
+        <service android:name=".ui.awayPhonePackage.AwayPhoneService" />
 
         <activity
             android:name=".ui.themestore.ThemeStore"
@@ -44,11 +53,19 @@
             android:name=".ui.dashboard.HistoryDetail"
             android:parentActivityName=".ui.home.Home" />
         <activity
+            android:name=".ui.dashboard.HistoryDetailFocus"
+            android:parentActivityName=".ui.home.Home" />
+        <activity android:name=".ui.friendlist.AddFriend"
+            android:parentActivityName=".ui.home.Home" />
+        <activity
             android:name=".ui.friendlist.FriendProfile"
             android:parentActivityName=".ui.home.Home" />
         <activity
             android:name=".ui.profile.Profile"
             android:parentActivityName=".ui.home.Home" />
+        <activity
+            android:name=".ui.profile.EditIntro"
+            android:parentActivityName=".ui.profile.Profile" />
         <activity
             android:name=".ui.dashboard.Analyze"
             android:parentActivityName=".ui.home.Home" />
@@ -57,9 +74,12 @@
             android:label="@string/title_activity_login"
             android:parentActivityName=".ui.home.Home" />
         <activity
+            android:name=".ui.register.Register"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".ui.home.Home" />
+        <activity
             android:name=".ui.awayphone.AwayPhone"
             android:parentActivityName=".ui.home.Home" />
-
         <activity
             android:name=".ui.alarm.AlarmManage"
             android:parentActivityName=".ui.home.Home" />
@@ -78,14 +98,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".ui.alarm.AlramReceiver"
-            android:exported="false"
-            >
+
+        <receiver
+            android:name=".ui.alarm.AlramReceiver"
+            android:exported="false">
             <intent-filter android:priority="20">
-                <action android:name=".Home"/>
+                <action android:name=".Home" />
             </intent-filter>
         </receiver>
     </application>
-
 
 </manifest>

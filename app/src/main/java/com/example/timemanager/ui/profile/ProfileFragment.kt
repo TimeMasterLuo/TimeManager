@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.timemanager.*
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.login.Login
+import com.example.timemanager.ui.register.Register
 import com.example.timemanager.ui.systemconfig.SystemConfig
 import com.example.timemanager.ui.themestore.ThemeStore
 
@@ -34,6 +36,14 @@ class ProfileFragment : Fragment() {
         if (flag) {
             //渲染fragment_profile_authorized并绑定监听
             root = inflater.inflate(R.layout.fragment_profile_authorized, container, false)
+
+            //对相应组件传入对应的用户info
+            val usernameShow : TextView = root.findViewById(R.id.username_text)
+            usernameShow.text=(activity!!.application as TimeManager).username
+
+            val userIntro : TextView = root.findViewById(R.id.intro_text)
+            userIntro.text=(activity!!.application as TimeManager).intro
+
             val btn1 : Button = root.findViewById(R.id.config_button)
             btn1.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -70,6 +80,14 @@ class ProfileFragment : Fragment() {
             btn1.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     val intent = Intent(getActivity(), Login::class.java).apply {
+                    }
+                    startActivity(intent)
+                }
+            })
+            val btn2 : Button = root.findViewById(R.id.register_button)
+            btn2.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    val intent = Intent(getActivity(), Register::class.java).apply {
                     }
                     startActivity(intent)
                 }

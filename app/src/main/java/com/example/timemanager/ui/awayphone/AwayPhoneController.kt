@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.ServiceUtils
-import com.example.timemanager.awayPhonePackage.AwayPhoneScreen
-import com.example.timemanager.awayPhonePackage.AwayPhoneService
-import com.example.timemanager.awayPhonePackage.AwayPhoneWhitelist
+
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneScreen
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneService
+import com.example.timemanager.ui.awayPhonePackage.AwayPhoneWhitelist
+
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
 import kotlinx.android.synthetic.main.activity_away_phone_timer.*
@@ -76,7 +78,9 @@ class AwayPhoneController : AppCompatActivity() {
     }
 
     fun openService(view: View?) {
-        startService(Intent(this@AwayPhoneController, AwayPhoneService::class.java))
+        val intent = Intent(this@AwayPhoneController, AwayPhoneService::class.java)
+        intent.putExtra("model", model)
+        startService(intent)
         Toast.makeText(this, "服务已开启！", Toast.LENGTH_SHORT).show()
     }
 
