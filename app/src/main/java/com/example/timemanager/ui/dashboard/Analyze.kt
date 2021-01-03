@@ -1,9 +1,8 @@
 package com.example.timemanager.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.icu.util.Calendar
-import android.icu.util.TimeZone
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
@@ -11,44 +10,61 @@ import android.view.View.VISIBLE
 import android.view.Window
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.clock.Clock
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.layout_title.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Analyze : AppCompatActivity() {
     private lateinit var clocks: ArrayList<Clock>
-    var totalCommon:Float=0F
-    var totalDeep:Float=0F
+    private var totalCommon:Float=0F
+    private var totalDeep:Float=0F
     private var friendsSuccess:Float=0F
     private var selfSuccess:Float=0F
     private var totalSelfClock:Float=0F
     private var totalFriendsClock:Float=0F
 
-    var weekCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F)
-    var weekDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F)
-    var weekFriendsSuccess:Float=0F
-    var weekSelfSuccess:Float=0F
-    var weekTotalSelfClock:Float=0F
-    var weekTotalFriendsClock:Float=0F
+    private var weekCommonTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F, 0F, 0F, 0F)
+    private var weekDeepTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F, 0F, 0F, 0F)
+    private var weekTotalCommon:Float=0F
+    private var weekTotalDeep:Float=0F
+    private var weekFriendsSuccess:Float=0F
+    private var weekSelfSuccess:Float=0F
+    private var weekTotalSelfClock:Float=0F
+    private var weekTotalFriendsClock:Float=0F
 
-    var monthCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F)
-    var monthDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F)
-    var monthFriendsSuccess:Float=0F
-    var monthSelfSuccess:Float=0F
-    var monthTotalSelfClock:Float=0F
-    var monthTotalFriendsClock:Float=0F
+    private var monthCommonTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F)
+    private var monthDeepTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F)
+    private var monthTotalCommon:Float=0F
+    private var monthTotalDeep:Float=0F
+    private var monthFriendsSuccess:Float=0F
+    private var monthSelfSuccess:Float=0F
+    private var monthTotalSelfClock:Float=0F
+    private var monthTotalFriendsClock:Float=0F
 
-    var yearCommonTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F)
-    var yearDeepTime:Array<Float> = arrayOf(0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F,0F)
-    var yearFriendsSuccess:Float=0F
-    var yearSelfSuccess:Float=0F
-    var yearTotalSelfClock:Float=0F
-    var yearTotalFriendsClock:Float=0F
+    private var yearCommonTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F)
+    private var yearDeepTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F)
+    private var yearTotalCommon:Float=0F
+    private var yearTotalDeep:Float=0F
+    private var yearFriendsSuccess:Float=0F
+    private var yearSelfSuccess:Float=0F
+    private var yearTotalSelfClock:Float=0F
+    private var yearTotalFriendsClock:Float=0F
 
+    private var strDateFormat = "MM-dd"
+    @SuppressLint("SimpleDateFormat")
+    var sdf: SimpleDateFormat = SimpleDateFormat(strDateFormat)
+    var weekCategory:Array<String> = arrayOf("","","","","","","")
+    var monthCategory:Array<String> = arrayOf("","","","","")
+
+    @Suppress("UNCHECKED_CAST")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +74,44 @@ class Analyze : AppCompatActivity() {
         this.supportActionBar?.hide()
         button_backward.setOnClickListener(ButtonBackward(this))
         text_title.text = "数据分析"
-        clocks= intent.getSerializableExtra("clocks") as ArrayList<Clock>
-        val currentTime:Calendar= Calendar.getInstance()
-        currentTime.add(Calendar.HOUR,8)
 
+        clocks= intent.getSerializableExtra("clocks") as ArrayList<Clock>
+
+        val currentTime:Calendar= Calendar.getInstance()
+        val tmpTime:Calendar= Calendar.getInstance()
+
+        val daysOfMonth=currentTime.getActualMaximum(Calendar.DAY_OF_MONTH)
+        val currentMonth=currentTime.get(Calendar.MONTH)+1
+
+        tmpTime.set(Calendar.HOUR_OF_DAY, 0)
+        currentTime.set(Calendar.HOUR_OF_DAY, 0)
+        tmpTime.set(Calendar.MINUTE, 0)
+        currentTime.set(Calendar.MINUTE, 0)
+        tmpTime.set(Calendar.SECOND, 0)
+        currentTime.set(Calendar.SECOND, 0)
+        currentTime.add(Calendar.DATE, 1)
+        tmpTime.add(Calendar.DATE, -6)
+
+        weekCategory[6]=sdf.format(Date(currentTime.time.time-1000*24*60*60))
+        weekCategory[5]=sdf.format(Date(currentTime.time.time-2*1000*24*60*60))
+        weekCategory[4]=sdf.format(Date(currentTime.time.time-3*1000*24*60*60))
+        weekCategory[3]=sdf.format(Date(currentTime.time.time-4*1000*24*60*60))
+        weekCategory[2]=sdf.format(Date(currentTime.time.time-5*1000*24*60*60))
+        weekCategory[1]=sdf.format(Date(currentTime.time.time-6*1000*24*60*60))
+        weekCategory[0]=sdf.format(Date(currentTime.time.time-7*1000*24*60*60))
+
+        monthCategory[0]= "$currentMonth-1至$currentMonth-7"
+        monthCategory[1]= "$currentMonth-8至$currentMonth-14"
+        monthCategory[2]= "$currentMonth-15至$currentMonth-21"
+        monthCategory[3]= "$currentMonth-22至$currentMonth-28"
+        if (daysOfMonth==28){
+            monthCategory=monthCategory.sliceArray(0..3)
+        }else{
+            monthCategory[4]= "$currentMonth-29至$currentMonth-$daysOfMonth"
+
+        }
+//        Log.e("current",currentTime.time.toString())
+          Log.e("A day ago",currentMonth.toString())
         for (i in clocks.indices){
             val tmptime:Calendar= Calendar.getInstance()
             tmptime.time=clocks[i].start_time
@@ -70,9 +120,9 @@ class Analyze : AppCompatActivity() {
             var thisYear=false
             if (tmptime.get(Calendar.YEAR)==currentTime.get(Calendar.YEAR)){
                 thisYear=true
-                if (tmptime.get(Calendar.MONTH)==currentTime.get(Calendar.MONDAY)) {
+                if (tmptime.get(Calendar.MONTH)==currentTime.get(Calendar.MONTH)) {
                     thisMonth = true
-                    if (tmptime.get(Calendar.WEEK_OF_YEAR) == currentTime.get(Calendar.WEEK_OF_YEAR)) {
+                    if (tmptime.time.after(tmpTime.time)) {
                         thisWeek = true
                     }
                 }
@@ -81,16 +131,31 @@ class Analyze : AppCompatActivity() {
                 if(clocks[i].type=="普通模式"){
                     totalCommon+=clocks[i].last_time.toFloat()
                     if(thisYear){
-                        yearCommonTime[tmptime.get(Calendar.MONTH)-1]+=clocks[i].last_time.toFloat()
+                        yearTotalCommon+=clocks[i].last_time.toFloat()
+                        yearCommonTime[tmptime.get(Calendar.MONTH) - 1]+=clocks[i].last_time.toFloat()
                         if(thisMonth){
-                            monthCommonTime[tmptime.getActualMaximum(Calendar.DAY_OF_MONTH)/7]+=clocks[i].last_time.toFloat()
+                           monthTotalCommon+=clocks[i].last_time.toFloat()
+                            monthCommonTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
                             if(thisWeek){
-                                weekCommonTime[tmptime.get(Calendar.DAY_OF_WEEK)-1]+=clocks[i].last_time.toFloat()
+                                weekTotalCommon+=clocks[i].last_time.toFloat()
+                                weekCommonTime[((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
                             }
                         }
                     }
                 }else{
                     totalDeep+=clocks[i].last_time.toFloat()
+                    if(thisYear){
+                        yearTotalDeep+=clocks[i].last_time.toFloat()
+                        yearDeepTime[tmptime.get(Calendar.MONTH) - 1]+=clocks[i].last_time.toFloat()
+                        if(thisMonth){
+                            monthTotalDeep+=clocks[i].last_time.toFloat()
+                            monthDeepTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
+                            if(thisWeek){
+                                weekTotalDeep+=clocks[i].last_time.toFloat()
+                                weekDeepTime[((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
+                            }
+                        }
+                    }
                 }
             }else{
                 if (clocks[i].type=="自设闹钟"){
@@ -98,10 +163,46 @@ class Analyze : AppCompatActivity() {
                     if(clocks[i].status!="unfinished"){
                         selfSuccess+=1F
                     }
+                    if(thisYear){
+                        yearTotalSelfClock+=1F
+                        if(clocks[i].status!="unfinished"){
+                            yearSelfSuccess+=1F
+                        }
+                        if(thisMonth){
+                            monthTotalSelfClock+=1F
+                            if(clocks[i].status!="unfinished"){
+                                monthSelfSuccess+=1F
+                            }
+                            if(thisWeek){
+                                weekTotalSelfClock+=1F
+                                if(clocks[i].status!="unfinished"){
+                                    weekSelfSuccess+=1F
+                                }
+                            }
+                        }
+                    }
                 }else{
                     totalFriendsClock+=1F
                     if(clocks[i].status!="unfinished"){
                         friendsSuccess+=1F
+                    }
+                    if(thisYear){
+                        yearTotalFriendsClock+=1F
+                        if(clocks[i].status!="unfinished"){
+                            yearFriendsSuccess+=1F
+                        }
+                        if(thisMonth){
+                            monthTotalFriendsClock+=1F
+                            if(clocks[i].status!="unfinished"){
+                                monthFriendsSuccess+=1F
+                            }
+                            if(thisWeek){
+                                weekTotalFriendsClock+=1F
+                                if(clocks[i].status!="unfinished"){
+                                    weekFriendsSuccess+=1F
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -110,12 +211,14 @@ class Analyze : AppCompatActivity() {
         val tabLayout=findViewById<TabLayout>(R.id.tab_analyze)
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                val tag=tab.text as String
+                val tag = tab.text as String
                 changeChart(tag)
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
             }
+
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
@@ -174,8 +277,8 @@ class Analyze : AppCompatActivity() {
                                         .name("使用时间（分钟）")
                                         .data(
                                                 arrayOf(
-                                                        arrayOf("深度模式", totalDeep/60F),
-                                                        arrayOf("普通模式", totalCommon/60F)
+                                                        arrayOf("深度模式", totalDeep / 60F),
+                                                        arrayOf("普通模式", totalCommon / 60F)
                                                 )
                                         )
                         )
@@ -198,7 +301,7 @@ class Analyze : AppCompatActivity() {
         aaChartView2.aa_drawChartWithChartModel(aaChartModel2)
 
     }
-    private fun changeChart(tag:String){
+    private fun changeChart(tag: String){
         if(tag=="总览"){
             val chart1=findViewById<LinearLayout>(R.id.chart1)
             chart1.visibility=GONE
@@ -214,8 +317,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", totalDeep/60F),
-                                                            arrayOf("普通模式", totalCommon/60F)
+                                                            arrayOf("深度模式", totalDeep / 60F),
+                                                            arrayOf("普通模式", totalCommon / 60F)
                                                     )
                                             )
                             )
@@ -248,14 +351,7 @@ class Analyze : AppCompatActivity() {
                     .animationDuration(1000)
                     .dataLabelsEnabled(true)
                     .backgroundColor("#ffffff")
-                    .categories(arrayOf("11-16",
-                            "11-17",
-                            "11-18",
-                            "11-19",
-                            "11-20",
-                            "11-21",
-                            "11-22"
-                            ))
+                    .categories(weekCategory)
                     .series(arrayOf(
                             AASeriesElement()
                                     .name("使用时间")
@@ -310,17 +406,11 @@ class Analyze : AppCompatActivity() {
                     .animationDuration(1000)
                     .dataLabelsEnabled(true)
                     .backgroundColor("#ffffff")
-                    .categories(arrayOf("11-1至11-5",
-                            "11-6至11-10",
-                            "11-11至11-15",
-                            "11-16至11-20",
-                            "11-21至11-25",
-                            "11-26至11-30"
-                    ))
+                    .categories(monthCategory)
                     .series(arrayOf(
                             AASeriesElement()
                                     .name("使用时间(分钟)")
-                                    .data(arrayOf(500, 700, 300, 170, 0, 0))
+                                    .data(arrayOf(500, 700, 300, 170, 0))
                     )
                     )
             val aaChartModel1=AAChartModel()
@@ -388,7 +478,7 @@ class Analyze : AppCompatActivity() {
                     .series(arrayOf(
                             AASeriesElement()
                                     .name("使用时间(分钟)")
-                                    .data(arrayOf(1000,2045,3055,1024,500,777,3232,452,900,2222,500,0))
+                                    .data(arrayOf(1000, 2045, 3055, 1024, 500, 777, 3232, 452, 900, 2222, 500, 0))
                     )
                     )
             val aaChartModel1=AAChartModel()
