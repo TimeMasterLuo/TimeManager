@@ -7,10 +7,8 @@ import android.view.View
 import android.view.Window
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
-import com.example.timemanager.ui.awayphone.AwayPhone
 import kotlinx.android.synthetic.main.activity_profile.*
 import com.example.timemanager.ui.title.ButtonBackward
-import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.layout_title.*
 
 class Profile : AppCompatActivity() {
@@ -46,6 +44,12 @@ class Profile : AppCompatActivity() {
 
     fun editIntroOnclick(view: View){
         val intent = Intent(this, EditIntro::class.java).apply {
+        }
+        startActivity(intent)
+    }
+
+    fun editDataOnclick(view: View){
+        val intent = Intent(this, EditData::class.java).apply {
         }
         startActivity(intent)
     }

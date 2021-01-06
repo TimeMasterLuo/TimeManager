@@ -1,5 +1,6 @@
 package com.example.timemanager.ui.login
 
+import android.R.attr
 import android.app.Application
 import android.content.Context
 import android.util.Patterns
@@ -14,6 +15,8 @@ import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.networkRequest.MySingleton
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.regex.Pattern
+
 
 class LoginViewModel: ViewModel() {
 
@@ -83,11 +86,11 @@ class LoginViewModel: ViewModel() {
     }
 
 
-    fun register(application: Application, context: Context, username: String, password: String) {
+    fun register(application: Application, context: Context, username: String, password: String, phone: String) {
         // can be launched in a separate asynchronous job
         val url2 = "http://59.78.38.19:8080/signin"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":${username}, "password":${password}}""")
+        val params = JSONObject("""{"username":${username}, "password":${password}},"phone":${phone}}""")
         //Toast.makeText(context, params.toString(), Toast.LENGTH_SHORT).show();
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
@@ -132,6 +135,21 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+    fun registerDataChanged(username: String, password: String, phone:String) {
+        if (!isUserNameValid(username)) {
+            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
+        }
+        else if (!isPasswordValid(password)) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+        }
+        else if (!isPhoneValid(phone)) {
+            _loginForm.value = LoginFormState(phoneError = R.string.invalid_phone)
+        }
+        else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
     // A placeholder username validation check
     private fun isUserNameValid(username: String): Boolean {
         return if (username.contains('@')) {
@@ -143,9 +161,19 @@ class LoginViewModel: ViewModel() {
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        var mainRegex = "^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]{8,18}\$"
+        var p = Pattern.compile(mainRegex)
+        val m = p.matcher(password)
+        return m.matches()
     }
 
+    // A placeholder password validation check
+    private fun isPhoneValid(phone: String): Boolean {
+        var mainRegex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,1,2,3,5-9])|(177))\\d{8}$"
+        var p = Pattern.compile(mainRegex)
+        val m = p.matcher(phone)
+        return m.matches()
+    }
     // switch password visibility
 
 }

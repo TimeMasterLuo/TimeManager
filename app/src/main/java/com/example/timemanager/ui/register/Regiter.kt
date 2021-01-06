@@ -36,6 +36,7 @@ class Register : AppCompatActivity() {
         button_backward.setOnClickListener(ButtonBackward(this))
         text_title.text = "注册"
 
+        val phone = findViewById<EditText>(R.id.phone_number)
         val username = findViewById<EditText>(R.id.username2)
         val password = findViewById<EditText>(R.id.password2)
         val login = findViewById<Button>(R.id.login2)
@@ -50,6 +51,9 @@ class Register : AppCompatActivity() {
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
 
+            if (loginState.phoneError != null) {
+                phone.error = getString(loginState.phoneError)
+            }
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }
@@ -80,18 +84,28 @@ class Register : AppCompatActivity() {
             }
         })
 
-        username.afterTextChanged2 {
-            loginViewModel.loginDataChanged(
+        phone.afterTextChanged2 {
+            loginViewModel.registerDataChanged(
                 username.text.toString(),
-                password.text.toString()
+                password.text.toString(),
+                phone.text.toString()
+            )
+        }
+
+        username.afterTextChanged2 {
+            loginViewModel.registerDataChanged(
+                username.text.toString(),
+                password.text.toString(),
+                phone.text.toString()
             )
         }
 
         password.apply {
             afterTextChanged2 {
-                loginViewModel.loginDataChanged(
+                loginViewModel.registerDataChanged(
                     username.text.toString(),
-                    password.text.toString()
+                    password.text.toString(),
+                    phone.text.toString()
                 )
             }
 
@@ -102,7 +116,8 @@ class Register : AppCompatActivity() {
                             application,
                             applicationContext,
                             username.text.toString(),
-                            password.text.toString()
+                            password.text.toString(),
+                            phone.text.toString()
                         )
                 }
                 false
@@ -110,7 +125,7 @@ class Register : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.register(application,applicationContext,username.text.toString(), password.text.toString())
+                loginViewModel.register(application,applicationContext,username.text.toString(), password.text.toString(),phone.text.toString())
             }
        }
     }
