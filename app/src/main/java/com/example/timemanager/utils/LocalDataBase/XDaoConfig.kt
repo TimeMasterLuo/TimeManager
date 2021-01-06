@@ -38,7 +38,8 @@ class XDaoConfig {
 
                         if (table.name == Tables.T_ALARM_CLOCK.name
                             || table.name == Tables.T_WHITELIST.name
-                            || table.name == Tables.T_AWAY_PHONE.name){
+                            || table.name == Tables.T_AWAY_PHONE.name
+                            || table.name == Tables.T_MESSAGE.name){
                             println("${table.name} 创建成功");
                         }
                     }
