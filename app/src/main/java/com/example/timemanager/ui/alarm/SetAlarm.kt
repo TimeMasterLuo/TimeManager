@@ -192,12 +192,13 @@ class SetAlarm : AppCompatActivity() {
         None("无"),
         Click("简单的点击"),
         PUZZLE("PUZZLE"),
+        Compute("简单算数"),
         //PUZZLE2("2PUZZLE")
 //        Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName,Task.Click.chnName, Task.PUZZLE.chnName);
+            Task.None.chnName,Task.Click.chnName, Task.PUZZLE.chnName,Task.Compute.chnName);
 
         var newSelected :String = "" ;
         val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")
@@ -292,6 +293,8 @@ class SetAlarm : AppCompatActivity() {
         val url2 = "http://59.78.38.19:8080/setAlarm"
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:SS")
         sdf.timeZone = TimeZone.getTimeZone("GMT+8:00");
+        val isSelf:Boolean=model.FROM==model.TO;
+        val accept_status=if(isSelf)1 else 0;
         var param= mutableMapOf(
             "from" to model.FROM,
             "to" to model.TO,
@@ -306,7 +309,7 @@ class SetAlarm : AppCompatActivity() {
             "task" to model.Task,
             //"status" to model.Status
             "status" to "unfinished",
-            "accept_status" to 1
+            "accept_status" to accept_status
         )
         println(param.toString())
         val params = JSONObject(param as Map<*, *>)

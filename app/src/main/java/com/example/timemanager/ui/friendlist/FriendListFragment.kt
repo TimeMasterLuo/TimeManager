@@ -88,6 +88,7 @@ class FriendListFragment : Fragment() {
     private fun updateFriendlist()
     {
         val globalData: TimeManager = this.activity?.application as TimeManager
+        if(globalData.login_flag == false) return
         val url = "http://59.78.38.19:8080/getFriends"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
         //val params = JSONArray("""[{"Username":${globalData.username}}]""")
