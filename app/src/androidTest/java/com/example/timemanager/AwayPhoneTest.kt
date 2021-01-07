@@ -50,30 +50,23 @@ class AwayPhoneTest {
         )
     }
 
-    @Test
-    fun accessPermissions() {
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
-            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(BottomNavigationView::class.java)))
-
-        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
-            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
-
-        Espresso.onView(ViewMatchers.withId(R.id.no))
-            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
-
-        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
-            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
-
-        Espresso.onView(ViewMatchers.withId(R.id.yes))
-            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+//    @Test
+//    fun RejectaccessPermissions() {
+//        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(BottomNavigationView::class.java)))
 //
-//        Espresso.onView(ViewMatchers.withId(R.id.stopAwayPhone))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(FancyButton::class.java))).perform(ViewActions.click())
+//        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java)))
+//            .perform(ViewActions.click())
 //
-//        Espresso.onView(ViewMatchers.withId(R.id.close))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
-    }
-
+//        Espresso.onView(ViewMatchers.withId(R.id.no))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java)))
+//            .perform(ViewActions.click())
+//
+//        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java)))
+//            .perform(ViewActions.click())
+//    }
     @Test
     fun awayPhoneNormal() {
         Espresso.onView(ViewMatchers.withId(R.id.nav_view))
@@ -84,6 +77,9 @@ class AwayPhoneTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.normal))
             .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(ImageView::class.java))).perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.whitelist))
+        .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(ImageView::class.java))).perform(ViewActions.click())
 
         Espresso.onView(ViewMatchers.withId(R.id.startAwayPhone))
             .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(FancyButton::class.java))).perform(ViewActions.click())
