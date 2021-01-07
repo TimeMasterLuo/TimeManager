@@ -149,9 +149,9 @@ class LoginViewModel: ViewModel() {
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         }
-//        else if (!isPasswordValid(password)) {
-//            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-//        }
+        else if (!password.isNotBlank()) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password1)
+        }
         else {
             _loginForm.value = LoginFormState(isDataValid = true)
         }
