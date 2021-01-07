@@ -47,8 +47,8 @@ class DashboardTest {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_proflie)).perform(click())
         onView(withId(R.id.login_button)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
-        onView(withId(R.id.username)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("shaw111"))
-        onView(withId(R.id.password)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("123456"))
+        onView(withId(R.id.username)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("shaw"))
+        onView(withId(R.id.password)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("123"))
         onView(withId(R.id.login)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
     }
     @Test
