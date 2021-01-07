@@ -8,5 +8,8 @@ enum class Tables(val tablepath:String){
     T_WHITELIST("com.example.timemanager.utils.LocalDataBase.T_WHITELIST"),
 
     //远离手机历史记录
-    T_AWAY_PHONE("com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE")
+    T_AWAY_PHONE("com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE"),
+
+    //消息记录
+    T_MESSAGE("com.example.timemanager.utils.LocalDataBase.T_MESSAGE")
 }

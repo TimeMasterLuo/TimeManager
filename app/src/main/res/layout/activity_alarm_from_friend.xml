@@ -16,7 +16,7 @@
         app:layout_gravity="center_vertical|end">
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/addReject"
             android:layout_width="65dp"
             android:layout_height="55dp"
             android:backgroundTint="#FF5722"
@@ -25,7 +25,7 @@
             app:layout_gravity="center_vertical" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/addAgree"
             android:layout_width="65dp"
             android:layout_height="55dp"
             android:backgroundTint="#4CAF50"

@@ -1,5 +1,7 @@
 package com.example.timemanager.ui.friendlist
 
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,21 +32,27 @@ class AddFriend : AppCompatActivity() {
         val globalData: TimeManager = application as TimeManager
         val searchName = findViewById<View>(R.id.searchName) as EditText
         val textContent = searchName.text.toString()
-        val url2 = "http://59.78.38.19:8080/addfriend"
+        val url2 = "http://59.78.38.19:8080/getuser"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":${globalData.username},"friendname":${textContent}}""")
+        //val params = JSONObject("""{"username":${globalData.username},"friendname":${textContent}}""")
+        val params = JSONObject("""{"username":${textContent}}""")
         //Toast.makeText(this, params.toString(), Toast.LENGTH_SHORT).show();
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             //成功获取返回时的callback
             { response ->
-                Toast.makeText(this, "请求已发送。", Toast.LENGTH_SHORT).show();
-                if (response.get("message") == "success") {
+                //Toast.makeText(this, "请求已发送。", Toast.LENGTH_SHORT).show();
+                if (response.get("id") != -1) {
                     // TODO: 2020/11/17  success
                     //Complete and destroy login activity once successful
                     setResult(RESULT_OK)
                     finish()
+                    val intent = Intent(this, AddFriendProfile::class.java).apply {
+                    }
+                    intent.putExtra("friendChoosed",textContent)
+                    
+                    startActivity(intent)
 
                 } else {
                     // TODO: 2020/11/17 fail

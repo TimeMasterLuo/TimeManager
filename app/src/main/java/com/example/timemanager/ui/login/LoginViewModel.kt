@@ -102,7 +102,7 @@ class LoginViewModel: ViewModel() {
                     val globalData: TimeManager = application as TimeManager
                     globalData.login_flag = true
                     globalData.username = response.get("name").toString()
-                    globalData.uid = response.get("id") as String
+                    globalData.uid = response.get("id").toString()
                     globalData.email = response.get("email") as String
                     globalData.intro = response.get("intro") as String
                 } else {

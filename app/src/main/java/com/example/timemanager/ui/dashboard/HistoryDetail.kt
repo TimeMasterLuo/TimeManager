@@ -69,7 +69,7 @@ class HistoryDetail : AppCompatActivity() {
                     val param=JSONObject()
                     param.put("id",clock.id)
                     param.put("type","clock")
-                    val url="http://139.196.200.26:8080/deleteRecord"
+                    val url="http://59.78.38.19:8080/deleteRecord"
                     val jsonObjectRequest = JsonObjectRequest(
                             Request.Method.POST, url, param,
                             //成功获取返回时的callback
