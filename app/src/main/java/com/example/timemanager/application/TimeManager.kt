@@ -8,6 +8,7 @@ import kotlin.properties.Delegates
 
 class TimeManager : Application() {
     //这里存放所有全局变量，kotlin自带get，set方法
+    val test_url="http://59.78.38.19:8080"
     var login_flag = false
     var username = "user"
     var gender = "男"

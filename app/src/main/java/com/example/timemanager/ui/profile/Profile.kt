@@ -7,10 +7,8 @@ import android.view.View
 import android.view.Window
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
-import com.example.timemanager.ui.awayphone.AwayPhone
 import kotlinx.android.synthetic.main.activity_profile.*
 import com.example.timemanager.ui.title.ButtonBackward
-import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.layout_title.*
 
 class Profile : AppCompatActivity() {
@@ -24,7 +22,7 @@ class Profile : AppCompatActivity() {
         username_profile_text.text=(this.application as TimeManager).username
         myIntro.text="个人介绍："+(this.application as TimeManager).intro
         myGender.text=(this.application as TimeManager).gender
-        myLevel.text=(this.application as TimeManager).userLevel
+        myLevel.text=(this.application as TimeManager).email
         myRegisterTime.text="注册时间："+(this.application as TimeManager).register_time
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
@@ -39,13 +37,19 @@ class Profile : AppCompatActivity() {
         username_profile_text.text=(this.application as TimeManager).username
         myIntro.text="个人介绍："+(this.application as TimeManager).intro
         myGender.text=(this.application as TimeManager).gender
-        myLevel.text=(this.application as TimeManager).userLevel
+        myLevel.text=(this.application as TimeManager).email
         myRegisterTime.text="注册时间："+(this.application as TimeManager).register_time
 
     }
 
     fun editIntroOnclick(view: View){
         val intent = Intent(this, EditIntro::class.java).apply {
+        }
+        startActivity(intent)
+    }
+
+    fun editDataOnclick(view: View){
+        val intent = Intent(this, EditData::class.java).apply {
         }
         startActivity(intent)
     }
