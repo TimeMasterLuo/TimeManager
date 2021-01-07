@@ -121,7 +121,7 @@ class LoginViewModel: ViewModel() {
 
                         val jsonArray: JSONArray = jsonObject.getJSONArray("friends")
 
-
+                        globalData.friendlist.clear()
                         for (i in 0 until jsonArray.length()) {
                             globalData.friendlist.add(jsonArray.getString(i))
                         }
@@ -175,6 +175,18 @@ class LoginViewModel: ViewModel() {
     fun editDataChanged(email: String) {
         if (!isEmailValid(email)) {
             _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
+        }
+        else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
+    fun newPDChanged(newPD: String, newPD_again: String) {
+        if (!isPasswordValid(newPD)) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+        }
+        else if (newPD != newPD_again) {
+            _loginForm.value = LoginFormState(passwordComfirmError = R.string.invalid_password_again)
         }
         else {
             _loginForm.value = LoginFormState(isDataValid = true)
