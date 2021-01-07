@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
-                        android:text="To"
+                        android:text="设置对象"
                         android:textColor="@android:color/black"/>
 
                     <TextView
@@ -100,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
-                        android:text="Task"
+                        android:text="任务"
                         android:textColor="@android:color/black"/>
 
                     <TextView
@@ -147,7 +147,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RingTone"
+                        android:text="铃声"
                         android:layout_gravity="left|center_vertical"
                         android:textColor="@android:color/black"/>
 
@@ -193,7 +193,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Note"
+                        android:text="备注"
                         android:layout_gravity="left|center_vertical"
                         android:textColor="@android:color/black"/>
 
@@ -231,7 +231,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Submit"
+        android:text="提交闹钟"
         android:textColor="#FFFFFF"
         />
     <Button
@@ -243,7 +243,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Delete"
+        android:text="删除闹钟"
         android:textColor="#FF0000"
         android:visibility="invisible"
         />

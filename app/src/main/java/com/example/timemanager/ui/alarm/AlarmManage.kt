@@ -114,7 +114,7 @@ class AlarmManage : AppCompatActivity(){
             init {
                 time_tv = view.findViewById(R.id.time_text) as TextView
                 day_tv = view.findViewById(R.id.day_text) as TextView
-                note_tv = view.findViewById(R.id.note_text) as TextView
+                note_tv = view.findViewById(R.id.note_text)  as TextView
                 from_tv = view.findViewById(R.id.from_text) as TextView
                 clock_sw = view.findViewById(R.id.clock_switch) as Switch
                 rootView = view.findViewById(R.id.rootView) as CardView
@@ -178,12 +178,13 @@ class AlarmManage : AppCompatActivity(){
             { error ->
                 // TODO: Handle error
                 println("AlarmManage.kt:158: fetch data error:$error")
-                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "获取闹钟列表失败", Toast.LENGTH_SHORT)
                     .show();
             }
         )
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun loadData(){
         dialog = indeterminateProgressDialog("正在加载数据");
 
