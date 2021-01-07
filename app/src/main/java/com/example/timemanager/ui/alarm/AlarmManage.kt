@@ -43,6 +43,7 @@ class AlarmManage : AppCompatActivity(){
     private  var clockList = ArrayList<T_ALARM_CLOCK>();
 
     private lateinit var dialog : ProgressDialog;
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
@@ -60,6 +61,8 @@ class AlarmManage : AppCompatActivity(){
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this);
+
+        if(TimeManager.instance().login_flag)fetchData();
         //loadData();
 //        if(!TimeManager.instance().login_flag){
 //            clearData()
@@ -177,6 +180,13 @@ class AlarmManage : AppCompatActivity(){
                     DbTool.saveOrUpdate(model);
                     if(model.ACTIVE == "1"){AlarmTools.setAlarm(this,model)}
                 }
+                clockList.clear();
+                clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
+                    .orderBy("UPDATE_TIME",true).findAll())
+                if(recyclerView.adapter == null)
+                    recyclerView.adapter = ClockListAdapter(clockList);
+                else
+                    recyclerView.adapter!!.notifyDataSetChanged();
             },
             { error ->
                 // TODO: Handle error
@@ -190,21 +200,21 @@ class AlarmManage : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.O)
     private fun loadData(){
         dialog = indeterminateProgressDialog("正在加载数据");
+        if(TimeManager.instance().login_flag)fetchData();
 
-        doAsync {
-            if(TimeManager.instance().login_flag)fetchData();
+
             clockList.clear();
             clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
                 .orderBy("UPDATE_TIME",true).findAll())
-            uiThread {
+
                 if(recyclerView.adapter == null)
                     recyclerView.adapter = ClockListAdapter(clockList);
                 else
                     recyclerView.adapter!!.notifyDataSetChanged();
 
                 if(dialog.isShowing) dialog.dismiss();
-            }
 
-        }
+
+
     }
 }

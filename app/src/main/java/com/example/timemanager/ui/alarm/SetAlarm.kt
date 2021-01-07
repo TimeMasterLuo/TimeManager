@@ -103,7 +103,7 @@ class SetAlarm : AppCompatActivity() {
     }
 
     private fun getFriendId(username:CharSequence):Int{
-        val url2 = "http://139.196.200.26:8080/getuser"
+        val url2 = "http://59.78.38.19:8080/getuser"
         //var param= mutableMapOf("username" to TimeManager.instance().username)
         var param= mutableMapOf("username" to username)
         val params = JSONObject(param as Map<*, *>)
@@ -331,7 +331,9 @@ class SetAlarm : AppCompatActivity() {
             { error ->
                 // TODO: Handle error
                 println("SetAlarm.kt:217:upload alarm error:$error")
-                Toast.makeText(applicationContext, "连接服务器失败，请检查网络连接或联系管理员", Toast.LENGTH_SHORT)
+                if(TimeManager.instance().login_flag)Toast.makeText(applicationContext, "连接服务器失败，请检查网络连接或联系管理员", Toast.LENGTH_SHORT)
+                    .show();
+                if(!TimeManager.instance().login_flag)Toast.makeText(applicationContext, "推荐登录/注册后使用哦", Toast.LENGTH_SHORT)
                     .show();
             }
         )
