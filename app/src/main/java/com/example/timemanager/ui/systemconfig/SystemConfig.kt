@@ -10,6 +10,9 @@ import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
 import com.example.timemanager.ui.title.ButtonBackward
+import com.example.timemanager.utils.LocalDataBase.DbTool
+import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
+import com.example.timemanager.utils.tools.AlarmTools
 import kotlinx.android.synthetic.main.layout_title.*
 
 class SystemConfig : AppCompatActivity() {
@@ -26,7 +29,16 @@ class SystemConfig : AppCompatActivity() {
     fun Logout(view: View){
         //设置全局数据，记入登录状态
         val globalData: TimeManager = application as TimeManager
+        globalData.friendlist.clear()
         globalData.login_flag=false
+
+        //清空之前账户的闹钟数据
+        var localalarm = DbTool.findAll(T_ALARM_CLOCK::class.java);
+        localalarm?.forEach{
+                item->
+            DbTool.delete(item)
+            AlarmTools.cancelAlarm(this,item)
+        }
 
         val intent = Intent(this, Home::class.java).apply {
             //清空之前堆叠的栈
