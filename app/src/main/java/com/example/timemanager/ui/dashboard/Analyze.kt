@@ -40,8 +40,8 @@ class Analyze : AppCompatActivity() {
     private var weekTotalSelfClock:Float=0F
     private var weekTotalFriendsClock:Float=0F
 
-    private var monthCommonTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F)
-    private var monthDeepTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F)
+    private var monthCommonTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F,0F)
+    private var monthDeepTime:Array<Float> = arrayOf(0F, 0F, 0F, 0F,0F)
     private var monthTotalCommon:Float=0F
     private var monthTotalDeep:Float=0F
     private var monthFriendsSuccess:Float=0F
@@ -61,8 +61,8 @@ class Analyze : AppCompatActivity() {
     private var strDateFormat = "MM-dd"
     @SuppressLint("SimpleDateFormat")
     var sdf: SimpleDateFormat = SimpleDateFormat(strDateFormat)
-    var weekCategory:Array<String> = arrayOf("","","","","","","")
-    var monthCategory:Array<String> = arrayOf("","","","","")
+    private var weekCategory:Array<String> = arrayOf("","","","","","","")
+    private var monthCategory:Array<String> = arrayOf("","","","","")
 
     @Suppress("UNCHECKED_CAST")
     @RequiresApi(Build.VERSION_CODES.N)
@@ -207,6 +207,30 @@ class Analyze : AppCompatActivity() {
                 }
             }
         }
+        if(totalSelfClock==0F){
+            totalSelfClock+=1F
+        }
+        if(totalFriendsClock==0F){
+            totalFriendsClock+=1F
+        }
+        if(weekTotalFriendsClock==0F){
+            weekTotalFriendsClock+=1F
+        }
+        if(weekTotalSelfClock==0F){
+            weekTotalSelfClock+=1F
+        }
+        if(monthTotalFriendsClock==0F){
+            monthTotalFriendsClock+=1F
+        }
+        if(monthTotalSelfClock==0F){
+            monthTotalSelfClock+=1F
+        }
+        if(yearTotalFriendsClock==0F){
+            yearTotalFriendsClock+=1F
+        }
+        if(yearTotalSelfClock==0F){
+            yearTotalSelfClock+=1F
+        }
         initChart()
         val tabLayout=findViewById<TabLayout>(R.id.tab_analyze)
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -297,7 +321,7 @@ class Analyze : AppCompatActivity() {
                 ))
                 .series(arrayOf(AASeriesElement()
                         .name("完成率")
-                        .data(arrayOf(selfSuccess, friendsSuccess))))
+                        .data(arrayOf(selfSuccess/totalSelfClock, friendsSuccess/totalFriendsClock))))
         aaChartView2.aa_drawChartWithChartModel(aaChartModel2)
 
     }
@@ -354,8 +378,10 @@ class Analyze : AppCompatActivity() {
                     .categories(weekCategory)
                     .series(arrayOf(
                             AASeriesElement()
-                                    .name("使用时间")
-                                    .data(arrayOf(200, 156, 60, 0, 0, 0, 0))
+                                    .name("普通模式使用时间")
+                                    .data(arrayOf(weekCommonTime[0]/60F,weekCommonTime[1]/60F,weekCommonTime[2]/60F,weekCommonTime[3]/60F,weekCommonTime[4],weekCommonTime[5]/60F,weekCommonTime[6]/60F))
+                                    .name("深度模式使用时间")
+                                    .data(arrayOf(weekDeepTime[0]/60F,weekDeepTime[1]/60F,weekDeepTime[2]/60F,weekDeepTime[3]/60F,weekDeepTime[4]/60F,weekDeepTime[5]/60F,weekDeepTime[6]/60F))
                     )
                     )
             val aaChartModel1=AAChartModel()
@@ -370,8 +396,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", 50),
-                                                            arrayOf("普通模式", 110)
+                                                            arrayOf("深度模式", weekTotalCommon/60F),
+                                                            arrayOf("普通模式", weekTotalDeep/60F)
                                                     )
                                             )
                             )
@@ -388,7 +414,7 @@ class Analyze : AppCompatActivity() {
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.9, 0.85))))
+                            .data(arrayOf(weekSelfSuccess/weekTotalSelfClock, weekFriendsSuccess/weekTotalFriendsClock))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
@@ -409,8 +435,10 @@ class Analyze : AppCompatActivity() {
                     .categories(monthCategory)
                     .series(arrayOf(
                             AASeriesElement()
-                                    .name("使用时间(分钟)")
-                                    .data(arrayOf(500, 700, 300, 170, 0))
+                                    .name("普通模式(分钟)")
+                                    .data(arrayOf(monthCommonTime[0]/60F,monthCommonTime[1]/60F,monthCommonTime[2]/60F,monthCommonTime[3]/60F,monthCommonTime[4]/60F))
+                                    .name("深度模式(分钟)")
+                                    .data(arrayOf(monthDeepTime[0]/60F,monthDeepTime[1]/60F,monthDeepTime[2]/60F,monthDeepTime[3]/60F,monthDeepTime[4]/60F))
                     )
                     )
             val aaChartModel1=AAChartModel()
@@ -425,8 +453,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", 500),
-                                                            arrayOf("普通模式", 660)
+                                                            arrayOf("深度模式", monthTotalCommon/60F),
+                                                            arrayOf("普通模式", monthTotalDeep/60F)
                                                     )
                                             )
                             )
@@ -443,7 +471,7 @@ class Analyze : AppCompatActivity() {
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.7, 0.65))))
+                            .data(arrayOf(monthSelfSuccess/monthTotalSelfClock, monthFriendsSuccess/monthTotalFriendsClock))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)
@@ -477,8 +505,10 @@ class Analyze : AppCompatActivity() {
                     ))
                     .series(arrayOf(
                             AASeriesElement()
-                                    .name("使用时间(分钟)")
-                                    .data(arrayOf(1000, 2045, 3055, 1024, 500, 777, 3232, 452, 900, 2222, 500, 0))
+                                    .name("普通模式(分钟)")
+                                    .data(arrayOf(yearCommonTime[0]/60F,yearCommonTime[1]/60F,yearCommonTime[2]/60F,yearCommonTime[3]/60F,yearCommonTime[4]/60F,yearCommonTime[5]/60F,yearCommonTime[6]/60F,yearCommonTime[7]/60F,yearCommonTime[8]/60F,yearCommonTime[9]/60F,yearCommonTime[10]/60F,yearCommonTime[11]/60F))
+                                    .name("普通模式(分钟)")
+                                    .data(arrayOf(yearDeepTime[0]/60F,yearDeepTime[1]/60F,yearDeepTime[2]/60F,yearDeepTime[3]/60F,yearDeepTime[4]/60F,yearDeepTime[5]/60F,yearDeepTime[6]/60F,yearDeepTime[7]/60F,yearDeepTime[8]/60F,yearDeepTime[9]/60F,yearDeepTime[10]/60F,yearDeepTime[11]/60F))
                     )
                     )
             val aaChartModel1=AAChartModel()
@@ -493,8 +523,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", 2356),
-                                                            arrayOf("普通模式", 1579)
+                                                            arrayOf("深度模式", yearTotalCommon/60F),
+                                                            arrayOf("普通模式", yearTotalDeep/60F)
                                                     )
                                             )
                             )
@@ -511,7 +541,7 @@ class Analyze : AppCompatActivity() {
                     ))
                     .series(arrayOf(AASeriesElement()
                             .name("完成率")
-                            .data(arrayOf(0.8, 0.9))))
+                            .data(arrayOf(yearSelfSuccess/yearTotalSelfClock, yearFriendsSuccess/yearTotalFriendsClock))))
             val aaChartView=findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartView1=findViewById<AAChartView>(R.id.aa_chart_view1)
             val aaChartView2=findViewById<AAChartView>(R.id.aa_chart_view2)

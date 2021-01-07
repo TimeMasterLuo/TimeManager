@@ -1,20 +1,21 @@
 package com.example.timemanager.ui.dashboard
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.blankj.utilcode.util.ToastUtils
 import com.example.timemanager.R
-import com.example.timemanager.ui.home.Home
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.clock.Clock
 import com.example.timemanager.utils.networkRequest.MySingleton
+import kotlinx.android.synthetic.main.activity_friendclock_detail.*
 import kotlinx.android.synthetic.main.activity_history_detail.*
 import kotlinx.android.synthetic.main.layout_title.*
 import java.text.SimpleDateFormat
@@ -22,12 +23,12 @@ import org.jetbrains.anko.alert
 import org.json.JSONObject
 import java.util.*
 
-class HistoryDetail : AppCompatActivity() {
+class friendClockDetail : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
-        setContentView(R.layout.activity_history_detail)
+        setContentView(R.layout.activity_friendclock_detail)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
 
@@ -73,22 +74,65 @@ class HistoryDetail : AppCompatActivity() {
                     param.put("type","clock")
                     val url="http://59.78.38.19:8080/deleteRecord"
                     val jsonObjectRequest = JsonObjectRequest(
-                            Request.Method.POST, url, param,
-                            //成功获取返回时的callback
-                            { response ->
-                                Log.e("response success", response.toString())
-                                val intents= Intent()
-                                intents.setClass(this@HistoryDetail, Home::class.java)
-                                startActivity(intents)
-                            },
-                            //失败情况调用的callback
-                            { error ->
-                                Log.e("response error", error.toString())
-                            }
+                        Request.Method.POST, url, param,
+                        //成功获取返回时的callback
+                        { response ->
+                            Log.e("response error", response.toString())
+                            ButtonBackward(context)
+                        },
+                        //失败情况调用的callback
+                        { error ->
+                            Log.e("response error", error.toString())
+                        }
                     )
                     MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest)
                 }
             }.show()
         }
+        clockResult.visibility = View.GONE
+        clockRejectButton.setOnClickListener {
+            sendResult(clock.id.toString(), 2)
+            frendClockButtons.visibility = View.GONE
+            clockResult.visibility = View.VISIBLE
+            clockResult.text = "已拒绝"
+        }
+        clockAgreeButton.setOnClickListener {
+            sendResult(clock.id.toString(), 1)
+            frendClockButtons.visibility = View.GONE
+            clockResult.visibility = View.VISIBLE
+            clockResult.text = "已同意"
+        }
+    }
+
+    private fun sendResult(id: String, result: Int) {
+        val url = "http://59.78.38.19:8080/handleFriendClock"
+        //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
+        //val params = JSONArray("""[{"Username":${globalData.username}}]""")
+        val params = JSONObject("""{"id":${id},"result":${result}}""")
+        //发送请求
+
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url, params,
+            //成功获取返回时的callback
+            { response ->
+                //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
+                //Log.e("mytest??", response.toString())
+                if (response.getString("title") != "") {
+                    ToastUtils.make().show(response.getString("message"))
+                } else {
+                    ToastUtils.make().show("请求发送失败！");
+                }
+            },
+            //失败情况调用的callback
+            { error ->
+                // TODO: Handle error
+                Log.e("request", params.toString())
+                Log.e("myerror", error.toString())
+                ToastUtils.make().show("请求发送失败，请检查网络是否异常！");
+            }
+        )
+        // 下面这行意思是将你的request加入到android维护的一个线程队列中，这个队列会依据其自带逻辑处理你的request
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 }
