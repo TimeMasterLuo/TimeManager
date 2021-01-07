@@ -52,7 +52,7 @@ class AddFriendProfile : AppCompatActivity() {
                 { response ->
                     //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
                     if (response.get("title").toString() != "") {
-                        ToastUtils.make().show(response.get("message").toString());//"请求已发送，请等待对方确认！"
+                        ToastUtils.make().show("请求已发送，请等待对方确认！");//"请求已发送，请等待对方确认！"
                         finish();
                     } else {
                         ToastUtils.make().show("请求发送失败！");
