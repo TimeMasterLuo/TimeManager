@@ -108,7 +108,7 @@ class ResetPassword : AppCompatActivity() {
             //失败情况调用的callback
             { error ->
                 // TODO: Handle error
-                Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "服务器连接失败，请稍后重试", Toast.LENGTH_SHORT).show();
             }
         )
         //下面这行意思是将你的request加入到android维护的一个线程队列中，这个队列会依据其自带逻辑处理你的request

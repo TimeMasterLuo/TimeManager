@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.layout_title.*
 import org.json.JSONObject
 
 class EditData : AppCompatActivity() {
-    var sex = "male"
+    var sex = "男"
     private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,13 +100,13 @@ class EditData : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     // TODO: 2020/11/17 fail
-                    Toast.makeText(this, "修改失败，请重试。", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "修改失败，请稍后重试。", Toast.LENGTH_SHORT).show();
                 }
             },
             //失败情况调用的callback
             { error ->
                 // TODO: Handle error
-                Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "服务器连接失败，请稍后重试", Toast.LENGTH_SHORT).show();
             }
         )
         //下面这行意思是将你的request加入到android维护的一个线程队列中，这个队列会依据其自带逻辑处理你的request
@@ -117,14 +117,14 @@ class EditData : AppCompatActivity() {
         val femaleButton = findViewById<View>(R.id.femaleButton) as RadioButton
         maleButton.isChecked=true;
         femaleButton.isChecked=false;
-        sex = "male"
+        sex = "男"
     }
     fun isFemale(view: View){
         val maleButton = findViewById<View>(R.id.maleButton) as RadioButton
         val femaleButton = findViewById<View>(R.id.femaleButton) as RadioButton
         maleButton.isChecked=false;
         femaleButton.isChecked=true;
-        sex = "female"
+        sex = "女"
     }
 }
 

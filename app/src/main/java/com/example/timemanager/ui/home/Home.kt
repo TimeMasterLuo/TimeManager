@@ -34,13 +34,21 @@ class Home : AppCompatActivity() {
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
 
         button_backward.visibility = View.INVISIBLE
-        val globalData = application as TimeManager
-        if(globalData.login_flag == true)
-        {
-            button_message.visibility = View.VISIBLE
-        }
 
-        button_message.setOnClickListener(ButtonMessage(this, this))
+//        val globalData = application as TimeManager
+//        if(globalData.login_flag == true)
+//        {
+//            button_message.visibility = View.VISIBLE
+//        }
+//
+//        button_message.setOnClickListener(ButtonMessage(this, this))
+
+
+        val globalData: TimeManager = application as TimeManager
+        if (globalData.login_flag) {
+            button_message.visibility = View.VISIBLE
+            button_message.setOnClickListener(ButtonMessage(this, this))
+        }
 
         //隐藏默认标题栏
         this.supportActionBar?.hide()

@@ -182,7 +182,7 @@ class AlarmManage : AppCompatActivity(){
                 }
                 clockList.clear();
                 clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
-                    .orderBy("UPDATE_TIME",true).findAll())
+                    .orderBy("TIMESTAMP",true).findAll())
                 if(recyclerView.adapter == null)
                     recyclerView.adapter = ClockListAdapter(clockList);
                 else
@@ -205,7 +205,7 @@ class AlarmManage : AppCompatActivity(){
 
             clockList.clear();
             clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
-                .orderBy("UPDATE_TIME",true).findAll())
+                .orderBy("TIMESTAMP",true).findAll())
 
                 if(recyclerView.adapter == null)
                     recyclerView.adapter = ClockListAdapter(clockList);
