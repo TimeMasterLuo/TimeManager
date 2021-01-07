@@ -25,7 +25,7 @@ class LoginViewModel: ViewModel() {
 
     fun login(application: Application, context: Context, username: String, password: String) {
         // can be launched in a separate asynchronous job
-        val url2 = "http://139.196.200.26:8080/login"
+        val url2 = "http://59.78.38.19:8080/login"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
         val params = JSONObject("""{"username":${username}, "password":${password}}""")
         //Toast.makeText(context, params.toString(), Toast.LENGTH_SHORT).show();
