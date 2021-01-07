@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.timemanager.R
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.title.ButtonMessage
 import kotlinx.android.synthetic.main.layout_title.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,7 +34,12 @@ class Home : AppCompatActivity() {
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
 
         button_backward.visibility = View.INVISIBLE
-        button_message.visibility = View.VISIBLE
+        val globalData = application as TimeManager
+        if(globalData.login_flag == true)
+        {
+            button_message.visibility = View.VISIBLE
+        }
+
         button_message.setOnClickListener(ButtonMessage(this, this))
 
         //隐藏默认标题栏
