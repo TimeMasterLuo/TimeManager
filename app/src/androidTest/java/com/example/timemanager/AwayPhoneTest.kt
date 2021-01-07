@@ -51,9 +51,34 @@ class AwayPhoneTest {
     }
 
     @Test
+    fun accessPermissions() {
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
+            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(BottomNavigationView::class.java)))
+
+        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
+            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.no))
+            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
+            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.yes))
+            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+//
+//        Espresso.onView(ViewMatchers.withId(R.id.stopAwayPhone))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(FancyButton::class.java))).perform(ViewActions.click())
+//
+//        Espresso.onView(ViewMatchers.withId(R.id.close))
+//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
+    }
+
+    @Test
     fun awayPhoneNormal() {
         Espresso.onView(ViewMatchers.withId(R.id.nav_view))
             .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(BottomNavigationView::class.java)))
+
         Espresso.onView(ViewMatchers.withId(R.id.away_phone_button))
             .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
 
@@ -68,21 +93,5 @@ class AwayPhoneTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.close))
             .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(ViewActions.click())
-//        Espresso.onView(ViewMatchers.withId(R.id.login_button))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(
-//                ViewActions.click()
-//            )
-//        Espresso.onView(ViewMatchers.withId(R.id.username))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(EditText::class.java))).perform(
-//                ViewActions.typeText("shaw")
-//            )
-//        Espresso.onView(ViewMatchers.withId(R.id.password))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(EditText::class.java))).perform(
-//                ViewActions.typeText("123")
-//            )
-//        Espresso.onView(ViewMatchers.withId(R.id.login))
-//            .check(ViewAssertions.matches(ViewMatchers.isAssignableFrom(Button::class.java))).perform(
-//                ViewActions.click()
-//            )
     }
 }

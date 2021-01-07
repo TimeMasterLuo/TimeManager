@@ -26,6 +26,7 @@ class SystemConfig : AppCompatActivity() {
     fun Logout(view: View){
         //设置全局数据，记入登录状态
         val globalData: TimeManager = application as TimeManager
+        globalData.friendlist.clear()
         globalData.login_flag=false
 
         val intent = Intent(this, Home::class.java).apply {
