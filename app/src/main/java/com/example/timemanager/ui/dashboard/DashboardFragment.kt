@@ -1,5 +1,6 @@
 package com.example.timemanager.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,7 @@ class DashboardFragment : Fragment() {
     private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var clocks: MutableList<Clock>
     private var clockAdapter: ClockAdapter? = null
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,14 +37,14 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-//        var flag: Boolean = (activity!!.application as TimeManager).login_flag
-//        var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
-//        if(flag) {
-            val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        var root = inflater.inflate(R.layout.fragment_friendlist_unauthorized, container, false)
+        var flag: Boolean = (activity!!.application as TimeManager).login_flag
+        if(flag) {
+             root = inflater.inflate(R.layout.fragment_dashboard, container, false)
             var user: Int = (activity!!.application as TimeManager).uid.toInt()
             val param = JSONObject()
             param.put("id", 5)
-            val url = "http://139.196.200.26:8080/getAllRecord"
+            val url = "http://59.78.38.19:8080/getAllRecord"
             var listview = root.findViewById<ListView>(R.id.Clock_list)
             clocks = arrayListOf()
             val jsonObjectRequest = JsonObjectRequest(
@@ -145,7 +147,7 @@ class DashboardFragment : Fragment() {
             val mTabSelectedColorListener = object : OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                 val tag=tab.text as String
-                var tmp: MutableList<Clock> = arrayListOf()
+                val tmp: MutableList<Clock> = arrayListOf()
                 if(tag=="自设闹钟"){
                     for (i in clocks.indices){
                         if(clocks[i].kind=="闹钟"&&clocks[i].type=="自设闹钟"){
@@ -182,8 +184,8 @@ class DashboardFragment : Fragment() {
                 override fun onTabReselected(tab: TabLayout.Tab) {
                 }
             }
-            tabLayout.addOnTabSelectedListener(mTabSelectedColorListener);
-//        }
+            tabLayout.addOnTabSelectedListener(mTabSelectedColorListener)
+        }
         return root
     }
 }
