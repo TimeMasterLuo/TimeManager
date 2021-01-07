@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimeManager</string>
+    <string name="app_name">时间管理</string>
     <string name="edit_message">enter a message</string>
     <string name="button_send">Send</string>
     <string name="title_activity_home">MainActivity</string>
@@ -54,7 +54,7 @@
     <string name="dashboard_alarm">自设闹钟</string>
     <string name="dashboard_awayphone">远离手机</string>
     <string name="dashboard_friendalarm">好友闹钟</string>
-    <string name="todo">TODO</string>
+    <string name="todo">待办</string>
     <string name="待完成">待完成</string>
     <string name="已完成">已完成</string>
     <string name="未完成">未完成</string>
@@ -64,7 +64,7 @@
     <string name="resume_timer">Resume Timer</string>
     <string name="text_back">返回</string>
     <string name="text_forward">提交</string>
-    <string name="App_title">TimeManager</string>
+    <string name="App_title">时间管理</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="proverb1">时间和潮流永远不待人。——司各特</string>
     <string name="register_failed">注册失败</string>
