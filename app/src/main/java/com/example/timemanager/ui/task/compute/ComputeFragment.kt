@@ -33,8 +33,10 @@ class ComputeFragment: Fragment() {
         val mainActivity: AlarmActivity = activity as AlarmActivity
         textView_question.text="请计算："+a+" * "+b+" + "+c+" = "
         button_task_compute.text="提交答案";
+
         button_task_compute.setOnClickListener {
             val input=task_compute_answer.text.toString();
+            println("answer:$ans  input:$input")
             if (input!=""&&ans.toString()==task_compute_answer.text.toString())(activity as AlarmActivity).finish()
 
         }
