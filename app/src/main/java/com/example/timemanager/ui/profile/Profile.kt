@@ -22,7 +22,7 @@ class Profile : AppCompatActivity() {
         username_profile_text.text=(this.application as TimeManager).username
         myIntro.text="个人介绍："+(this.application as TimeManager).intro
         myGender.text=(this.application as TimeManager).gender
-        myLevel.text=(this.application as TimeManager).userLevel
+        myLevel.text=(this.application as TimeManager).email
         myRegisterTime.text="注册时间："+(this.application as TimeManager).register_time
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
         this.supportActionBar?.hide()
@@ -37,7 +37,7 @@ class Profile : AppCompatActivity() {
         username_profile_text.text=(this.application as TimeManager).username
         myIntro.text="个人介绍："+(this.application as TimeManager).intro
         myGender.text=(this.application as TimeManager).gender
-        myLevel.text=(this.application as TimeManager).userLevel
+        myLevel.text=(this.application as TimeManager).email
         myRegisterTime.text="注册时间："+(this.application as TimeManager).register_time
 
     }

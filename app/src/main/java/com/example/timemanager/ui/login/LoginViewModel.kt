@@ -28,7 +28,7 @@ class LoginViewModel: ViewModel() {
 
     fun login(application: Application, context: Context, username: String, password: String) {
         // can be launched in a separate asynchronous job
-        val url2 = "http://139.196.200.26:8080/login"
+        val url2 = "http://59.78.38.19:8080/login"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
         val params = JSONObject("""{"username":${username}, "password":${password}}""")
         //Toast.makeText(context, params.toString(), Toast.LENGTH_SHORT).show();
@@ -90,7 +90,7 @@ class LoginViewModel: ViewModel() {
         // can be launched in a separate asynchronous job
         val url2 = "http://59.78.38.19:8080/signin"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":${username}, "password":${password}},"phone":${phone}}""")
+        val params = JSONObject("""{"username":${username}, "password":${password},"phone":${phone}}""")
         //Toast.makeText(context, params.toString(), Toast.LENGTH_SHORT).show();
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
@@ -101,13 +101,35 @@ class LoginViewModel: ViewModel() {
                 if (response.get("id") != 0) {
                     _loginResult.value =
                         LoginResult(success = LoggedInUserView(displayName = username))
-                    //设置全局数据，记入登录状态
-                    val globalData: TimeManager = application as TimeManager
-                    globalData.login_flag = true
-                    globalData.username = response.get("name").toString()
-                    globalData.uid = response.get("id") as String
-                    globalData.email = response.get("email") as String
-                    globalData.intro = response.get("intro") as String
+
+                    try {
+                        val jsonObject = JSONObject(response.toString())
+
+                        //设置全局数据，记入登录状态
+                        /**
+                         * 为什么要使用jsonObject.optString， 不使用jsonObject.getString
+                         * 因为jsonObject.optString获取null不会报错
+                         */
+                        val globalData: TimeManager = application as TimeManager
+                        globalData.login_flag = true
+                        globalData.username = jsonObject.optString("name", null)
+                        globalData.uid = jsonObject.optString("id", null)
+                        globalData.email = jsonObject.optString("email", null)
+                        globalData.intro = jsonObject.optString("intro", null)
+                        globalData.gender = jsonObject.optString("gender", null)
+                        globalData.userLevel = jsonObject.optString("level", null)
+
+                        val jsonArray: JSONArray = jsonObject.getJSONArray("friends")
+
+
+                        for (i in 0 until jsonArray.length()) {
+                            globalData.friendlist.add(jsonArray.getString(i))
+                        }
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
                 } else {
                     _loginResult.value = LoginResult(error = R.string.register_failed)
                 }
@@ -136,14 +158,23 @@ class LoginViewModel: ViewModel() {
     }
 
     fun registerDataChanged(username: String, password: String, phone:String) {
-        if (!isUserNameValid(username)) {
+        if (!isPhoneValid(phone)) {
+            _loginForm.value = LoginFormState(phoneError = R.string.invalid_phone)
+        }
+        else if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         }
         else if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
         }
-        else if (!isPhoneValid(phone)) {
-            _loginForm.value = LoginFormState(phoneError = R.string.invalid_phone)
+        else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
+    fun editDataChanged(email: String) {
+        if (!isEmailValid(email)) {
+            _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
         }
         else {
             _loginForm.value = LoginFormState(isDataValid = true)
@@ -173,6 +204,15 @@ class LoginViewModel: ViewModel() {
         var p = Pattern.compile(mainRegex)
         val m = p.matcher(phone)
         return m.matches()
+    }
+
+    // A placeholder username validation check
+    private fun isEmailValid(email: String): Boolean {
+        return if (email.contains('@')) {
+            Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        } else {
+            false
+        }
     }
     // switch password visibility
 

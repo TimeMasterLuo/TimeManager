@@ -18,6 +18,7 @@ import com.example.timemanager.R
 import com.example.timemanager.ui.login.LoggedInUserView
 import com.example.timemanager.ui.login.LoginViewModel
 import com.example.timemanager.ui.login.LoginViewModelFactory
+import com.example.timemanager.ui.profile.EditData
 import com.example.timemanager.ui.title.ButtonBackward
 import kotlinx.android.synthetic.main.layout_title.*
 
@@ -76,7 +77,7 @@ class Register : AppCompatActivity() {
 
                 //Complete and destroy login activity once successful
                 finish()
-                val intent = Intent(this, Home::class.java).apply {
+                val intent = Intent(this, EditData::class.java).apply {
                     //清空之前堆叠的栈
                     setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 }

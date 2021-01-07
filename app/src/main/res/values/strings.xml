@@ -41,6 +41,7 @@
     <string name="welcome">"登陆成功 !"</string>
     <string name="register_success">"注册成功 !"</string>
     <string name="invalid_username">用户名为空或者邮箱格式不对!</string>
+    <string name="invalid_email">邮箱格式不对!</string>
     <string name="invalid_password">密码必须由字母、数字组成，区分大小写;密码长度为8-18位</string>
     <string name="invalid_phone">手机号码不合规范</string>
     <string name="login_failed">"登入失败"</string>
