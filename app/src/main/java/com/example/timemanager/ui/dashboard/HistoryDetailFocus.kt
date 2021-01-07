@@ -61,9 +61,6 @@ class HistoryDetailFocus : AppCompatActivity() {
         btn.setOnClickListener {
             alert ("确认删除此条记录吗"){
                 positiveButton("取消"){
-                    val intents=Intent()
-                    intents.setClass(this@HistoryDetailFocus,Home::class.java)
-                    startActivity(intents)
                 }
                 negativeButton("删除"){
                     val param= JSONObject()
@@ -74,7 +71,10 @@ class HistoryDetailFocus : AppCompatActivity() {
                             Request.Method.POST, url, param,
                             //成功获取返回时的callback
                             { response ->
-                                Log.e("response error", response.toString())
+                                Log.e("response success", response.toString())
+                                val intents=Intent()
+                                intents.setClass(this@HistoryDetailFocus,Home::class.java)
+                                startActivity(intents)
                             },
                             //失败情况调用的callback
                             { error ->

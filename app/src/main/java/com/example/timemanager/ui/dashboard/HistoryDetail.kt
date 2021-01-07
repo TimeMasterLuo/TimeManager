@@ -1,6 +1,7 @@
 package com.example.timemanager.ui.dashboard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.timemanager.R
+import com.example.timemanager.ui.home.Home
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.clock.Clock
 import com.example.timemanager.utils.networkRequest.MySingleton
@@ -74,8 +76,10 @@ class HistoryDetail : AppCompatActivity() {
                             Request.Method.POST, url, param,
                             //成功获取返回时的callback
                             { response ->
-                                Log.e("response error", response.toString())
-                                ButtonBackward(context)
+                                Log.e("response success", response.toString())
+                                val intents= Intent()
+                                intents.setClass(this@HistoryDetail, Home::class.java)
+                                startActivity(intents)
                             },
                             //失败情况调用的callback
                             { error ->
