@@ -6,7 +6,7 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/awayphone_background1">
+    android:background="@drawable/awayphone_background">
 
     <Chronometer
         android:id="@+id/timecount"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         fancy:fb_borderColor="#FFFFFF"
         fancy:fb_borderWidth="1dp"
-        fancy:fb_defaultColor="#7ab800"
+        fancy:fb_defaultColor="#6a3ab7"
         fancy:fb_focusColor="#9bd823"
         fancy:fb_iconPaddingLeft="-5dp"
         fancy:fb_iconPaddingRight="-5dp"
