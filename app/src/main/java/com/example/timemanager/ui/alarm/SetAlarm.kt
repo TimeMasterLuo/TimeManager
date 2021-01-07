@@ -119,7 +119,7 @@ class SetAlarm : AppCompatActivity() {
             { error ->
                 // TODO: Handle error
                 println("AlarmManage.kt:126: fetch data error:$error")
-                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "获取好友信息失败，请检查网络连接或联系管理员", Toast.LENGTH_SHORT)
                     .show();
             }
         )
@@ -129,7 +129,7 @@ class SetAlarm : AppCompatActivity() {
     }
 
     private fun getFriendList(){
-        val url2 = "http://139.196.200.26:8080/getFriends"
+        val url2 = "http://59.78.38.19:8080/getFriends"
         //var param= mutableMapOf("username" to TimeManager.instance().username)
         var param= mutableMapOf("username" to "123456")
         val params = JSONObject(param as Map<*, *>)
@@ -156,7 +156,7 @@ class SetAlarm : AppCompatActivity() {
             { error ->
                 // TODO: Handle error
                 println("AlarmManage.kt:126: fetch data error:$error")
-                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "获取好友信息失败，请检查网络连接或联系管理员", Toast.LENGTH_SHORT)
                     .show();
             }
         )
@@ -179,9 +179,9 @@ class SetAlarm : AppCompatActivity() {
     }
     private fun alert_edit() {
         val et = EditText(this)
-        et.setSingleLine(true);
+        et.isSingleLine = true;
         et.setText(model.NOTE)
-        AlertDialog.Builder(this).setTitle("Note:")
+        AlertDialog.Builder(this).setTitle("备注:")
             .setView(et)
             .setPositiveButton("确定") { dialogInterface, i ->
                 model.NOTE = et.text.toString();
@@ -191,17 +191,19 @@ class SetAlarm : AppCompatActivity() {
     public enum class Task(val chnName:String){
         None("无"),
         Click("简单的点击"),
-        PUZZLE("PUZZLE"),
+        PUZZLE("数字华容道"),
         Compute("简单算数"),
+        //React("快速反应"),//TODO：修复bug
+        CustomizeCompute("自定义乘法")
         //PUZZLE2("2PUZZLE")
 //        Random("随机")
     }
     private fun alertTaskSelect(){
         val taskList = arrayOf<CharSequence>(
-            Task.None.chnName,Task.Click.chnName, Task.PUZZLE.chnName,Task.Compute.chnName);
+            Task.None.chnName,Task.Click.chnName, Task.PUZZLE.chnName,Task.Compute.chnName,Task.CustomizeCompute.chnName);
 
         var newSelected :String = "" ;
-        val daySelectDialog = AlertDialog.Builder(this).setTitle("Select Task")
+        val daySelectDialog = AlertDialog.Builder(this).setTitle("选择任务")
             .setSingleChoiceItems(taskList,0,
                 DialogInterface.OnClickListener {
                         dialog, which ->
@@ -213,6 +215,9 @@ class SetAlarm : AppCompatActivity() {
                     dialog, which ->
                 model.Task = if(newSelected.isNullOrBlank()) Task.None.chnName else newSelected;
                 task_text.text  = model.Task;
+                if(model.Task=="自定义乘法"){
+                    alert_xy_edit();
+                }
             })
             .setNegativeButton("取消",null);
         daySelectDialog.show();
@@ -266,7 +271,7 @@ class SetAlarm : AppCompatActivity() {
     private fun SaveClock(){
         model.ACTIVE = "1";
         model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
-        DbTool.saveOrUpdate(model);
+        if(model.TO==TimeManager.instance().username)DbTool.saveOrUpdate(model);
         println("saving model:"+model.ID);
         println("saving model task:"+model.Task);
         setAlarmClock();
@@ -309,7 +314,9 @@ class SetAlarm : AppCompatActivity() {
             "task" to model.Task,
             //"status" to model.Status
             "status" to "unfinished",
-            "accept_status" to accept_status
+            "accept_status" to accept_status,
+            "x" to model.x,
+            "y" to model.y
         )
         println(param.toString())
         val params = JSONObject(param as Map<*, *>)
@@ -323,71 +330,45 @@ class SetAlarm : AppCompatActivity() {
             { error ->
                 // TODO: Handle error
                 println("SetAlarm.kt:217:upload alarm error:$error")
-                Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "连接服务器失败，请检查网络连接或联系管理员", Toast.LENGTH_SHORT)
                     .show();
             }
         )
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-//    fun onCheckboxClicked(view: View) {
-//        if (view is CheckBox) {
-//            val checked: Boolean = view.isChecked
-//
-//            when (view.id) {
-//                R.id.checkBox2 -> {
-//                    if (checked)
-//                    {
-//                        //pump a message
-//                        val selectedItems = ArrayList<Int>() // Where we track the selected items
-//                         AlertDialog.Builder(this).apply {
-//                             setTitle("好友列表:")
-//                             setMultiChoiceItems(R.array.my_friends, null,
-//                                 DialogInterface.OnMultiChoiceClickListener { dialog, which, isChecked ->
-//                                     if (isChecked) {
-//                                         // If the user checked the item, add it to the selected items
-//                                         selectedItems.add(which)
-//                                     } else if (selectedItems.contains(which)) {
-//                                         // Else, if the item is already in the array, remove it
-//                                         selectedItems.remove(Integer.valueOf(which))
-//                                     }
-//                                 })
-//                                 // Set the action buttons
-//                             setPositiveButton("OK",
-//                                 DialogInterface.OnClickListener { dialog, id ->
-//                                     // User clicked OK, so save the selectedItems results somewhere
-//                                     // or return them to the component that opened the dialog
-//                                    })
-//                             setNegativeButton("CANCEL",
-//                                 DialogInterface.OnClickListener { dialog, id ->
-//                                 })
-//                            show()
-//                        }
-//                        //change some component visible
-//                        val friendName : TextView = findViewById(R.id.friend_name)
-//                        friendName.setVisibility(View.VISIBLE);
-//                        friendName.setText("小花")
-//                        val setPraise : TextView = findViewById(R.id.set_praise)
-//                        setPraise.setVisibility(View.VISIBLE);
-//                        set_praise2.setVisibility(View.VISIBLE);
-//                        val price : EditText = findViewById(R.id.price)
-//                        price.setVisibility(View.VISIBLE);
-//                        coins.setVisibility(View.VISIBLE);
-//                    }
-//                    else
-//                    {
-//                        //change some component invisible
-//                        val friendName : TextView = findViewById(R.id.friend_name)
-//                        friendName.setVisibility(View.GONE);
-//                        val setPraise : TextView = findViewById(R.id.set_praise)
-//                        setPraise.setVisibility(View.GONE);
-//                        val price : EditText = findViewById(R.id.price)
-//                        price.setVisibility(View.GONE);
-//                        set_praise2.setVisibility(View.GONE);
-//                        coins.setVisibility(View.GONE);
-//                    }
-//                }
-//            }
-//        }
-//    }
+
+    private fun alert_xy_edit() {
+        val x = EditText(this)
+       // val y = EditText(this)
+        x.isSingleLine = true;
+        //y.isSingleLine = true;
+        x.setText(model.x)
+        //y.setText(model.y)
+        AlertDialog.Builder(this).setTitle("请输入x:")
+            .setView(x)
+            //.setView(y)
+            .setPositiveButton("确定") { _, _ ->
+                model.x = x.text.toString();
+                print("select x:"+model.x)
+                alert_y_edit();
+                //model.y=y.text.toString();
+            }.setNegativeButton("取消", null).show()
+    }
+    private fun alert_y_edit() {
+        val y = EditText(this)
+        // val y = EditText(this)
+        y.isSingleLine = true;
+        //y.isSingleLine = true;
+        y.setText(model.y)
+        //y.setText(model.y)
+        AlertDialog.Builder(this).setTitle("请输入y:")
+            .setView(y)
+            //.setView(y)
+            .setPositiveButton("确定") { _, _ ->
+                model.y = y.text.toString();
+                print("select y:"+model.y)
+                //model.y=y.text.toString();
+            }.setNegativeButton("取消", null).show()
+    }
 
 }

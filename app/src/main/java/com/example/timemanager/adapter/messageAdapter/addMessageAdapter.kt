@@ -90,7 +90,7 @@ class addMessageAdapter(
                 //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
                 //Log.e("mytest??", response.toString())
                 if (response.getString("title") != "") {
-                    ToastUtils.make().show(response.getString("message"))
+                    //ToastUtils.make().show("")
                 } else {
                     ToastUtils.make().show("请求发送失败！");
                 }
