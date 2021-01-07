@@ -14,7 +14,7 @@ class TimeManager : Application() {
     var userLevel = "资深用户"
     var register_time = "2020-10-01"
     var intro = "这个人很懒，什么也没写。"
-    var uid = "5"
+    var uid = "9999"
     var email = "1481796592@qq.com"
     var friendlist= mutableSetOf<String>()
     var alarmCount = 0 //用于闹钟设置

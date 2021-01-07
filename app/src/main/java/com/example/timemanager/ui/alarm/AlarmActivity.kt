@@ -35,7 +35,7 @@ class AlarmActivity: AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.layout_alarm)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
-        text_title.text = "Finish the task!"
+        text_title.text = "任务闹钟"
         button_backward.visibility=View.INVISIBLE
         this.supportActionBar?.hide()
         initViews();
