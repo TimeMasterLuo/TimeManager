@@ -14,7 +14,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="Try to solve the puzzle"/>
+            android:text="完成数字华容道，才能停止响铃！"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_marginEnd="5dp"
                 android:backgroundTint="#673AB7"
                 android:textColor="#FFFFFF"
-                android:text="Restart"/>
+                android:text="重新开始"/>
         </LinearLayout>
 
         <RelativeLayout

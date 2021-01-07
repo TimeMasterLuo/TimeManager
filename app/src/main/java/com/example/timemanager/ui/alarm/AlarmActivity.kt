@@ -35,7 +35,7 @@ class AlarmActivity: AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE)
         setContentView(R.layout.layout_alarm)
         window.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.layout_title)
-        text_title.text = "Finish the task!"
+        text_title.text = "任务闹钟"
         button_backward.visibility=View.INVISIBLE
         this.supportActionBar?.hide()
         initViews();
@@ -52,11 +52,12 @@ class AlarmActivity: AppCompatActivity() {
         //task = intent.getStringExtra("TASK")
         doAsync {
             model = DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).
-            where("ID","=",id).findFirst();
+            where("RemoteID","=",id).findFirst();
+            //println("alarm activity :"+model.toString());
             uiThread {
                 if (model==null) return@uiThread
                 //stop_rt.visibility= View.VISIBLE;
-                if (model.ACTIVE == "1"){
+                if (true){
                     initMediaPlayer();
                     if(model.Task == "PUZZLE"){
                         showPuzzleFragment()
