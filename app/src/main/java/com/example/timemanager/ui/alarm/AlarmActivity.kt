@@ -52,11 +52,12 @@ class AlarmActivity: AppCompatActivity() {
         //task = intent.getStringExtra("TASK")
         doAsync {
             model = DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).
-            where("ID","=",id).findFirst();
+            where("RemoteID","=",id).findFirst();
+            //println("alarm activity :"+model.toString());
             uiThread {
                 if (model==null) return@uiThread
                 //stop_rt.visibility= View.VISIBLE;
-                if (model.ACTIVE == "1"){
+                if (true){
                     initMediaPlayer();
                     if(model.Task == "PUZZLE"){
                         showPuzzleFragment()
