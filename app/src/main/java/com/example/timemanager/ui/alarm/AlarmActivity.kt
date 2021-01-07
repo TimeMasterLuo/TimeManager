@@ -11,8 +11,10 @@ import androidx.fragment.app.FragmentManager
 import com.example.timemanager.R
 import com.example.timemanager.ui.task.click.ClickFragment
 import com.example.timemanager.ui.task.compute.ComputeFragment
+import com.example.timemanager.ui.task.customize.CustomizeFragment
 import com.example.timemanager.ui.task.none.NoneFragment
 import com.example.timemanager.ui.task.puzzle.PuzzleFragment
+import com.example.timemanager.ui.task.react.ReactFragment
 import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
@@ -24,7 +26,7 @@ import org.jetbrains.anko.uiThread
 
 class AlarmActivity: AppCompatActivity() {
     var  mMediaPlayer = MediaPlayer();
-    private var model = T_ALARM_CLOCK();
+    var model = T_ALARM_CLOCK();
     private var id :Int=0;
     private var task :String ="";
 
@@ -60,7 +62,7 @@ class AlarmActivity: AppCompatActivity() {
                 //stop_rt.visibility= View.VISIBLE;
                 if (true){
                     initMediaPlayer();
-                    if(model.Task == "PUZZLE"){
+                    if(model.Task == "PUZZLE"||model.Task=="数字华容道"){
                         showPuzzleFragment()
                     }else if(model.Task == "无"){
                         showNoneFragment()
@@ -68,7 +70,11 @@ class AlarmActivity: AppCompatActivity() {
                         showClickFragment()
                     } else if(model.Task == "简单算数"){
                         showComputeFragment()
-                    } else{
+                    } else if(model.Task == "快速反应"){
+                        showReactFragment()
+                    } else if(model.Task == "自定义乘法"){
+                        showCustomizeFragment()
+                    } else {
                         showNoneFragment()
                         println("task error")
                     };
@@ -142,6 +148,20 @@ class AlarmActivity: AppCompatActivity() {
     private fun showComputeFragment(){
         val transaction = fragmentManager.beginTransaction()
         val fragment = ComputeFragment()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    private fun showReactFragment(){
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = ReactFragment()
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    private fun showCustomizeFragment(){
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = CustomizeFragment()
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.addToBackStack(null)
         transaction.commit()

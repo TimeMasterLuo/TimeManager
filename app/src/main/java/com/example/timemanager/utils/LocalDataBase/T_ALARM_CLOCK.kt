@@ -28,7 +28,9 @@ data class T_ALARM_CLOCK(
                                 TimeManager.instance(),RingtoneManager.TYPE_RINGTONE).toString(),
     @Column(name = "UPDATE_TIME")var UPDATE_TIME:String="",
     @Column(name = "STATUS")var Status:String="unfinished",
-    @Column(name = "ACTIVE")var ACTIVE:String="1"
+    @Column(name = "ACTIVE")var ACTIVE:String="1",
+    @Column(name = "X")var x:String="",
+    @Column(name = "Y")var y:String=""
         ) : Parcelable{
 
 }
