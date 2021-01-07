@@ -45,7 +45,7 @@ class FriendProfile : AppCompatActivity() {
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
         // can be launched in a separate asynchronous job
-        val url2 = "http://139.196.200.26:8080/getuser"
+        val url2 = "http://59.78.38.19:8080/getuser"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
         val params = JSONObject("""{"username":${msg}}""")
         //发送请求
