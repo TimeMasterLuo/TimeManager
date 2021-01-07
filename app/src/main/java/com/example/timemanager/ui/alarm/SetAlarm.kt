@@ -224,24 +224,25 @@ class SetAlarm : AppCompatActivity() {
     }
     private fun alertToSelect(){//TODO:添加ToId
         //getFriendList();
-        val list=friendList.contentToString();
-        println("FriendList:$list");
-        var newSelected :String = "" ;
-        val toSelectDialog = AlertDialog.Builder(this).setTitle("选择设置闹钟的对象")
-            .setSingleChoiceItems(friendList,0,
-                DialogInterface.OnClickListener {
-                        dialog, which ->
-                    newSelected= friendList[which] as String;
-                    println("selected friend:"+newSelected)
+        if(TimeManager.instance().login_flag) {
+            val list = friendList.contentToString();
+            println("FriendList:$list");
+            var newSelected: String = "";
+            val toSelectDialog = AlertDialog.Builder(this).setTitle("选择设置闹钟的对象")
+                .setSingleChoiceItems(friendList, 0,
+                    DialogInterface.OnClickListener { dialog, which ->
+                        newSelected = friendList[which] as String;
+                        println("selected friend:" + newSelected)
+                    })
+                .setPositiveButton("好", DialogInterface.OnClickListener { dialog, which ->
+                    model.TO =
+                        if (newSelected.isNullOrBlank()) TimeManager.instance().username else newSelected;
+                    model.ToID = getFriendId(model.TO);
+                    to_text.text = model.TO;
                 })
-            .setPositiveButton("好", DialogInterface.OnClickListener {
-                    dialog, which ->
-                model.TO = if(newSelected.isNullOrBlank()) TimeManager.instance().username else newSelected;
-                model.ToID=getFriendId(model.TO);
-                to_text.text  = model.TO;
-            })
-            .setNegativeButton("取消",null);
-        toSelectDialog.show();
+                .setNegativeButton("取消", null);
+            toSelectDialog.show();
+        }
     }
     private fun setAlarmClock(){
         if(model.TO.equals(TimeManager.instance().username)) {

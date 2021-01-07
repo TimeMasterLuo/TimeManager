@@ -17,6 +17,9 @@ import com.example.timemanager.ui.home.Home
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.title.ButtonBackward
+import com.example.timemanager.utils.LocalDataBase.DbTool
+import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
+import com.example.timemanager.utils.tools.AlarmTools
 import kotlinx.android.synthetic.main.layout_title.*
 
 class Login : AppCompatActivity() {
@@ -68,6 +71,13 @@ class Login : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
 
+                var localalarm = DbTool.findAll(T_ALARM_CLOCK::class.java);
+                localalarm?.forEach{
+                        item->
+                    //println("delete item:"+item.toString());
+                    DbTool.delete(item)
+                    AlarmTools.cancelAlarm(this,item)
+                }
                 //Complete and destroy login activity once successful
                 finish()
                 val intent = Intent(this, Home::class.java).apply {

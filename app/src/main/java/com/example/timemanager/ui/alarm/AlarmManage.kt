@@ -61,6 +61,9 @@ class AlarmManage : AppCompatActivity(){
 
         recyclerView.layoutManager = LinearLayoutManager(this);
         //loadData();
+//        if(!TimeManager.instance().login_flag){
+//            clearData()
+//        }
     }
 
     override fun onResume() {
@@ -189,7 +192,7 @@ class AlarmManage : AppCompatActivity(){
         dialog = indeterminateProgressDialog("正在加载数据");
 
         doAsync {
-            fetchData();
+            if(TimeManager.instance().login_flag)fetchData();
             clockList.clear();
             clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
                 .orderBy("UPDATE_TIME",true).findAll())
