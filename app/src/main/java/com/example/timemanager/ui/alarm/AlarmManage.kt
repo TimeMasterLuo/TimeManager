@@ -22,8 +22,10 @@ import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_ALARM_CLOCK
 import com.example.timemanager.utils.networkRequest.MySingleton
+import com.example.timemanager.utils.tools.AlarmTools
 import com.example.timemanager.utils.tools.JsonTools
 import kotlinx.android.synthetic.main.activity_alarm_manage.*
+import kotlinx.android.synthetic.main.activity_set_alarm.*
 import kotlinx.android.synthetic.main.layout_title.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -121,14 +123,20 @@ class AlarmManage : AppCompatActivity(){
         val url2 = "http://59.78.38.19:8080/getAllClock"
         var param= mutableMapOf("toid" to TimeManager.instance().uid)
         val params = JSONObject(param as Map<*, *>)
-
+        val toid=TimeManager.instance().uid;
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             { response ->
-                println("fetch data response:$response")
+                println("fetch uid:$toid response:$response")
                 var alarmArray = response.get("data").toString();
                 var alarmList= JsonTools.parserJsonArrToMapList(alarmArray);
                 println("alarmList:$alarmList");
+                var localalarm =DbTool.findAll(T_ALARM_CLOCK::class.java);
+                localalarm?.forEach{
+                    item->
+                    println("delete item:"+item.toString());
+                    DbTool.delete(item)
+                }
                 alarmList?.forEach { item->
                     var model=DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).where("RemoteID","=",item["id"].toString().toInt()).findFirst();
                     println("find model:$model")
@@ -151,6 +159,7 @@ class AlarmManage : AppCompatActivity(){
                     //df.timeZone = TimeZone.getTimeZone("GMT+8:00");
                     model.TIME= df.format(sdf.parse(item["recordTime"] as String)).toString()
                     DbTool.saveOrUpdate(model);
+                    //if(model.ACTIVE == "1"){AlarmTools.setAlarm(this,model)}
                 }
             },
             { error ->
