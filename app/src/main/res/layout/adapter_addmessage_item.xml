@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addFriendMessage"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="5dp">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.example.timemanager.components.CircleImageView
+                android:id="@+id/addAvatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:scaleType="centerInside"
+                app:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/avatar2" />
+
+            <TextView
+                android:id="@+id/addUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户id"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_column="1"
+                app:layout_gravity="center_vertical"
+                app:layout_row="0" />
+
+            <TextView
+                android:id="@+id/addIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人简介:测试UI"
+                app:layout_column="1"
+                app:layout_gravity="bottom|left"
+                app:layout_row="0" />
+
+            <LinearLayout
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_gravity="center_vertical|end">
+
+                <ImageButton
+                    android:id="@+id/addReject"
+                    android:layout_width="65dp"
+                    android:layout_height="55dp"
+                    android:backgroundTint="#FF5722"
+                    android:src="@drawable/ic_baseline_close_24"
+                    android:tint="#FFFFFF"
+                    app:layout_gravity="center_vertical"
+                    tools:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/addAgree"
+                    android:layout_width="65dp"
+                    android:layout_height="55dp"
+                    android:backgroundTint="#4CAF50"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:layout_gravity="center_vertical|end"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/addResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingEnd="8dp"
+                    android:text="已同意"
+                    android:textSize="18sp"
+                    tools:visibility="gone" />
+            </LinearLayout>
+
+        </androidx.gridlayout.widget.GridLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/taskClockMessage"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="5dp">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.example.timemanager.components.CircleImageView
+                android:id="@+id/clockAvatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:scaleType="centerInside"
+                app:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/awayphone_resulticon1" />
+
+            <TextView
+                android:id="@+id/clockUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Youyu"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_column="1"
+                app:layout_gravity="center_vertical"
+                app:layout_row="0" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From"
+                app:layout_column="1"
+                app:layout_gravity="top|left"
+                app:layout_row="0" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_gravity="right|center_vertical">
+
+                <ImageButton
+                    android:id="@+id/alarm_detail_entry"
+                    android:layout_width="65dp"
+                    android:layout_height="55dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:src="@drawable/ic_baseline_event_note_24"
+                    app:layout_gravity="center_vertical|end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="196dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_column="2"
+                app:layout_gravity="left"
+                app:layout_row="0">
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="留言:" />
+
+                <TextView
+                    android:id="@+id/clockIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="”这是一条留言“" />
+            </LinearLayout>
+
+        </androidx.gridlayout.widget.GridLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

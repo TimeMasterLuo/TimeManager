@@ -30,9 +30,9 @@ class AlarmTools {
 //                calendar.set(Calendar.SECOND,0);
                 var intent = Intent(context, AlramReceiver::class.java);
                 intent.action = TimeManager.instance().packageName;
-                intent.putExtra("ID",model.ID);
+                intent.putExtra("ID",model.RemoteID);
                 //intent.putExtra("TASK",model.Task);
-            println("set alarm:"+model.ID);
+            println("set alarm:"+model.RemoteID);
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:SS") //注意月份是MM
 
             val date: Date = simpleDateFormat.parse(model.TIMESTAMP)
@@ -44,15 +44,15 @@ class AlarmTools {
 //                calendar.set(Calendar.HOUR_OF_DAY, timeToAlarm.hours);
 //                calendar.set(Calendar.MINUTE,timeToAlarm.minutes);
 //                calendar.set(Calendar.SECOND,0);
-                var pi = PendingIntent.getBroadcast(context,model.ID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                var pi = PendingIntent.getBroadcast(context,model.RemoteID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(AlarmManager.RTC_WAKEUP,date.time,pi);
         }
 
         fun cancelAlarm(context :Context , model: T_ALARM_CLOCK){
                 var intent = Intent(context, AlramReceiver::class.java);
                 intent.action = TimeManager.instance().packageName;
-                intent.putExtra("ID",model.ID);
-                var pi = PendingIntent.getBroadcast(context,model.ID,intent,PendingIntent.FLAG_NO_CREATE);
+                intent.putExtra("ID",model.RemoteID);
+                var pi = PendingIntent.getBroadcast(context,model.RemoteID,intent,PendingIntent.FLAG_NO_CREATE);
                 if(pi !=null){
                     alarmManager.cancel(pi)
                 }

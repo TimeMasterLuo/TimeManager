@@ -1,8 +1,10 @@
 package com.example.timemanager
 
 import android.widget.Button
+import android.widget.EditText
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -38,10 +40,22 @@ class DashboardTest {
         onView(withId(R.id.coins)).check(matches(withText("26金币")))
     }
     @Test
-    fun selfClockTest() {
+    fun loginTest() {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).perform(click())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 15.45"))))).check(doesNotExist())
+        onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
+        onView(withId(R.id.navigation_proflie)).perform(click())
+        onView(withId(R.id.login_button)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
+        onView(withId(R.id.username)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("shaw111"))
+        onView(withId(R.id.password)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("123456"))
+        onView(withId(R.id.login)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
+    }
+    @Test
+    fun clockTest(){
+        onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
+        onView(withId(R.id.navigation_dashboard)).perform(click())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 15:45"))))).perform(click())
         onView(withId(R.id.typeText)).check(matches(withText("自设闹钟")))
         onView(withId(R.id.coins)).check(matches(withText("10金币")))
     }
@@ -49,6 +63,7 @@ class DashboardTest {
     fun analyzeTest() {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
+
         onView(withId(R.id.analyze_button)).check(matches(isAssignableFrom(FloatingActionButton::class.java))).perform(click())
 
         onView(withId(R.id.aa_chart_view)).check(matches(isAssignableFrom(AAChartView::class.java))).check(matches(not(isDisplayed())))
@@ -90,6 +105,7 @@ class DashboardTest {
     fun dashboardTest(){
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
+
         onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(matches(isAssignableFrom(Button::class.java)))
         onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(matches(isAssignableFrom(Button::class.java)))
 
