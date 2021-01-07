@@ -1,5 +1,6 @@
 package com.example.timemanager.ui.login
 
+import android.R.attr
 import android.app.Application
 import android.content.Context
 import android.util.Patterns
@@ -14,6 +15,8 @@ import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.networkRequest.MySingleton
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.regex.Pattern
+
 
 class LoginViewModel: ViewModel() {
 
@@ -83,11 +86,11 @@ class LoginViewModel: ViewModel() {
     }
 
 
-    fun register(application: Application, context: Context, username: String, password: String) {
+    fun register(application: Application, context: Context, username: String, password: String, phone: String) {
         // can be launched in a separate asynchronous job
         val url2 = "http://59.78.38.19:8080/signin"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":${username}, "password":${password}}""")
+        val params = JSONObject("""{"username":${username}, "password":${password},"phone":${phone}}""")
         //Toast.makeText(context, params.toString(), Toast.LENGTH_SHORT).show();
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
@@ -98,13 +101,35 @@ class LoginViewModel: ViewModel() {
                 if (response.get("id") != 0) {
                     _loginResult.value =
                         LoginResult(success = LoggedInUserView(displayName = username))
-                    //设置全局数据，记入登录状态
-                    val globalData: TimeManager = application as TimeManager
-                    globalData.login_flag = true
-                    globalData.username = response.get("name").toString()
-                    globalData.uid = response.get("id").toString()
-                    globalData.email = response.get("email") as String
-                    globalData.intro = response.get("intro") as String
+
+                    try {
+                        val jsonObject = JSONObject(response.toString())
+
+                        //设置全局数据，记入登录状态
+                        /**
+                         * 为什么要使用jsonObject.optString， 不使用jsonObject.getString
+                         * 因为jsonObject.optString获取null不会报错
+                         */
+                        val globalData: TimeManager = application as TimeManager
+                        globalData.login_flag = true
+                        globalData.username = jsonObject.optString("name", null)
+                        globalData.uid = jsonObject.optString("id", null)
+                        globalData.email = jsonObject.optString("email", null)
+                        globalData.intro = jsonObject.optString("intro", null)
+                        globalData.gender = jsonObject.optString("gender", null)
+                        globalData.userLevel = jsonObject.optString("level", null)
+
+                        val jsonArray: JSONArray = jsonObject.getJSONArray("friends")
+
+
+                        for (i in 0 until jsonArray.length()) {
+                            globalData.friendlist.add(jsonArray.getString(i))
+                        }
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
                 } else {
                     _loginResult.value = LoginResult(error = R.string.register_failed)
                 }
@@ -132,6 +157,30 @@ class LoginViewModel: ViewModel() {
         }
     }
 
+    fun registerDataChanged(username: String, password: String, phone:String) {
+        if (!isPhoneValid(phone)) {
+            _loginForm.value = LoginFormState(phoneError = R.string.invalid_phone)
+        }
+        else if (!isUserNameValid(username)) {
+            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
+        }
+        else if (!isPasswordValid(password)) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+        }
+        else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
+    fun editDataChanged(email: String) {
+        if (!isEmailValid(email)) {
+            _loginForm.value = LoginFormState(emailError = R.string.invalid_email)
+        }
+        else {
+            _loginForm.value = LoginFormState(isDataValid = true)
+        }
+    }
+
     // A placeholder username validation check
     private fun isUserNameValid(username: String): Boolean {
         return if (username.contains('@')) {
@@ -143,9 +192,28 @@ class LoginViewModel: ViewModel() {
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        var mainRegex = "^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]{8,18}\$"
+        var p = Pattern.compile(mainRegex)
+        val m = p.matcher(password)
+        return m.matches()
     }
 
+    // A placeholder password validation check
+    private fun isPhoneValid(phone: String): Boolean {
+        var mainRegex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,1,2,3,5-9])|(177))\\d{8}$"
+        var p = Pattern.compile(mainRegex)
+        val m = p.matcher(phone)
+        return m.matches()
+    }
+
+    // A placeholder username validation check
+    private fun isEmailValid(email: String): Boolean {
+        return if (email.contains('@')) {
+            Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        } else {
+            false
+        }
+    }
     // switch password visibility
 
 }
