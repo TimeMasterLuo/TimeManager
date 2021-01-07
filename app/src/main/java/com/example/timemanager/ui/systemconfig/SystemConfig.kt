@@ -36,4 +36,10 @@ class SystemConfig : AppCompatActivity() {
         }
         startActivity(intent)
     }
+    fun resetPassword(view: View){
+        //设置全局数据，记入登录状态
+        val intent = Intent(this, ResetPassword::class.java).apply {
+        }
+        startActivity(intent)
+    }
 }
