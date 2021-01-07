@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/test"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.profile.EditData"></activity>
+        <activity android:name=".ui.systemconfig.ResetPassword"
+            android:parentActivityName=".ui.systemconfig.SystemConfig" />
+        <activity android:name=".ui.profile.EditData" />
         <activity android:name=".StudyEamples.SendHttpRequestExample" />
         <activity
             android:name=".ui.systemconfig.SystemConfig"

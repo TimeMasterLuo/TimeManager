@@ -130,7 +130,6 @@
                     android:drawableStart="@drawable/ic_baseline_edit3_24"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
                     android:drawingCacheQuality="auto"
-                    android:onClick="editIntroOnclick"
                     android:paddingLeft="20dp"
                     android:text="intro"
                     android:textAlignment="textStart"

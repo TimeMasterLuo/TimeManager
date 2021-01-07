@@ -77,7 +77,7 @@ class EditData : AppCompatActivity() {
         val textContent2 = new_intro.text.toString()
         val url2 = "http://59.78.38.19:8080/editIntro"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
-        val params = JSONObject("""{"username":${globalData.username},"email":${textContent},"new_intro":${textContent2},"sex":${sex}}""")
+        val params = JSONObject("""{"username":${globalData.username},"email":${textContent},"intro":${textContent2},"sex":${sex}}""")
         //Toast.makeText(this, params.toString(), Toast.LENGTH_SHORT).show();
         //发送请求
         val jsonObjectRequest = JsonObjectRequest(
