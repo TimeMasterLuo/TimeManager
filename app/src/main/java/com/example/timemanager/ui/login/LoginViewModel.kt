@@ -77,7 +77,7 @@ class LoginViewModel: ViewModel() {
             //失败情况调用的callback
             { error ->
                 // TODO: Handle error
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "服务器连接失败，请稍后重试", Toast.LENGTH_SHORT).show();
                 _loginResult.value = LoginResult(error = R.string.login_failed)
             }
         )
@@ -137,7 +137,7 @@ class LoginViewModel: ViewModel() {
             //失败情况调用的callback
             { error ->
                 // TODO: Handle error
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "服务器连接失败，请稍后重试", Toast.LENGTH_SHORT).show();
                 _loginResult.value = LoginResult(error = R.string.register_failed)
             }
         )
@@ -149,9 +149,9 @@ class LoginViewModel: ViewModel() {
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         }
-//        else if (!isPasswordValid(password)) {
-//            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-//        }
+        else if (!password.isNotBlank()) {
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password1)
+        }
         else {
             _loginForm.value = LoginFormState(isDataValid = true)
         }
