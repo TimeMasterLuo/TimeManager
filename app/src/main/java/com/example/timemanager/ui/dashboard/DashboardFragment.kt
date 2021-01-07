@@ -43,7 +43,7 @@ class DashboardFragment : Fragment() {
              root = inflater.inflate(R.layout.fragment_dashboard, container, false)
             var user: Int = (activity!!.application as TimeManager).uid.toInt()
             val param = JSONObject()
-            param.put("id", 5)
+            param.put("id", user)
             val url = "http://59.78.38.19:8080/getAllRecord"
             var listview = root.findViewById<ListView>(R.id.Clock_list)
             clocks = arrayListOf()
@@ -140,6 +140,7 @@ class DashboardFragment : Fragment() {
                 val bundle=Bundle()
                 bundle.putSerializable("clocks", clocks as ArrayList<Clock>)
                 intent.putExtras(bundle)
+                Log.e("1","put success")
                 startActivity(intent)
             }
             val tabLayout: TabLayout = root.findViewById(R.id.tab_layout)
