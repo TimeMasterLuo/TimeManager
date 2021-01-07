@@ -13,6 +13,7 @@ import android.view.Window
 import android.widget.Toast
 import com.blankj.utilcode.util.TimeUtils
 import com.example.timemanager.R
+import com.example.timemanager.application.TimeManager
 import com.example.timemanager.ui.title.ButtonBackward
 import com.example.timemanager.utils.LocalDataBase.DbTool
 import com.example.timemanager.utils.LocalDataBase.T_AWAY_PHONE
@@ -126,14 +127,19 @@ class AwayPhone : AppCompatActivity() {
 
     private fun getLocalAwayPhoneTime(list: List<T_AWAY_PHONE>) : Int{
         var time = 0F
+        var globalData = application as TimeManager
         for(awayPhoneHistory in list){
             if(TimeUtils.isToday(awayPhoneHistory.ENDDATE)){
-                time = time + awayPhoneHistory.TIME.toFloat()
+                if(awayPhoneHistory.USERNAME.equals(globalData.username) && globalData.login_flag)
+                {
+                    time = time + awayPhoneHistory.TIME.toFloat()
+                }
             }
             else{
                 DbTool.delete(awayPhoneHistory)
             }
         }
+        time = time / 60.0F
         return time.roundToInt()
     }
 

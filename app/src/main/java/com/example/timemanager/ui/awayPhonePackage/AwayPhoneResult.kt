@@ -71,7 +71,7 @@ class AwayPhoneResult : AppCompatActivity() {
 
         addAwayPhoneHistoryinServer()
         //Log.e("test", TimeUtils.string2Date(getstartDate).toString())
-        //addAwayPhoneHistoryinLocal(getId())
+        addAwayPhoneHistoryinLocal(getId())
     }
 
     fun close(view: View?) {
