@@ -14,9 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.blankj.utilcode.util.ToastUtils
 import com.example.timemanager.R
 import com.example.timemanager.adapter.MyBaseAdapter
-import com.example.timemanager.application.TimeManager
 import com.example.timemanager.utils.networkRequest.MySingleton
-import kotlinx.android.synthetic.main.activity_message_view.*
 import org.json.JSONObject
 
 class addMessageAdapter(
