@@ -139,7 +139,7 @@ class AwayPhoneResult : AppCompatActivity() {
     }
 
     private fun testHttp(){
-        val url2 = "http://47.112.132.142:8088/loginmessage"
+        val url2 = "http://59.78.38.19:8080/loginmessage"
         //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
         val data = JSONObject()
         data.put("username","Youyu")

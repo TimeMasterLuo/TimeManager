@@ -55,7 +55,7 @@ class DashboardTest {
     fun clockTest(){
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 15:45"))))).perform(click())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).perform(click())
         onView(withId(R.id.typeText)).check(matches(withText("自设闹钟")))
         onView(withId(R.id.coins)).check(matches(withText("10金币")))
     }

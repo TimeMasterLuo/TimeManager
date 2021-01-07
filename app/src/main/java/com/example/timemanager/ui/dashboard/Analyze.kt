@@ -128,31 +128,33 @@ class Analyze : AppCompatActivity() {
                 }
             }
             if(clocks[i].kind=="远离手机"){
+                Log.e("num",i.toString())
                 if(clocks[i].type=="普通模式"){
                     totalCommon+=clocks[i].last_time.toFloat()
                     if(thisYear){
                         yearTotalCommon+=clocks[i].last_time.toFloat()
-                        yearCommonTime[tmptime.get(Calendar.MONTH) - 1]+=clocks[i].last_time.toFloat()
+                        yearCommonTime[tmptime.get(Calendar.MONTH)]+=clocks[i].last_time.toFloat()
                         if(thisMonth){
                            monthTotalCommon+=clocks[i].last_time.toFloat()
                             monthCommonTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
                             if(thisWeek){
                                 weekTotalCommon+=clocks[i].last_time.toFloat()
-                                weekCommonTime[((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
+                                weekCommonTime[7+((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
                             }
                         }
                     }
                 }else{
+                    Log.e("num",i.toString()+"1")
                     totalDeep+=clocks[i].last_time.toFloat()
                     if(thisYear){
                         yearTotalDeep+=clocks[i].last_time.toFloat()
-                        yearDeepTime[tmptime.get(Calendar.MONTH) - 1]+=clocks[i].last_time.toFloat()
+                        yearDeepTime[tmptime.get(Calendar.MONTH)]+=clocks[i].last_time.toFloat()
                         if(thisMonth){
                             monthTotalDeep+=clocks[i].last_time.toFloat()
                             monthDeepTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
                             if(thisWeek){
                                 weekTotalDeep+=clocks[i].last_time.toFloat()
-                                weekDeepTime[((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
+                                weekDeepTime[7+((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
                             }
                         }
                     }
