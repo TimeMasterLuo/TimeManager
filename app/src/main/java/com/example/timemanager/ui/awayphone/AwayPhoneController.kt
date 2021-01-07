@@ -18,7 +18,6 @@ import com.example.timemanager.ui.title.ButtonBackward
 import kotlinx.android.synthetic.main.activity_away_phone_timer.*
 import kotlinx.android.synthetic.main.layout_title.*
 
-
 class AwayPhoneController : AppCompatActivity() {
     private var isRunning: Boolean = false
     private var model: String? = "normal"

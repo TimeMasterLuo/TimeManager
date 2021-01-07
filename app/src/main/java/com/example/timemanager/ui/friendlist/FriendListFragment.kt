@@ -2,6 +2,7 @@ package com.example.timemanager.ui.friendlist
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +10,19 @@ import android.widget.*
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.blankj.utilcode.util.ToastUtils
 
 import com.example.timemanager.R
 import com.example.timemanager.application.TimeManager
 import com.example.timemanager.adapter.FriendListAdapter.ListItem
 import com.example.timemanager.adapter.FriendListAdapter.MyAdapter
 import com.example.timemanager.ui.systemconfig.SystemConfig
+import com.example.timemanager.utils.networkRequest.MySingleton
 import com.getbase.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_send_http_request_example.view.*
+import org.json.JSONObject
 
 
 class FriendListFragment : Fragment() {
@@ -65,6 +71,7 @@ class FriendListFragment : Fragment() {
             //渲染fragment_friendlist_unauthorized并绑定监听
             //TODO("绑定未登录状态下展示UI的监听")
         }
+        updateFriendlist()
         return root
     }
 
@@ -77,4 +84,42 @@ class FriendListFragment : Fragment() {
             }
         }
     }
+
+    private fun updateFriendlist()
+    {
+        val globalData: TimeManager = this.activity?.application as TimeManager
+        val url = "http://59.78.38.19:8080/getFriends"
+        //定义发送的json数据，JSONObject初始化的其他方式还需自行探索
+        //val params = JSONArray("""[{"Username":${globalData.username}}]""")
+        val params = JSONObject("""{"username":${globalData.username}}""")
+        //发送请求
+
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url, params,
+            //成功获取返回时的callback
+            { response ->
+                if(response.getJSONArray("friend_names").length() == 0) return@JsonObjectRequest
+                else {
+                    globalData.friendlist.clear()
+                    for(i in 0 until response.getJSONArray("friend_names").length())
+                    {
+                        globalData.friendlist.add(response.getJSONArray("friend_names").getString(i))
+                    }
+
+                }
+            },
+            //失败情况调用的callback
+            { error ->
+                // TODO: Handle error
+                Log.e("request", params.toString())
+                Log.e("myerror", error.toString())
+                ToastUtils.make().show("请求发送失败，请检查网络是否异常！");
+            }
+        )
+        // 下面这行意思是将你的request加入到android维护的一个线程队列中，这个队列会依据其自带逻辑处理你的request
+        this.activity?.let { MySingleton.getInstance(it).addToRequestQueue(jsonObjectRequest) }
+    }
+
+
 }
