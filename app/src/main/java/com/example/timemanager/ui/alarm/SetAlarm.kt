@@ -131,7 +131,7 @@ class SetAlarm : AppCompatActivity() {
     private fun getFriendList(){
         val url2 = "http://59.78.38.19:8080/getFriends"
         //var param= mutableMapOf("username" to TimeManager.instance().username)
-        var param= mutableMapOf("username" to "123456")
+        var param= mutableMapOf("username" to TimeManager.instance().username)
         val params = JSONObject(param as Map<*, *>)
         friendList= arrayOf();
         val jsonObjectRequest = JsonObjectRequest(
@@ -223,7 +223,7 @@ class SetAlarm : AppCompatActivity() {
         daySelectDialog.show();
     }
     private fun alertToSelect(){//TODO:添加ToId
-        //getFriendList();
+        getFriendList();
         if(TimeManager.instance().login_flag) {
             val list = friendList.contentToString();
             println("FriendList:$list");
@@ -245,10 +245,9 @@ class SetAlarm : AppCompatActivity() {
         }
     }
     private fun setAlarmClock(){
-        if(model.TO.equals(TimeManager.instance().username)) {
-            AlarmTools.setAlarm(this, model);
-        }
         UploadAlarm();
+
+
         
     }
     private fun doPickPingtone(){
@@ -270,12 +269,13 @@ class SetAlarm : AppCompatActivity() {
     }
 
     private fun SaveClock(){
-        model.ACTIVE = "1";
+        //model.ACTIVE = "1";
         model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
-        if(model.TO==TimeManager.instance().username)DbTool.saveOrUpdate(model);
-        println("saving model:"+model.ID);
-        println("saving model task:"+model.Task);
         setAlarmClock();
+
+        println("saving model:"+model.RemoteID);
+        println("saving model task:"+model.Task);
+
         finish();
     }
     private fun deleteClock(){
@@ -327,6 +327,12 @@ class SetAlarm : AppCompatActivity() {
             { response ->
                 println("fetch data response:$response")
                 model.RemoteID= response.get("message").toString().toInt()
+                model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
+                if(model.TO==TimeManager.instance().username)DbTool.saveOrUpdate(model);
+                println("set alarm:"+model.toString())
+                if(model.TO.equals(TimeManager.instance().username)) {
+                    AlarmTools.setAlarm(this, model);
+                }
             },
             { error ->
                 // TODO: Handle error
@@ -335,6 +341,14 @@ class SetAlarm : AppCompatActivity() {
                     .show();
                 if(!TimeManager.instance().login_flag)Toast.makeText(applicationContext, "推荐登录/注册后使用哦", Toast.LENGTH_SHORT)
                     .show();
+                model.RemoteID= model.ID
+                model.UPDATE_TIME = SimpleDateFormat("yyyy-MM-dd HH:mm:ss" ).format(Date());
+                model.ACTIVE = "1";
+                if(model.TO==TimeManager.instance().username)DbTool.saveOrUpdate(model);
+                if(model.TO.equals(TimeManager.instance().username)) {
+                    AlarmTools.setAlarm(this, model);
+
+                }
             }
         )
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
