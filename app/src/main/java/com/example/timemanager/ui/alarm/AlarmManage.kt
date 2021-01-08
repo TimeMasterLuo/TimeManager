@@ -204,7 +204,7 @@ class AlarmManage : AppCompatActivity(){
 
 
             clockList.clear();
-            clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java)
+            clockList.addAll(DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).where("TO","=",TimeManager.instance().username)
                 .orderBy("TIMESTAMP",true).findAll())
 
                 if(recyclerView.adapter == null)

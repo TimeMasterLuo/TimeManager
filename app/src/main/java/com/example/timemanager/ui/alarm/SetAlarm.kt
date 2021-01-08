@@ -108,7 +108,7 @@ class SetAlarm : AppCompatActivity() {
         var param= mutableMapOf("username" to username)
         val params = JSONObject(param as Map<*, *>)
         var friendId=-1
-        friendList= arrayOf();
+        //friendList= arrayOf();
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             { response ->
@@ -133,13 +133,15 @@ class SetAlarm : AppCompatActivity() {
         //var param= mutableMapOf("username" to TimeManager.instance().username)
         var param= mutableMapOf("username" to TimeManager.instance().username)
         val params = JSONObject(param as Map<*, *>)
-        friendList= arrayOf();
+
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             { response ->
                 println("fetch data response:$response")
                 var array=response.get("friend_names") as JSONArray;
                 array.put(TimeManager.instance().username);
+                //var tmpList=arrayOf():arr;
+                friendList= arrayOf();
                 //var gson=GsonBuilder().create()
                 //var list=gson.fromJson(array.toString(),String::class.java)
                 val i=0;
