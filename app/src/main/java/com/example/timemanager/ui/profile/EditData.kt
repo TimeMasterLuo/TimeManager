@@ -93,11 +93,11 @@ class EditData : AppCompatActivity() {
                     //Complete and destroy commit activity once successful
                     setResult(RESULT_OK)
                     finish()
-                    val intent = Intent(this, Home::class.java).apply {
-                        //清空之前堆叠的栈
-                        setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    startActivity(intent)
+//                    val intent = Intent(this, Profile::class.java).apply {
+//                        //清空之前堆叠的栈
+//                        //setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    }
+//                    startActivity(intent)
                 } else {
                     // TODO: 2020/11/17 fail
                     Toast.makeText(this, "修改失败，请稍后重试。", Toast.LENGTH_SHORT).show();
