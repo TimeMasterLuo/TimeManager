@@ -35,9 +35,9 @@ class DashboardTest {
     fun commonRecordTest() {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).perform(click())
-        onView(withId(R.id.typeText)).check(matches(withText("普通模式")))
-        onView(withId(R.id.coins)).check(matches(withText("26金币")))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).perform(click())
+        onView(withId(R.id.typeText)).check(matches(withText("专注模式")))
+        onView(withId(R.id.coins)).check(matches(withText("8金币")))
     }
     @Test
     fun loginTest() {
@@ -47,7 +47,7 @@ class DashboardTest {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_proflie)).perform(click())
         onView(withId(R.id.login_button)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
-        onView(withId(R.id.username)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("shaw"))
+        onView(withId(R.id.username)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("shaw111"))
         onView(withId(R.id.password)).check(matches(isAssignableFrom(EditText::class.java))).perform(typeText("123"))
         onView(withId(R.id.login)).check(matches(isAssignableFrom(Button::class.java))).perform(click())
     }
@@ -55,7 +55,7 @@ class DashboardTest {
     fun clockTest(){
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).perform(click())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).perform(click())
         onView(withId(R.id.typeText)).check(matches(withText("自设闹钟")))
         onView(withId(R.id.coins)).check(matches(withText("10金币")))
     }
@@ -106,23 +106,23 @@ class DashboardTest {
         onView(withId(R.id.nav_view)).check(matches(isAssignableFrom(BottomNavigationView::class.java)))
         onView(withId(R.id.navigation_dashboard)).perform(click())
 
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(matches(isAssignableFrom(Button::class.java)))
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).check(matches(isAssignableFrom(Button::class.java)))
 
         onView(withText("自设闹钟")).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(matches(isAssignableFrom(Button::class.java)))
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(doesNotExist())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).check(doesNotExist())
 
         onView(withText("远离手机")).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(matches(isAssignableFrom(Button::class.java)))
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(doesNotExist())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).check(doesNotExist())
 
         onView(withText("好友闹钟")).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(doesNotExist())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(doesNotExist())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).check(doesNotExist())
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).check(doesNotExist())
 
         onView(withText("全部")).perform(click())
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:19"))))).check(matches(isAssignableFrom(Button::class.java)))
-        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2020-11-17 16:16"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-07 15:29"))))).check(matches(isAssignableFrom(Button::class.java)))
+        onView(allOf(withText("查看详情 >"), hasSibling(withChild(withText("2021-01-08 00:24"))))).check(matches(isAssignableFrom(Button::class.java)))
     }
 }
