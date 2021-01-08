@@ -225,7 +225,7 @@ class SetAlarm : AppCompatActivity() {
         daySelectDialog.show();
     }
     private fun alertToSelect(){//TODO:添加ToId
-        getFriendList();
+        //getFriendList();
         if(TimeManager.instance().login_flag) {
             val list = friendList.contentToString();
             println("FriendList:$list");
