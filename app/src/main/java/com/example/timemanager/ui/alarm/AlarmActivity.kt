@@ -52,6 +52,7 @@ class AlarmActivity: AppCompatActivity() {
 
     private fun initViews(){
         id = intent.getIntExtra("ID",0)
+        println("awake alarm id"+id);
         //task = intent.getStringExtra("TASK")
         doAsync {
             model = DbTool.getDbManager().selector(T_ALARM_CLOCK::class.java).
