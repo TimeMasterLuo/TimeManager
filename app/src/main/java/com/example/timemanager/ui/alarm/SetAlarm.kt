@@ -6,6 +6,7 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.EditText
@@ -89,6 +90,7 @@ class SetAlarm : AppCompatActivity() {
             model.ID = TimeManager.instance().alarmCount++;
         }
 
+        getFriendList()
         dateTimePicker.setOnDateTimeChangedListener { millisecond -> time_edit(millisecond)  }
         card_sound.setOnClickListener { doPickPingtone(); }
         card_note.setOnClickListener { alert_edit(); }
@@ -97,7 +99,7 @@ class SetAlarm : AppCompatActivity() {
         button_submit.setOnClickListener{SaveClock();}
         button_delete.setOnClickListener{deleteClock();}
 
-        getFriendList()
+
         //testSetAlarm()
 
     }
@@ -223,7 +225,7 @@ class SetAlarm : AppCompatActivity() {
         daySelectDialog.show();
     }
     private fun alertToSelect(){//TODO:添加ToId
-        getFriendList();
+        //getFriendList();
         if(TimeManager.instance().login_flag) {
             val list = friendList.contentToString();
             println("FriendList:$list");
