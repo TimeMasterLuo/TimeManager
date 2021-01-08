@@ -6,6 +6,7 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.EditText
@@ -89,6 +90,7 @@ class SetAlarm : AppCompatActivity() {
             model.ID = TimeManager.instance().alarmCount++;
         }
 
+        getFriendList()
         dateTimePicker.setOnDateTimeChangedListener { millisecond -> time_edit(millisecond)  }
         card_sound.setOnClickListener { doPickPingtone(); }
         card_note.setOnClickListener { alert_edit(); }
@@ -97,7 +99,7 @@ class SetAlarm : AppCompatActivity() {
         button_submit.setOnClickListener{SaveClock();}
         button_delete.setOnClickListener{deleteClock();}
 
-        getFriendList()
+
         //testSetAlarm()
 
     }
@@ -108,7 +110,7 @@ class SetAlarm : AppCompatActivity() {
         var param= mutableMapOf("username" to username)
         val params = JSONObject(param as Map<*, *>)
         var friendId=-1
-        friendList= arrayOf();
+        //friendList= arrayOf();
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             { response ->
@@ -133,13 +135,15 @@ class SetAlarm : AppCompatActivity() {
         //var param= mutableMapOf("username" to TimeManager.instance().username)
         var param= mutableMapOf("username" to TimeManager.instance().username)
         val params = JSONObject(param as Map<*, *>)
-        friendList= arrayOf();
+
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url2, params,
             { response ->
                 println("fetch data response:$response")
                 var array=response.get("friend_names") as JSONArray;
                 array.put(TimeManager.instance().username);
+                //var tmpList=arrayOf():arr;
+                friendList= arrayOf();
                 //var gson=GsonBuilder().create()
                 //var list=gson.fromJson(array.toString(),String::class.java)
                 val i=0;
@@ -223,7 +227,7 @@ class SetAlarm : AppCompatActivity() {
         daySelectDialog.show();
     }
     private fun alertToSelect(){//TODO:添加ToId
-        getFriendList();
+        //getFriendList();
         if(TimeManager.instance().login_flag) {
             val list = friendList.contentToString();
             println("FriendList:$list");
