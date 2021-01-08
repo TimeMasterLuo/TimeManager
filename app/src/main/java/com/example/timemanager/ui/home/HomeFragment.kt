@@ -14,6 +14,8 @@ import com.example.timemanager.ui.alarm.AlarmManage
 import com.example.timemanager.ui.awayphone.AwayPhone
 import com.example.timemanager.R
 import com.example.timemanager.StudyEamples.SendHttpRequestExample
+import com.example.timemanager.application.TimeManager
+import kotlinx.android.synthetic.main.layout_title.*
 
 class HomeFragment : Fragment() {
 
@@ -31,6 +33,7 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
 
         val btn1 : Button = root.findViewById(R.id.alarm_button)
         btn1.setOnClickListener(object: View.OnClickListener {
