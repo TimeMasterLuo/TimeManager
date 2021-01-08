@@ -30,25 +30,25 @@
 
     <ImageView
         android:id="@+id/normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:layout_marginTop="176dp"
+        android:contentDescription="@string/focus_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/artwords_normal"
-        android:contentDescription="@string/focus_normal" />
+        app:srcCompat="@drawable/b1" />
 
     <ImageView
         android:id="@+id/focus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:layout_marginTop="136dp"
+        android:contentDescription="@string/focus_strict"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/normal"
-        app:srcCompat="@drawable/artwords_focus"
-        android:contentDescription="@string/focus_strict" />
+        app:srcCompat="@drawable/b2" />
 
     <TextView
         android:id="@+id/awayPhonetime"
@@ -60,5 +60,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="156dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="普通模式"
+        android:textColor="@color/RGB_FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/normal"
+        app:layout_constraintEnd_toEndOf="@+id/normal"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/normal"
+        app:layout_constraintTop_toTopOf="@+id/normal"
+        app:layout_constraintVertical_bias="0.463" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="156dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="专注模式"
+        android:textColor="@color/RGB_FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/focus"
+        app:layout_constraintEnd_toEndOf="@+id/focus"
+        app:layout_constraintStart_toStartOf="@+id/focus"
+        app:layout_constraintTop_toTopOf="@+id/focus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
