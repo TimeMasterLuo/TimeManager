@@ -139,7 +139,7 @@ class Analyze : AppCompatActivity() {
                             monthCommonTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
                             if(thisWeek){
                                 weekTotalCommon+=clocks[i].last_time.toFloat()
-                                weekCommonTime[7+((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
+                                weekCommonTime[7-((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
                             }
                         }
                     }
@@ -154,7 +154,7 @@ class Analyze : AppCompatActivity() {
                             monthDeepTime[tmptime.get(Calendar.DATE) / 7]+=clocks[i].last_time.toFloat()
                             if(thisWeek){
                                 weekTotalDeep+=clocks[i].last_time.toFloat()
-                                weekDeepTime[7+((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
+                                weekDeepTime[7-((currentTime.timeInMillis - tmptime.timeInMillis) / (1000 * 60 * 60 * 24)).toInt() - 1]+=clocks[i].last_time.toFloat()
                             }
                         }
                     }
@@ -398,8 +398,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", weekTotalCommon/60F),
-                                                            arrayOf("普通模式", weekTotalDeep/60F)
+                                                            arrayOf("普通模式", weekTotalCommon/60F),
+                                                            arrayOf("深度模式", weekTotalDeep/60F)
                                                     )
                                             )
                             )
@@ -455,8 +455,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", monthTotalCommon/60F),
-                                                            arrayOf("普通模式", monthTotalDeep/60F)
+                                                            arrayOf("普通模式", monthTotalCommon/60F),
+                                                            arrayOf("深度模式", monthTotalDeep/60F)
                                                     )
                                             )
                             )
@@ -525,8 +525,8 @@ class Analyze : AppCompatActivity() {
                                             .name("使用时间（分钟）")
                                             .data(
                                                     arrayOf(
-                                                            arrayOf("深度模式", yearTotalCommon/60F),
-                                                            arrayOf("普通模式", yearTotalDeep/60F)
+                                                            arrayOf("普通模式", yearTotalCommon/60F),
+                                                            arrayOf("深度模式", yearTotalDeep/60F)
                                                     )
                                             )
                             )
